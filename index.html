@@ -329,7 +329,7 @@
 .share-dialog::backdrop { background: #24192399; }
 .share-dialog-inner { padding: 27px 22px 20px; text-align: center; }
 .share-dialog-kicker { color: #a17688; font: 10px var(--mono); letter-spacing: .18em; }
-.share-dialog h2 { margin: 8px 0 6px; font: 700 21px/1.4 'Gowun Batang',var(--serif); }
+.share-dialog h2 { margin: 8px 0 6px; font: 700 22px/1.4 var(--serif); letter-spacing: -.04em; }
 .share-dialog p { margin: 0; color: #806d75; font: 12px/1.65 var(--sans); }
 .share-options { display: grid; grid-template-columns: minmax(0, 1fr); gap: 7px; margin-top: 18px; }
 .share-dialog:focus { outline: none; }
@@ -1618,6 +1618,7 @@ window.INVITATION = {
   const maxPhotos = 40;
   const maxPhotoBytes = 100 * 1024 * 1024;
   const photoChunkBytes = 4 * 1024 * 1024;
+  const maxConcurrentPhotos = 3;
   let photoSending = false;
   let photoBatchId = '';
   let photoBatchSender = '';
@@ -1684,7 +1685,7 @@ window.INVITATION = {
       reader.readAsDataURL(blob);
     });
   }
-  async function uploadPhoto(photo, sender, batchId, index, total) {
+  async function uploadPhoto(photo, sender, batchId, onProgress) {
     const file = photo.file;
     let status;
     if (photo.sender !== sender) {
@@ -1706,16 +1707,16 @@ window.INVITATION = {
       });
       photo.uploadId = status.uploadId;
     }
+    onProgress(Number(status.nextOffset) || 0);
     while (!status.done) {
       const offset = Number(status.nextOffset);
       if (!Number.isSafeInteger(offset) || offset < 0 || offset >= file.size) throw new Error('업로드 위치를 확인할 수 없습니다.');
-      photoStatus.textContent = `사진 ${index}/${total}장 전송 중 · ${Math.floor(offset / file.size * 100)}%`;
       const dataChunk = await readPhotoChunk(file.slice(offset, Math.min(offset + photoChunkBytes, file.size)));
       const next = await sendPhotoAction({action: 'chunk', uploadId: photo.uploadId, offset, data: dataChunk});
       if (!next.done && Number(next.nextOffset) <= offset) throw new Error('사진 전송이 진행되지 않았습니다.');
       status = next;
+      onProgress(Number(status.nextOffset));
     }
-    photoStatus.textContent = `사진 ${index}/${total}장 전송 완료`;
   }
   function updatePhotoUpload() {
     if (!selectedPhotos.length && !photoSending) {
@@ -1786,12 +1787,34 @@ window.INVITATION = {
     photoSending = true;
     updatePhotoUpload();
     try {
-      for (let index = 1; selectedPhotos.length; index++) {
-        const photo = selectedPhotos[0];
-        await uploadPhoto(photo, sender, photoBatchId, index, total);
-        if (photo.url) URL.revokeObjectURL(photo.url);
-        selectedPhotos.shift();
+      const queue = [...selectedPhotos];
+      const uploadedBytes = new Map(queue.map(photo => [photo, 0]));
+      const totalBytes = queue.reduce((sum, photo) => sum + photo.file.size, 0);
+      let completed = 0;
+      const showProgress = () => {
+        const bytes = [...uploadedBytes.values()].reduce((sum, value) => sum + value, 0);
+        photoStatus.textContent = `사진 전송 중 · ${Math.floor(bytes / totalBytes * 100)}% (${completed}/${total}장 완료)`;
+      };
+      showProgress();
+      for (let start = 0; start < queue.length; start += maxConcurrentPhotos) {
+        const group = queue.slice(start, start + maxConcurrentPhotos);
+        const outcomes = await Promise.allSettled(group.map(async photo => {
+          await uploadPhoto(photo, sender, photoBatchId, bytes => {
+            uploadedBytes.set(photo, Math.min(Math.max(bytes, 0), photo.file.size));
+            showProgress();
+          });
+          completed++;
+          showProgress();
+        }));
+        outcomes.forEach((outcome, index) => {
+          if (outcome.status !== 'fulfilled') return;
+          const photo = group[index];
+          if (photo.url) URL.revokeObjectURL(photo.url);
+          const selectedIndex = selectedPhotos.indexOf(photo);
+          if (selectedIndex !== -1) selectedPhotos.splice(selectedIndex, 1);
+        });
         updatePhotoUpload();
+        if (outcomes.some(outcome => outcome.status === 'rejected')) throw new Error('photo-batch-incomplete');
       }
       photoSender.value = '';
       photoBatchId = '';
