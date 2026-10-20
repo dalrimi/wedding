@@ -1619,7 +1619,7 @@ window.INVITATION = {
   const maxPhotoBytes = 100 * 1024 * 1024;
   const photoChunkBytes = 8 * 1024 * 1024;
   const directPhotoBytes = 6 * 1024 * 1024;
-  const maxConcurrentPhotos = 4;
+  const maxConcurrentPhotos = 6;
   let photoSending = false;
   let photoBatchId = '';
   let photoBatchSender = '';
@@ -1686,6 +1686,29 @@ window.INVITATION = {
       reader.readAsDataURL(blob);
     });
   }
+  function sendPhotoToDrive(sessionUrl, file, onProgress) {
+    const url = new URL(sessionUrl);
+    if (url.protocol !== 'https:' || url.hostname !== 'www.googleapis.com' || !url.pathname.startsWith('/upload/drive/v3/files')) {
+      return Promise.reject(new Error('사진 전송 주소를 확인할 수 없습니다.'));
+    }
+    return new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
+      request.open('PUT', sessionUrl);
+      request.timeout = 10 * 60 * 1000;
+      request.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+      request.setRequestHeader('Content-Range', `bytes 0-${file.size - 1}/${file.size}`);
+      request.upload.onprogress = event => {
+        if (event.lengthComputable) onProgress(Math.min(event.loaded, file.size));
+      };
+      request.onload = () => {
+        if (request.status === 200 || request.status === 201) resolve();
+        else reject(new Error(`drive-direct-${request.status}`));
+      };
+      request.onerror = () => reject(new Error('drive-direct-network'));
+      request.ontimeout = () => reject(new Error('drive-direct-timeout'));
+      request.send(file);
+    });
+  }
   async function uploadPhoto(photo, sender, batchId, onProgress) {
     const file = photo.file;
     let status;
@@ -1710,7 +1733,7 @@ window.INVITATION = {
     }
     if (photo.uploadId) {
       try {
-        status = await sendPhotoAction({action: 'status', uploadId: photo.uploadId});
+        status = await sendPhotoAction({action: 'status', uploadId: photo.uploadId, sync: '1'});
       } catch (error) {
         if (error.message !== 'upload-session-expired') throw error;
         photo.uploadId = '';
@@ -1724,6 +1747,16 @@ window.INVITATION = {
       photo.uploadId = status.uploadId;
     }
     onProgress(Number(status.nextOffset) || 0);
+    if (!status.done && Number(status.nextOffset) === 0 && status.sessionUrl) {
+      try {
+        await sendPhotoToDrive(status.sessionUrl, file, onProgress);
+        onProgress(file.size);
+        return;
+      } catch {
+        status = await sendPhotoAction({action: 'status', uploadId: photo.uploadId, sync: '1'});
+        onProgress(Number(status.nextOffset) || 0);
+      }
+    }
     while (!status.done) {
       const offset = Number(status.nextOffset);
       if (!Number.isSafeInteger(offset) || offset < 0 || offset >= file.size) throw new Error('업로드 위치를 확인할 수 없습니다.');
