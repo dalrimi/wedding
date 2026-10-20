@@ -1617,8 +1617,9 @@ window.INVITATION = {
   const selectedPhotos = [];
   const maxPhotos = 40;
   const maxPhotoBytes = 100 * 1024 * 1024;
-  const photoChunkBytes = 4 * 1024 * 1024;
-  const maxConcurrentPhotos = 3;
+  const photoChunkBytes = 8 * 1024 * 1024;
+  const directPhotoBytes = 6 * 1024 * 1024;
+  const maxConcurrentPhotos = 4;
   let photoSending = false;
   let photoBatchId = '';
   let photoBatchSender = '';
@@ -1690,7 +1691,22 @@ window.INVITATION = {
     let status;
     if (photo.sender !== sender) {
       photo.uploadId = '';
+      photo.directId = '';
       photo.sender = sender;
+    }
+    if (file.size <= directPhotoBytes && !photo.uploadId) {
+      if (!photo.directId) photo.directId = createPhotoBatchId();
+      const dataChunk = await readPhotoChunk(file);
+      try {
+        await sendPhotoAction({
+          action: 'direct', sender, batchId, photoId: photo.directId,
+          fileName: file.name, fileSize: file.size, mimeType: file.type, data: dataChunk
+        });
+        onProgress(file.size);
+        return;
+      } catch (error) {
+        if (error.message !== 'unknown-action') throw error;
+      }
     }
     if (photo.uploadId) {
       try {
@@ -1796,26 +1812,29 @@ window.INVITATION = {
         photoStatus.textContent = `사진 전송 중 · ${Math.floor(bytes / totalBytes * 100)}% (${completed}/${total}장 완료)`;
       };
       showProgress();
-      for (let start = 0; start < queue.length; start += maxConcurrentPhotos) {
-        const group = queue.slice(start, start + maxConcurrentPhotos);
-        const outcomes = await Promise.allSettled(group.map(async photo => {
-          await uploadPhoto(photo, sender, photoBatchId, bytes => {
-            uploadedBytes.set(photo, Math.min(Math.max(bytes, 0), photo.file.size));
+      let nextIndex = 0;
+      let failed = false;
+      const workers = Array.from({length: Math.min(maxConcurrentPhotos, queue.length)}, async () => {
+        while (nextIndex < queue.length) {
+          const photo = queue[nextIndex++];
+          try {
+            await uploadPhoto(photo, sender, photoBatchId, bytes => {
+              uploadedBytes.set(photo, Math.min(Math.max(bytes, 0), photo.file.size));
+              showProgress();
+            });
+            completed++;
             showProgress();
-          });
-          completed++;
-          showProgress();
-        }));
-        outcomes.forEach((outcome, index) => {
-          if (outcome.status !== 'fulfilled') return;
-          const photo = group[index];
-          if (photo.url) URL.revokeObjectURL(photo.url);
-          const selectedIndex = selectedPhotos.indexOf(photo);
-          if (selectedIndex !== -1) selectedPhotos.splice(selectedIndex, 1);
-        });
-        updatePhotoUpload();
-        if (outcomes.some(outcome => outcome.status === 'rejected')) throw new Error('photo-batch-incomplete');
-      }
+            if (photo.url) URL.revokeObjectURL(photo.url);
+            const selectedIndex = selectedPhotos.indexOf(photo);
+            if (selectedIndex !== -1) selectedPhotos.splice(selectedIndex, 1);
+            updatePhotoUpload();
+          } catch {
+            failed = true;
+          }
+        }
+      });
+      await Promise.all(workers);
+      if (failed) throw new Error('photo-batch-incomplete');
       photoSender.value = '';
       photoBatchId = '';
       photoBatchSender = '';
