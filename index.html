@@ -659,6 +659,32 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
 #teacher .bride-letter-paper > .letter-section { padding-bottom: 72px; }
 #teacher .location-section .travel-notice:last-child { border-bottom: 0; }
 </style>
+<style>
+/* Bride account details use the same content width as the RSVP card. */
+#teacher .bride-letter-paper > .gift-section { padding-right: 21px; padding-left: 21px; }
+#teacher .gift-accordion-panel { padding: 0 8px 8px; }
+#teacher .gift-accordion-toggle { padding: 16px 18px; }
+#teacher .gift-person { margin: 10px 0; padding: 14px 16px; }
+#teacher .gift-person-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 28px; }
+#teacher .gift-person-identity { gap: 7px; }
+#teacher .gift-person-account-line { display: flex; align-items: center; gap: 8px; margin-top: 11px; }
+#teacher .gift-account-detail { flex: none; margin: 0; font-size: 12px; }
+#teacher .gift-copy-button { min-height: 28px; padding: 0 4px; }
+#teacher .gift-contact-actions { gap: 7px; margin-left: auto; }
+#teacher .gift-contact-actions a, #teacher .gift-contact-actions button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; min-width: 28px; min-height: 28px; padding: 0; border: 1px solid #d9b8c4; border-radius: 50%; color: #88566a; background: #fff; }
+#teacher .gift-contact-actions button:disabled { opacity: .4; cursor: default; }
+@media (max-width: 360px) {
+  #teacher .bride-letter-paper > .gift-section { padding-right: 15px; padding-left: 15px; }
+  #teacher .gift-person { padding-right: 12px; padding-left: 12px; }
+}
+
+/* Keep the opening notice on its own mobile screen. */
+@media (max-width: 699px) {
+  #teacher .notice-paper { min-height: calc(100svh - 106px); }
+  #teacher .notice-paper .couple-line { margin-top: 48px; }
+}
+#coding .gift-account-detail { font-family: 'DM Sans', var(--sans); font-variant-numeric: tabular-nums; }
+</style>
 </head>
 <body>
   <button type="button" id="music-toggle" class="music-toggle" aria-label="배경음악 켜기" aria-pressed="false" title="배경음악 켜기"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17V5.5l9-2v11.3M10 17c0 1.6-1.6 2.9-3.5 2.9S3 18.6 3 17s1.6-2.9 3.5-2.9S10 15.4 10 17Zm9-2.2c0 1.6-1.6 2.9-3.5 2.9S12 16.4 12 14.8s1.6-2.9 3.5-2.9 3.5 1.3 3.5 2.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path class="music-off-mark" d="M4 4 20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
@@ -1440,7 +1466,6 @@ window.INVITATION = {
         const detail = document.createElement('span');
         detail.className = 'gift-account-detail';
         detail.textContent = `${bank || '00은행'} ${number || '000-000-000'}`;
-        line.append(detail);
         const copyButton = document.createElement('button');
         copyButton.type = 'button';
         copyButton.className = 'gift-copy-button';
@@ -1448,15 +1473,22 @@ window.INVITATION = {
         copyButton.setAttribute('aria-label', `${person.role} ${person.name} 계좌번호 복사`);
         copyButton.disabled = !ready;
         if (ready) copyButton.addEventListener('click', () => copy(number, `${person.name}님의 계좌번호를 복사했습니다.`));
-        line.append(copyButton);
-        if (person.phone) {
+        const accountLine = isCodingGift ? line : document.createElement('div');
+        if (!isCodingGift) accountLine.className = 'gift-person-account-line';
+        accountLine.append(detail, copyButton);
+        if (person.phone || !isCodingGift) {
           const actions = document.createElement('div');
           actions.className = 'gift-contact-actions';
           for (const action of [{key: 'call', label: '전화하기', scheme: 'tel:'}, {key: 'sms', label: '문자하기', scheme: 'sms:'}]) {
-            const link = document.createElement('a');
-            link.href = action.scheme + String(person.phone).replace(/[^\d+]/g, '');
+            const link = document.createElement(person.phone ? 'a' : 'button');
+            if (person.phone) link.href = action.scheme + String(person.phone).replace(/[^\d+]/g, '');
+            else {
+              link.type = 'button';
+              link.disabled = true;
+              link.className = 'gift-contact-unavailable';
+            }
             link.setAttribute('aria-label', `${person.role} ${person.name} ${action.label}`);
-            link.title = action.label;
+            link.title = person.phone ? action.label : '연락처를 준비 중입니다';
             if (isCodingGift) link.textContent = action.key === 'call' ? '전화' : '문자';
             else link.innerHTML = contactIcons[action.key];
             actions.append(link);
@@ -1464,6 +1496,7 @@ window.INVITATION = {
           line.append(actions);
         }
         row.append(line);
+        if (!isCodingGift) row.append(accountLine);
         if (holder !== person.name) {
           const meta = document.createElement('p');
           meta.className = 'gift-account-meta';
