@@ -758,6 +758,39 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
 }
 
 </style>
+<style id="v68-refinements">
+/* Map controls and compact RSVP, version 68. */
+.venue-map-dialog-head #venue-map-zoom:focus,
+.venue-map-dialog-head #venue-map-zoom:focus-visible { outline: none !important; box-shadow: none !important; }
+.venue-map-dialog-head #venue-map-close { font-size: 15px; }
+#teacher .rsvp-form { margin-top: 16px; padding: 16px 16px 13px; }
+#teacher .rsvp-card-heading { padding-bottom: 10px; margin-bottom: 12px; }
+#teacher .rsvp-side-buttons button { min-height: 56px; }
+#teacher #rsvp-details { margin-top: 14px; padding-top: 14px; }
+#teacher .rsvp-field { margin-top: 11px; }
+#teacher .rsvp-field input, #teacher .rsvp-field textarea { min-height: 42px; margin-top: 5px; padding: 9px 11px; }
+#teacher .rsvp-field textarea { min-height: 58px; }
+#teacher .rsvp-field input::placeholder, #teacher .rsvp-field textarea::placeholder { font-size: 12px; }
+#teacher .rsvp-choice { margin-top: 11px !important; }
+#teacher .rsvp-choice legend, #teacher .rsvp-meal legend { margin-bottom: 5px; }
+#teacher .rsvp-attendance-options { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
+#teacher .rsvp-choice label { min-height: 39px; margin: 0; padding: 7px 9px; font-size: 12px; white-space: nowrap; }
+#teacher .rsvp-meal { margin-top: 10px !important; }
+#teacher .rsvp-meal-options { grid-template-columns: 1fr; gap: 5px; }
+#teacher .rsvp-meal-options label { flex-direction: row; justify-content: flex-start; min-height: 36px; gap: 9px; padding: 6px 10px; font-size: 12px; text-align: left; }
+#teacher .rsvp-meal-options label:has(input:checked) { border-color: #a5687f; background: #f5e7ec; }
+#teacher .rsvp-submit { margin-top: 13px; padding: 11px 14px; }
+#teacher .rsvp-status { margin-top: 8px; }
+#coding .rsvp-attendance-options { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+#coding .rsvp-choice label, #coding .rsvp-choice label:last-child { width: 100%; margin: 4px 0 0; }
+#toast.bride-toast, #toast.code-toast { top: 50%; bottom: auto; left: 50%; z-index: 150; width: min(88vw,360px); max-width: none; padding: 19px 18px; white-space: pre-line; word-break: keep-all; pointer-events: none; opacity: 0; transform: translate(-50%,-44%) scale(.98); transition: opacity .25s ease, transform .25s ease; }
+#toast.bride-toast.show, #toast.code-toast.show { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+#toast.bride-toast { border: 1px solid #b98199; border-radius: 12px; background: #7b4b61; box-shadow: 0 18px 50px #3c1d2c70; color: #fff; font: 500 13px/1.7 var(--sans); }
+#toast.bride-toast::before { display: block; margin-bottom: 8px; color: #ffdee9; content: '♡  마음을 전해주셔서 감사합니다'; font-size: 11px; }
+#toast.code-toast { border: 1px solid #72c799; border-radius: 0; background: #091b14; box-shadow: 0 18px 50px #00120dcc; color: #e2f6e8; font: 12px/1.7 var(--sans); text-align: left; }
+#toast.code-toast::before { display: block; margin-bottom: 9px; color: #8fe0ad; content: '$ ./rsvp --declined'; font: 11px/1.5 'DM Mono',var(--mono),monospace; }
+
+</style>
 </head>
 <body>
   <button type="button" id="music-toggle" class="music-toggle" aria-label="배경음악 켜기" aria-pressed="false" title="배경음악 켜기"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17V5.5l9-2v11.3M10 17c0 1.6-1.6 2.9-3.5 2.9S3 18.6 3 17s1.6-2.9 3.5-2.9S10 15.4 10 17Zm9-2.2c0 1.6-1.6 2.9-3.5 2.9S12 16.4 12 14.8s1.6-2.9 3.5-2.9 3.5 1.3 3.5 2.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path class="music-off-mark" d="M4 4 20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
@@ -939,10 +972,10 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
           <div id="rsvp-details" class="rsvp-details" hidden>
           <fieldset id="rsvp-fields" class="rsvp-fields" disabled>
             <label class="rsvp-field">이름 <input name="name" type="text" autocomplete="name" maxlength="40" placeholder="성함을 입력해 주세요" required /></label>
-            <fieldset class="rsvp-choice"><legend>참석 여부</legend><label><input type="radio" name="attendance" value="attending" required /> 참석할게요</label><label><input type="radio" name="attendance" value="not-attending" required /> 참석이 어려워요</label></fieldset>
+            <fieldset class="rsvp-choice"><legend>참석 여부</legend><div class="rsvp-attendance-options"><label><input type="radio" name="attendance" value="attending" required /> 참석할게요</label><label><input type="radio" name="attendance" value="not-attending" required /> 참석이 어려워요</label></div></fieldset>
             <fieldset class="rsvp-meal" hidden disabled><legend>식사 여부</legend><div class="rsvp-meal-options"><label><input type="radio" name="meal" value="O" /> 식사할게요</label><label><input type="radio" name="meal" value="X" /> 식사는 어려워요</label><label><input type="radio" name="meal" value="아직 모르겠어요" /> 아직 모르겠어요</label></div></fieldset>
             <label class="rsvp-field rsvp-count-field" id="rsvp-count-field">총 참석 인원 <small>본인 포함</small><input name="guestCount" type="number" min="1" step="1" inputmode="numeric" placeholder="인원 수" required /></label>
-            <label class="rsvp-field">전하고 싶은 말 <small>선택</small><textarea name="message" rows="3" maxlength="500" placeholder="두 사람에게 전할 말을 남겨 주세요"></textarea></label>
+            <label class="rsvp-field">전하고 싶은 말 <small>선택</small><textarea name="message" rows="2" maxlength="500" placeholder="두 사람에게 전할 말을 남겨 주세요"></textarea></label>
             <button type="submit" id="rsvp-submit" class="rsvp-submit">참석 여부 보내기</button>
           </fieldset>
           </div>
@@ -1107,9 +1140,10 @@ window.INVITATION = {
     const element = $('#toast');
     element.textContent = message;
     element.classList.toggle('bride-toast', tone === 'bride');
+    element.classList.toggle('code-toast', tone === 'coding');
     element.classList.add('show');
     clearTimeout(toast.timer);
-    toast.timer = setTimeout(() => element.classList.remove('show'), 2800);
+    toast.timer = setTimeout(() => element.classList.remove('show'), tone ? 3800 : 2800);
   };
 
   set('#selection-groom', data.groom);
@@ -1314,7 +1348,7 @@ window.INVITATION = {
     prepareReveals(target);
     if (target === 'coding' && data.codingVersionUrl) location.href = data.codingVersionUrl;
   }
-  document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', event => { event.preventDefault(); showView(button.dataset.view); }));
+  document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => showView(button.dataset.view)));
   const syncViewFromUrl = () => showView(location.hash.slice(1), false);
   window.addEventListener('popstate', syncViewFromUrl);
   window.addEventListener('hashchange', syncViewFromUrl);
@@ -1364,7 +1398,6 @@ window.INVITATION = {
   setOptionalPhoto('#selection-hero-image', data.heroPhoto, `${data.groom}과 ${data.bride}의 사진`);
   setOptionalPhoto('#groom-intro-photo', data.introPhotos?.groom, `${data.groom}의 사진`);
   setOptionalPhoto('#bride-intro-photo', data.introPhotos?.bride, `${data.bride}의 사진`);
-
   document.querySelectorAll('.couple-card .couple-photo').forEach(button => {
     const name = button.closest('.couple-card').querySelector(':scope > strong').textContent.trim();
     button.addEventListener('click', () => {
@@ -1718,8 +1751,8 @@ window.INVITATION = {
     updateAttendanceDetails();
     rsvpForm.querySelectorAll('input[name="attendance"]').forEach(input => input.addEventListener('change', () => {
       updateAttendanceDetails();
-      if (rsvpForm.id === 'rsvp-form' && input.checked && input.value === 'not-attending') {
-        toast('참석이 어려우셔도 괜찮습니다. 전해주시는 축하와 연락만으로도 저희에게 큰 힘이 됩니다.', 'bride');
+      if (input.checked && input.value === 'not-attending') {
+        toast('참석이 어려우셔도 괜찮습니다.\n전해주시는 축하와 연락만으로도 저희에게 큰 힘이 됩니다.', rsvpForm.id === 'rsvp-form' ? 'bride' : 'coding');
       }
     }));
     rsvpForm.addEventListener('submit', async event => {
@@ -2042,7 +2075,7 @@ window.INVITATION = {
   const shareMessage = (url) => `${data.groom} ♥ ${data.bride} 결혼식에 초대합니다.\n${data.dateText}\n${data.venue}\n${url}`;
   function shareInvitation(view) {
     const route = view === 'selection' ? '' : `#${viewHash(view)}`;
-    const url = location.protocol === 'file:' ? `https://our-wedding-notice.snu-chatgpt-5678.chatgpt.site/${route}` : `${location.origin}${location.pathname}${route}`;
+    const url = `${location.origin}${location.pathname}${route}`;
     currentShareUrl = url;
     shareDialog.dataset.theme = view;
     set('#share-dialog-kicker', view === 'coding' ? 'SHARE INVITATION' : 'INVITATION');
@@ -2095,7 +2128,6 @@ window.INVITATION = {
   $('#calendar-button').addEventListener('click', addCalendarEvent);
   $('#code-calendar-button').addEventListener('click', addCalendarEvent);
 })();
-
 </script>
 </body>
 </html>
