@@ -790,6 +790,9 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
 #toast.code-toast { border: 1px solid #72c799; border-radius: 0; background: #091b14; box-shadow: 0 18px 50px #00120dcc; color: #e2f6e8; font: 12px/1.7 var(--sans); text-align: left; }
 #toast.code-toast::before { display: block; margin-bottom: 9px; color: #8fe0ad; content: '$ ./rsvp --declined'; font: 11px/1.5 'DM Mono',var(--mono),monospace; }
 
+/* Keep the map control label on one line in both zoom states. */
+.venue-map-dialog-head #venue-map-zoom { width: 64px; min-width: 64px; white-space: nowrap; }
+
 </style>
 </head>
 <body>
