@@ -617,6 +617,24 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
 #teacher .paper-attachment span:first-child { font-weight: 700; }
 #teacher .paper-attachment span:last-child { margin-left: auto; }
 </style>
+  <style>
+/* Bride's letter on one angular sheet; independent section reveals remain intact. */
+#teacher .notice-paper .couple-line { width: min(100%, 284px); gap: 2px; grid-template-columns: minmax(0,1fr) 14px minmax(0,1fr); margin-right: auto; margin-left: auto; }
+#teacher .couple-person small { font-size: clamp(9px,2.8vw,12px); letter-spacing: -.045em; }
+#teacher .paper-attachment span:last-child { margin-left: 0; }
+#teacher .bride-letter-paper { margin: 0 18px 28px; border: 1px solid #ebdce1; border-radius: 0; background: #fff; box-shadow: 0 8px 22px #8f69731a; }
+#teacher .bride-letter-paper > section { position: relative; margin: 0; padding: 50px 21px 52px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+#teacher .bride-letter-paper > .letter-section { padding: 58px 7px 54px; }
+#teacher .bride-letter-paper > .gift-section { padding-right: 12px; padding-left: 12px; }
+#teacher .bride-letter-paper > section + section::before { position: absolute; top: 0; right: 23px; left: 23px; height: 1px; background: repeating-linear-gradient(90deg,#d9b6c4 0 4px,transparent 4px 9px); content: ''; }
+#teacher .bride-letter-paper > section + section::after { position: absolute; top: -4px; left: calc(50% - 4px); width: 8px; height: 8px; border: 1px solid #d9b6c4; background: #fff; content: ''; transform: rotate(45deg); }
+@media (max-width: 360px) {
+  #teacher .bride-letter-paper { margin-right: 11px; margin-left: 11px; }
+  #teacher .bride-letter-paper > section { padding-right: 15px; padding-left: 15px; }
+  #teacher .bride-letter-paper > .letter-section { padding-right: 4px; padding-left: 4px; }
+  #teacher .bride-letter-paper > .gift-section { padding-right: 8px; padding-left: 8px; }
+}
+</style>
 </head>
 <body>
   <button type="button" id="music-toggle" class="music-toggle" aria-label="배경음악 켜기" aria-pressed="false" title="배경음악 켜기"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17V5.5l9-2v11.3M10 17c0 1.6-1.6 2.9-3.5 2.9S3 18.6 3 17s1.6-2.9 3.5-2.9S10 15.4 10 17Zm9-2.2c0 1.6-1.6 2.9-3.5 2.9S12 16.4 12 14.8s1.6-2.9 3.5-2.9 3.5 1.3 3.5 2.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path class="music-off-mark" d="M4 4 20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
@@ -734,31 +752,29 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
       <div class="notice-wrap">
         <div class="paper-edge" aria-hidden="true"></div>
         <article class="notice-paper">
-          <div class="paper-meta"><span id="document-number">문서번호 2023-09-09</span><span>보존기간 평생</span></div>
+          <div class="paper-meta"><span id="document-number">문서번호 2027-10-24</span><span>보존기간 평생</span></div>
           <div class="paper-rule"></div>
           <div class="paper-recipient"><span>수신</span><strong>양우성, 이해림과 양가 부모님의 소중한 인연</strong></div>
           <div class="paper-recipient"><span>제목</span><strong>두 사람의 결혼에 관한 안내</strong></div>
           <div class="paper-rule thin"></div>
           <p class="paper-intro">1. 늘 저희에게 보내주신 따뜻한 마음에 감사드립니다.</p>
           <p class="paper-intro">2. 아래와 같이 저희 두 사람의 결혼을 알려드립니다.</p>
-          <div class="paper-issue" id="document-issue">공고 제 2027-10호</div>
           <h2 id="teacher-title" class="paper-sr-only">결혼통신문</h2>
           <div class="couple-line"><span class="couple-person"><small>양진호·나윤숙의 장남</small><strong id="groom-name">양우성</strong></span><span class="heart" aria-label="사랑">♥</span><span class="couple-person"><small>이상배·심정희의 장녀</small><strong id="bride-name">이해림</strong></span></div>
           <div class="key-facts"><div><span>일시</span><strong id="date-text">2027년 10월 24일 일요일 오후 1시</strong></div><div><span>장소</span><strong id="venue-name">서울대학교 연구공원 웨딩홀</strong></div></div>
           <p class="paper-closing">위 행사에 여러분을 초대합니다.</p>
-          <p class="paper-attachment"><span>붙임</span><span>결혼통신문 1부.</span><span>끝.</span></p>
+          <p class="paper-attachment"><span>붙임</span><span>결혼통신문 1부.&nbsp;&nbsp;끝.</span></p>
         </article>
       </div>
 
+      <div class="bride-letter-paper" role="group" aria-label="결혼통신문 본문">
       <section class="letter-section section-pad" aria-labelledby="letter-title">
-        <span class="section-count">01 / INVITATION</span>
-        <div class="section-heading"><h2 id="letter-title">초대하는 글</h2></div>
+        <div class="section-heading"><h2 id="letter-title">결혼통신문</h2></div>
         <p id="invitation-text">함께 있을 때 가장 편하고 재미있어서,<br />앞으로도 그렇게 웃으며 평생을 함께하기로 했습니다.<br />저희의 새로운 시작을 따뜻하게 축복해 주세요.</p>
         <div class="letter-sign"><span>신랑</span><strong id="groom-name-2">양우성</strong><span>·</span><span>신부</span><strong id="bride-name-2">이해림</strong></div>
       </section>
 
       <section class="schedule-section section-pad" aria-labelledby="schedule-title">
-        <span class="section-count">02 / THE DAY</span>
         <div class="section-heading"><h2 id="schedule-title">행사 안내</h2></div>
         <div class="calendar-card"><div class="calendar-head"><span>OCTOBER</span><strong>2027</strong></div><div class="calendar-grid" id="calendar-grid" aria-label="2027년 10월 달력"></div></div>
         <p class="day-caption" id="day-caption">10월 24일 일요일 · 오후 1시</p>
@@ -767,7 +783,6 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
       </section>
 
       <section class="location-section section-pad" aria-labelledby="location-title">
-        <span class="section-count">03 / LOCATION</span>
         <div class="section-heading"><h2 id="location-title">오시는 길</h2></div>
         <div class="location-card"><strong id="venue-name-2">서울대학교 연구공원 웨딩홀</strong><span id="venue-address">서울특별시 관악구 관악로 1 서울대학교 연구공원 본관</span></div>
         <div class="route-primary">
@@ -787,7 +802,6 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
       </section>
 
       <section class="rsvp-section section-pad" aria-labelledby="rsvp-title">
-        <span class="section-count">04 / RSVP</span>
         <div class="section-heading"><h2 id="rsvp-title">참석 여부 회신</h2></div>
         <p class="rsvp-intro">참석 여부를 미리 알려주시면 감사한 마음으로 정성껏 준비하겠습니다.</p>
         <form id="rsvp-form" class="rsvp-form">
@@ -814,11 +828,11 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
       </section>
 
       <section class="gift-section section-pad" aria-labelledby="gift-title">
-        <span class="section-count">05 / WITH GRATITUDE</span>
         <div class="section-heading"><h2 id="gift-title">마음 전하실 곳</h2></div>
         <p class="gift-intro">참석이 어려우신 분들을 위해 안내드립니다</p>
         <div class="gift-accordion" data-gift-view="teacher"></div>
       </section>
+      </div>
 
       <footer class="teacher-footer section-pad"><div class="footer-actions"><button type="button" class="share-button" id="share-button"><span class="footer-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M13 4h7v7M20 4l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="footer-action-label">청첩장<br />공유하기</span></button><a class="other-version-button" data-view="coding" href="#groom"><span class="footer-action-icon footer-code-icon" aria-hidden="true">&lt;/&gt;</span><span class="footer-action-label">신랑 버전<br />청첩장 보기</span></a></div><span class="footer-fine">본 문서는 신부의 정성으로 제작 및 발송되었습니다.</span></footer>
     </main>
@@ -924,7 +938,7 @@ window.INVITATION = {
   venue: "서울대학교 연구공원 웨딩홀",
   address: "서울특별시 관악구 관악로 1 서울대학교 연구공원 본관",
   mapSearchName: "서울대 연구공원 웨딩홀",
-  documentNumber: "2023-09-09",
+  documentNumber: "2027-10-24",
   invitation: "함께 있을 때 가장 편하고 재미있어서,\n앞으로도 그렇게 웃으며 평생을 함께하기로 했습니다.\n저희의 새로운 시작을 따뜻하게 축복해 주세요.",
   accounts: {
     groom: { bank: "00은행", number: "000-000-000", holder: "" },
@@ -987,7 +1001,6 @@ window.INVITATION = {
   set('#venue-address', data.address);
   set('#invitation-text', data.invitation);
   set('#document-number', `문서번호 ${data.documentNumber}`);
-  set('#document-issue', `공고 제 ${eventDate.getFullYear()}-${String(eventDate.getMonth()+1).padStart(2,'0')}호`);
   set('#code-hero-groom', data.groom);
   set('#code-hero-bride', data.bride);
   set('#code-groom', data.groom);
