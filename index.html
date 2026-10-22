@@ -872,8 +872,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
 .gallery-grid-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 100%; height: 100%; border: 1px solid #ebd9e1; border-radius: inherit; background: linear-gradient(145deg, #fbf6f8, #f1e5ea); color: #9d7b89; }
 .gallery-grid-placeholder small { font: 500 6px/1.4 'DM Sans', var(--sans); letter-spacing: .15em; }
 .gallery-grid-placeholder strong { font: 400 clamp(19px, 5vw, 30px)/1 'Gowun Batang', var(--serif); }
-.gallery-dots { scroll-snap-type: x proximity; touch-action: pan-x; overscroll-behavior-inline: contain; }
-.gallery-dots button { scroll-snap-align: start; }
+.gallery-dots { padding-inline: max(1px, calc(50% - 17.5px)); scroll-snap-type: x proximity; touch-action: pan-x; overscroll-behavior-inline: contain; }
+.gallery-dots button { scroll-snap-align: center; }
 @media (max-width: 350px) { .gallery-heading h2 { font-size: 20px; } .gallery-mode-switch button { padding-inline: 5px; font-size: 9px; } }
 </style>
 </head>
@@ -935,9 +935,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
         <section class="selection-couple" aria-labelledby="couple-title">
           <h2 id="couple-title">두 사람을 소개합니다.</h2>
           <div class="couple-cards">
-            <article class="couple-card"><button class="couple-photo" type="button" aria-label="신랑 양우성 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="groom-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-birthday">1998.09.29.</span><strong>ISFP</strong><span class="couple-profile-note">세상만사 무던하고 귀찮은 게 참 많지만,<br />유일하게 지겹지 않고 귀여운 존재는<br />하루 종일 곁에서 조잘대는 신부라고 합니다.</span></span></span></button><strong>신랑 양우성</strong></article>
+            <article class="couple-card"><button class="couple-photo" type="button" aria-label="신랑 양우성 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="groom-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-birthday">1998.09.29.</span><strong>ISFP</strong><span class="couple-profile-note">세상 무던하고 귀찮은 게 많지만,<br />유일하게 지겹지 않은 존재는<br />하루 종일 곁에서 조잘대는<br />신부뿐이라고 합니다.</span></span></span></button><strong>신랑 양우성</strong></article>
             <span class="couple-connector" aria-hidden="true">♥</span>
-            <article class="couple-card"><button class="couple-photo" type="button" aria-label="신부 이해림 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="bride-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-birthday">1998.01.27.</span><strong>ESTJ</strong><span class="couple-profile-note">언제 어디서든 똑 부러지고 야무지지만,<br />유일하게 덤벙대며 사고치는 때는<br />듬직하게 다 받아주는 신랑 옆이라고 합니다.</span></span></span></button><strong>신부 이해림</strong></article>
+            <article class="couple-card"><button class="couple-photo" type="button" aria-label="신부 이해림 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="bride-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-birthday">1998.01.27.</span><strong>ESTJ</strong><span class="couple-profile-note">언제나 똑 부러지고 야무지지만,<br />유일하게 덤벙대며 사고치는 때는<br />츤츤대면서도 다 받아주는<br />신랑 옆이라고 합니다.</span></span></span></button><strong>신부 이해림</strong></article>
           </div>
         </section>
         <details class="selection-story" id="story-details">
@@ -1564,6 +1564,14 @@ window.INVITATION = {
   const galleryGrid = $('#gallery-grid');
   const galleryDialog = $('#gallery-dialog');
   let galleryIndex = 0;
+  function centerGalleryNumber(behavior = 'smooth') {
+    const strip = $('#gallery-dots');
+    const selected = strip.children[galleryIndex];
+    if (!selected || galleryViewer.hidden) return;
+    const target = strip.scrollLeft + selected.getBoundingClientRect().left - strip.getBoundingClientRect().left
+      + selected.getBoundingClientRect().width / 2 - strip.clientWidth / 2;
+    strip.scrollTo({ left: target, behavior });
+  }
   const openGalleryDialog = () => {
     galleryDialog.showModal();
     galleryDialog.focus({ preventScroll: true });
@@ -1574,6 +1582,7 @@ window.INVITATION = {
     galleryViewer.hidden = gridMode;
     $('#gallery-grid-mode').setAttribute('aria-pressed', String(gridMode));
     $('#gallery-slide-mode').setAttribute('aria-pressed', String(!gridMode));
+    if (!gridMode) requestAnimationFrame(() => centerGalleryNumber('instant'));
   }
   function showGalleryPhoto(index) {
     galleryIndex = (index + galleryPhotos.length) % galleryPhotos.length;
@@ -1603,6 +1612,7 @@ window.INVITATION = {
     [...dots.children].forEach((dot, dotIndex) => {
       dot.setAttribute('aria-current', dotIndex === galleryIndex ? 'true' : 'false');
     });
+    centerGalleryNumber();
   }
   if (galleryPhotos.length) {
     $('#gallery-empty').hidden = true;
