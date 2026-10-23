@@ -29,7 +29,7 @@
 .choice-coding .choice-top { opacity: 1; }
 .choice-coding .code-icon, .choice-coding .choice-bottom { border-color: #dedede; }
 .selection-lede { margin-bottom: 26px; }
-.selection-event-card { margin: 0 auto 24px; background: linear-gradient(135deg, #fff 0%, #fff9fb 50%, #fff 100%); }
+.selection-event-card { margin: 0 auto 24px; background: linear-gradient(to bottom, transparent 3px, #fcf8f9 3px, #fcf8f9 calc(100% - 3px), transparent calc(100% - 3px)); }
 .selection-event-rule { display: flex; align-items: center; gap: 7px; }
 .selection-event-rule::before, .selection-event-rule::after { content: ''; height: 1px; flex: 1; background: #e8d9df; }
 .selection-event-rule span { width: 6px; height: 6px; flex: none; border: 1px solid #bd93a3; background: #fff; transform: rotate(45deg); }
@@ -641,7 +641,7 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
 #teacher .notice-paper .couple-line { margin-top: 28px; }
 #teacher .notice-paper .paper-intro { font-size: 12px; }
 #teacher .notice-paper .paper-attachment { font-size: 12px; }
-#teacher .bride-letter-paper > .letter-section #invitation-text { font-size: clamp(11px,3.15vw,13px); letter-spacing: -.05em; }
+#teacher .bride-letter-paper > .letter-section #invitation-text { font-size: clamp(11.5px,3.3vw,13.5px); letter-spacing: -.05em; }
 #teacher .bride-letter-paper > section:not(.letter-section) .section-heading h2 { font-size: clamp(21px,5.5vw,23px); line-height: 1.45; }
 #teacher .bride-letter-paper .calendar-head strong { font-family: 'DM Sans',var(--sans); font-variant-numeric: lining-nums tabular-nums; }
 #teacher .bride-letter-paper .location-card strong { font-family: var(--sans); font-size: 15px; font-weight: 600; line-height: 1.5; }
@@ -879,7 +879,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
 @media (max-width: 350px) { .gallery-heading h2 { font-size: 20px; } .gallery-mode-switch button { padding-inline: 5px; font-size: 9px; } }
 
 /* Keep the route card's color steady while its directions slide open. */
-#selection .selection-event-card { background: #f9eaf0; }
+#selection .selection-event-card { background: linear-gradient(to bottom, transparent 3px, #fcf8f9 3px, #fcf8f9 calc(100% - 3px), transparent calc(100% - 3px)); }
 #selection .selection-event { -webkit-tap-highlight-color: transparent; }
 #selection .selection-event:hover, #selection .selection-event:active, #selection .selection-event:focus { background: transparent; box-shadow: none; filter: none; opacity: 1; }
 .selection-location { padding: 0; }
@@ -895,7 +895,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
 body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidden; }
 
 /* The couple's notes keep their two distinct voices. */
-#teacher .bride-letter-paper > .letter-section #invitation-text { white-space: pre-line; font-size: clamp(10.5px, 2.9vw, 12.5px); line-height: 2.15; }
+#teacher .bride-letter-paper > .letter-section #invitation-text { white-space: pre-line; font-size: clamp(11px, 3.1vw, 13px); line-height: 2.15; }
 #coding .code-readme { padding-top: 1px; }
 #coding .code-readme h3 { margin: 21px 0 8px; color: var(--terminal-sky); font: 500 11px/1.5 'DM Mono', var(--mono), monospace; }
 #coding .code-readme h3:first-child { margin-top: 2px; }
