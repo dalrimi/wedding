@@ -421,7 +421,7 @@
 .selection-footer button { display: inline-flex; align-items: center; gap: 7px; padding: 5px 8px; border: 0; background: transparent; color: #8e6b7a; font: 500 11px/1.5 var(--sans); }
 .selection-footer button svg { width: 15px; height: 15px; }
 .selection-footer button:hover { color: #694657; }
-.selection-crafted-note { max-width: 360px; margin: 18px auto 0; color: #927f87; font: 400 10.5px/1.9 var(--sans); word-break: keep-all; }
+.selection-crafted-note { max-width: 360px; margin: 18px auto 0; color: #927f87; font: 400 clamp(9px, 2.6vw, 10.5px)/1.9 var(--sans); letter-spacing: -.025em; white-space: nowrap; }
 .music-toggle { position: fixed; z-index: 60; top: max(12px, env(safe-area-inset-top) + 7px); right: max(12px, calc((100vw - 520px) / 2 + 13px)); display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid #e8d8df; border-radius: 50%; background: #ffffffed; box-shadow: 0 3px 12px #43333a18; color: #865e6f; }
 .music-toggle svg { width: 19px; height: 19px; }
 .music-toggle[aria-pressed="true"] .music-off-mark { display: none; }
@@ -994,7 +994,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
             <p id="photo-upload-status" class="photo-upload-status" role="status" aria-live="polite"></p>
           </div>
         </section>
-        <footer class="selection-footer"><button type="button" id="selection-share-button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3M13 4h7v7M20 4l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>청첩장 공유하기</button><p class="selection-crafted-note">이 청첩장은 신랑과 신부가 애정과 정성을 담아 직접 제작하였습니다.<br />저희 두 사람의 손길이 곳곳에 담겨있으니,<br />따뜻한 시선으로 편하게 둘러봐 주세요.</p></footer>
+        <footer class="selection-footer"><button type="button" id="selection-share-button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3M13 4h7v7M20 4l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>청첩장 공유하기</button><p class="selection-crafted-note">이 청첩장은 신랑과 신부가 애정과 정성을 담아 직접 제작하였습니다.<br />저희의 손길이 곳곳에 담겨있으니, 따뜻한 시선으로 둘러봐주세요.</p></footer>
       </div>
     </main>
 
