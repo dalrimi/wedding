@@ -861,10 +861,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
 /* Gallery opens as an album grid; the numbered strip scrolls independently. */
 .gallery-heading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; }
 .gallery-heading h2 { margin-bottom: 0; }
-.gallery-mode-switch { display: flex; flex: none; align-items: center; gap: 3px; padding: 3px; border: 1px solid #eadde2; border-radius: 8px; background: #f8f2f4; }
-.gallery-mode-switch button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-height: 30px; padding: 3px 7px; border: 0; border-radius: 6px; background: transparent; color: #8e7a82; font: 500 10px/1.2 var(--sans); white-space: nowrap; cursor: pointer; }
-.gallery-mode-switch button[aria-pressed="true"] { background: #fff; box-shadow: 0 1px 5px #6b45551c; color: #805769; }
+.gallery-mode-switch { display: flex; flex: none; align-items: center; justify-content: center; }
+.gallery-mode-switch button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 30px; padding: 3px 2px; border: 0; border-bottom: 1px solid #cbb5be; border-radius: 0; background: transparent; color: #805769; font: 500 11px/1.3 var(--sans); white-space: nowrap; cursor: pointer; }
+.gallery-mode-switch button:hover { color: #694657; border-bottom-color: #93687b; }
 .gallery-mode-switch svg { display: block; width: 15px; height: 15px; flex: none; }
+.gallery-mode-switch svg[hidden] { display: none; }
 .gallery-heading > p { text-align: center; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 18px; }
 .gallery-grid[hidden], .gallery-viewer[hidden] { display: none !important; }
@@ -916,6 +917,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
           <div class="travel-notices">
             <div class="travel-notice"><span class="travel-label">자가용 안내</span><p>웨딩홀은 서울대학교 후문에 가깝습니다.<br />정문~후문 정산소를 통과할 경우 통행료 2,000원이 부과되니 주의하시기 바랍니다.<br />지하주차장이 마련되어 있으며 주차권 발급 없이 무료로 이용하실 수 있습니다.</p></div>
           <div class="travel-notice"><span class="travel-label">대중교통 안내</span><p>지하철 또는 시내버스 이용 시 낙성대 인근에서 마을버스 관악02-1 또는 관악02-2로 환승해 주세요.<br />정산소 직전 ‘서울대후문·연구공원’ 정류장에서 하차 후 길 건너 골목길로 들어오시면 왼편에 웨딩홀이 보입니다.</p></div>
+          
+          
             <div class="travel-notice"><span class="travel-label">신부 측 셔틀버스</span><p><strong>대구 출발 · 오전 7시 30분</strong><br />대구 지하철 2호선 용산역 1번 출구 앞<br />탑승을 원하시면 미리 신부 측에 연락 부탁드립니다.</p></div>
           </div>
         </div>
@@ -958,8 +961,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
             <h2 id="gallery-title">웨딩 갤러리</h2>
             <p>사진을 누르면 크게 볼 수 있어요.</p>
             <div class="gallery-mode-switch" role="group" aria-label="웨딩 갤러리 보기 방식">
-              <button type="button" id="gallery-slide-mode" aria-pressed="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="2.5" width="12" height="15" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 5v10m17-10v10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>슬라이드</button>
-              <button type="button" id="gallery-grid-mode" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2.5 2.5h6v6h-6zm9 0h6v6h-6zm-9 9h6v6h-6zm9 0h6v6h-6z" stroke="currentColor" stroke-width="1.4"/></svg>그리드</button>
+              <button type="button" id="gallery-mode-toggle" aria-label="그리드로 보기"><svg data-icon="grid" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2.5 2.5h6v6h-6zm9 0h6v6h-6zm-9 9h6v6h-6zm9 0h6v6h-6z" stroke="currentColor" stroke-width="1.4"/></svg><svg data-icon="slide" viewBox="0 0 20 20" fill="none" aria-hidden="true" hidden><rect x="4" y="2.5" width="12" height="15" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 5v10m17-10v10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>그리드로 보기</span></button>
             </div>
           </div>
           <div class="gallery-empty" id="gallery-empty">
@@ -994,7 +996,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
             <p id="photo-upload-status" class="photo-upload-status" role="status" aria-live="polite"></p>
           </div>
         </section>
-        <footer class="selection-footer"><button type="button" id="selection-share-button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3M13 4h7v7M20 4l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>청첩장 공유하기</button><p class="selection-crafted-note">이 청첩장은 신랑과 신부가 애정과 정성을 담아 직접 제작하였습니다.<br />저희의 손길이 곳곳에 담겨있으니, 따뜻한 시선으로 둘러봐주세요.</p></footer>
+        <footer class="selection-footer"><button type="button" id="selection-share-button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3M13 4h7v7M20 4l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>청첩장 공유하기</button><p class="selection-crafted-note">이 청첩장은 신랑과 신부가 오랜 시간을 들여 직접 제작하였습니다.<br />저희의 손길이 곳곳에 담겨 있으니, 따뜻한 시선으로 둘러봐 주세요.</p></footer>
       </div>
     </main>
 
@@ -1053,6 +1055,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
         <div class="travel-notices">
           <div class="travel-notice"><span class="travel-label">자가용 안내</span><p>웨딩홀은 서울대학교 후문에 가깝습니다.<br />정문~후문 정산소를 통과할 경우 통행료 2,000원이 부과되니 주의하시기 바랍니다.<br />지하주차장이 마련되어 있으며 주차권 발급 없이 무료로 이용하실 수 있습니다.</p></div>
           <div class="travel-notice"><span class="travel-label">대중교통 안내</span><p>지하철 또는 시내버스 이용 시 낙성대 인근에서 마을버스 관악02-1 또는 관악02-2로 환승해 주세요.<br />정산소 직전 ‘서울대후문·연구공원’ 정류장에서 하차 후 길 건너 골목길로 들어오시면 왼편에 웨딩홀이 보입니다.</p></div>
+          
+          
           <div class="travel-notice"><span class="travel-label">신부 측 셔틀버스</span><p><strong>대구 출발 · 오전 7시 30분</strong><br />대구 지하철 2호선 용산역 1번 출구 앞<br />탑승을 원하시면 미리 신부 측에 연락 부탁드립니다.</p></div>
         </div>
       </section>
@@ -1108,12 +1112,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
               <div class="ascii-people" aria-hidden="true">
                 <span class="ascii-heart">(&lt;3)</span>
                 <div class="ascii-row"><span> [___] </span><span></span><span> .-^-. </span></div>
-                <div class="ascii-row"><span>( ^_^ )</span><span></span><span>( ^_^ )</span></div>
+                <div class="ascii-row"><span> (^_^) </span><span></span><span> (^_^) </span></div>
                 <div class="ascii-row"><span> /|X|\ </span><span class="ascii-join"></span><span> /|V|\ </span></div>
-                <div class="ascii-row"><span> /|_|\ </span><span></span><span>  /|\  </span></div>
+                <div class="ascii-row"><span>  |_|  </span><span></span><span>  / \  </span></div>
                 <div class="ascii-row"><span>  | |  </span><span></span><span> /   \ </span></div>
-                <div class="ascii-row"><span>  | |  </span><span></span><span>/_____\</span></div>
-                <div class="ascii-row"><span> _| |_ </span><span></span><span>       </span></div>
+                <div class="ascii-row"><span> _| |_ </span><span></span><span>/_____\</span></div>
               </div>
               <div class="code-ascii-caption">our_wedding.jpg</div>
             </div>
@@ -1284,6 +1287,15 @@ window.INVITATION = {
   $('#selection-naver-link').href = $('#naver-link').href;
   const selectionEventToggle = $('#selection-event-toggle');
   const selectionLocation = $('#selection-location');
+  const selectionEventCard = selectionEventToggle.closest('.selection-event-card');
+  const pinSelectionEventCard = () => {
+    if (!selectionLocation.hidden) return;
+    selectionEventCard.style.marginTop = '';
+    selectionEventCard.style.marginTop = getComputedStyle(selectionEventCard).marginTop;
+  };
+  pinSelectionEventCard();
+  document.fonts?.ready.then(pinSelectionEventCard);
+  window.addEventListener('resize', pinSelectionEventCard);
   let selectionMapRequested = false;
   const loadSelectionMap = () => {
     if (selectionMapRequested) return;
@@ -1332,6 +1344,7 @@ window.INVITATION = {
     selectionEventToggle.setAttribute('aria-label', opening ? '예식 날짜와 장소, 오시는 길 닫기' : '예식 날짜와 장소, 오시는 길 보기');
     $('#selection-event-hint-text').textContent = opening ? '길 안내 닫기' : '오시는 길 보기';
     if (opening) loadSelectionMap();
+    else pinSelectionEventCard();
   });
   const venueMapDialog = $('#venue-map-dialog');
   const venueMapZoom = $('#venue-map-zoom');
@@ -1586,8 +1599,12 @@ window.INVITATION = {
     const gridMode = mode === 'grid';
     galleryGrid.hidden = !gridMode;
     galleryViewer.hidden = gridMode;
-    $('#gallery-grid-mode').setAttribute('aria-pressed', String(gridMode));
-    $('#gallery-slide-mode').setAttribute('aria-pressed', String(!gridMode));
+    const toggle = $('#gallery-mode-toggle');
+    const nextLabel = gridMode ? '슬라이드로 보기' : '그리드로 보기';
+    toggle.setAttribute('aria-label', nextLabel);
+    toggle.querySelector('span').textContent = nextLabel;
+    toggle.querySelector('[data-icon="grid"]').hidden = gridMode;
+    toggle.querySelector('[data-icon="slide"]').hidden = !gridMode;
     if (!gridMode) requestAnimationFrame(() => centerGalleryNumber('instant'));
   }
   function showGalleryPhoto(index) {
@@ -1653,8 +1670,7 @@ window.INVITATION = {
     });
     showGalleryPhoto(0);
     setGalleryMode('slide');
-    $('#gallery-grid-mode').addEventListener('click', () => setGalleryMode('grid'));
-    $('#gallery-slide-mode').addEventListener('click', () => setGalleryMode('slide'));
+    $('#gallery-mode-toggle').addEventListener('click', () => setGalleryMode(galleryGrid.hidden ? 'grid' : 'slide'));
     $('#gallery-prev').addEventListener('click', () => showGalleryPhoto(galleryIndex - 1));
     $('#gallery-next').addEventListener('click', () => showGalleryPhoto(galleryIndex + 1));
     $('#gallery-open').addEventListener('click', openGalleryDialog);
