@@ -421,6 +421,7 @@
 .selection-footer button { display: inline-flex; align-items: center; gap: 7px; padding: 5px 8px; border: 0; background: transparent; color: #8e6b7a; font: 500 11px/1.5 var(--sans); }
 .selection-footer button svg { width: 15px; height: 15px; }
 .selection-footer button:hover { color: #694657; }
+.selection-crafted-note { max-width: 360px; margin: 18px auto 0; color: #927f87; font: 400 10.5px/1.9 var(--sans); word-break: keep-all; }
 .music-toggle { position: fixed; z-index: 60; top: max(12px, env(safe-area-inset-top) + 7px); right: max(12px, calc((100vw - 520px) / 2 + 13px)); display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid #e8d8df; border-radius: 50%; background: #ffffffed; box-shadow: 0 3px 12px #43333a18; color: #865e6f; }
 .music-toggle svg { width: 19px; height: 19px; }
 .music-toggle[aria-pressed="true"] .music-off-mark { display: none; }
@@ -474,7 +475,7 @@
 #coding .code-ascii-card.art-visible .ascii-join::before, #coding .code-ascii-card.art-visible .ascii-join::after { animation: thread-connect .9s ease-out forwards, thread-glow 1.7s 1s ease-in-out infinite; }
 #coding .code-ascii-card.art-visible .ascii-heart { animation: heart-appear .25s .85s ease-out forwards, heart-beat 1.35s 1.1s ease-in-out infinite; }
 @keyframes thread-connect { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
-@keyframes thread-glow { 0%, 100% { background: #ec5258; box-shadow: 0 0 4px #ff737399; } 50% { background: #ffb0b0; box-shadow: 0 0 4px #fff, 0 0 12px #ff7373, 0 0 22px #ff737399; } }
+@keyframes thread-glow { 0%, 100% { background: #b92d3d; box-shadow: 0 0 3px #b92d3d99, 0 0 7px #b92d3d55; } 50% { background: #ff344d; box-shadow: 0 0 7px #ff344dcc, 0 0 16px #ed263faa, 0 0 24px #d7163566; } }
 @keyframes heart-appear { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heart-beat { 0%, 100% { transform: translateX(-50%) scale(1); text-shadow: 0 0 6px #ff7373; } 25% { transform: translateX(-50%) scale(1.22); text-shadow: 0 0 11px #ff7373, 0 0 20px #ff737399; } 48% { transform: translateX(-50%) scale(1.04); text-shadow: 0 0 7px #ff7373; } 65% { transform: translateX(-50%) scale(1.16); text-shadow: 0 0 12px #ff7373; } }
 @media (prefers-reduced-motion: reduce) { #coding .code-ascii-card.art-visible .ascii-join::before, #coding .code-ascii-card.art-visible .ascii-join::after { animation: none; transform: scaleX(1); opacity: 1; } #coding .code-ascii-card.art-visible .ascii-heart { animation: none; transform: translateX(-50%) scale(1); opacity: 1; text-shadow: 0 0 9px #ff737399; } }
@@ -914,6 +915,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
           <p class="location-note">교통편은 <a href="https://www.snuwedding.co.kr/snu/snu_location" target="_blank" rel="noopener noreferrer">예식장 공식 안내</a>에서도 확인할 수 있습니다.</p>
           <div class="travel-notices">
             <div class="travel-notice"><span class="travel-label">자가용 안내</span><p>웨딩홀은 서울대학교 후문에 가깝습니다.<br />정문~후문 정산소를 통과할 경우 통행료 2,000원이 부과되니 주의하시기 바랍니다.<br />지하주차장이 마련되어 있으며 주차권 발급 없이 무료로 이용하실 수 있습니다.</p></div>
+          <div class="travel-notice"><span class="travel-label">대중교통 안내</span><p>지하철 또는 시내버스 이용 시 낙성대 인근에서 마을버스 관악02-1 또는 관악02-2로 환승해 주세요.<br />정산소 직전 ‘서울대후문·연구공원’ 정류장에서 하차 후 길 건너 골목길로 들어오시면 왼편에 웨딩홀이 보입니다.</p></div>
             <div class="travel-notice"><span class="travel-label">신부 측 셔틀버스</span><p><strong>대구 출발 · 오전 7시 30분</strong><br />대구 지하철 2호선 용산역 1번 출구 앞<br />탑승을 원하시면 미리 신부 측에 연락 부탁드립니다.</p></div>
           </div>
         </div>
@@ -992,7 +994,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
             <p id="photo-upload-status" class="photo-upload-status" role="status" aria-live="polite"></p>
           </div>
         </section>
-        <footer class="selection-footer"><button type="button" id="selection-share-button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3M13 4h7v7M20 4l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>청첩장 공유하기</button></footer>
+        <footer class="selection-footer"><button type="button" id="selection-share-button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3M13 4h7v7M20 4l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>청첩장 공유하기</button><p class="selection-crafted-note">이 청첩장은 신랑과 신부가 애정과 정성을 담아 직접 제작하였습니다.<br />저희 두 사람의 손길이 곳곳에 담겨있으니, 따뜻한 시선으로 편하게 둘러봐 주세요.</p></footer>
       </div>
     </main>
 
@@ -1050,6 +1052,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
         <p class="location-note">교통편은 <a href="https://www.snuwedding.co.kr/snu/snu_location" target="_blank" rel="noopener noreferrer">예식장 공식 안내</a>에서도 확인할 수 있습니다.</p>
         <div class="travel-notices">
           <div class="travel-notice"><span class="travel-label">자가용 안내</span><p>웨딩홀은 서울대학교 후문에 가깝습니다.<br />정문~후문 정산소를 통과할 경우 통행료 2,000원이 부과되니 주의하시기 바랍니다.<br />지하주차장이 마련되어 있으며 주차권 발급 없이 무료로 이용하실 수 있습니다.</p></div>
+          <div class="travel-notice"><span class="travel-label">대중교통 안내</span><p>지하철 또는 시내버스 이용 시 낙성대 인근에서 마을버스 관악02-1 또는 관악02-2로 환승해 주세요.<br />정산소 직전 ‘서울대후문·연구공원’ 정류장에서 하차 후 길 건너 골목길로 들어오시면 왼편에 웨딩홀이 보입니다.</p></div>
           <div class="travel-notice"><span class="travel-label">신부 측 셔틀버스</span><p><strong>대구 출발 · 오전 7시 30분</strong><br />대구 지하철 2호선 용산역 1번 출구 앞<br />탑승을 원하시면 미리 신부 측에 연락 부탁드립니다.</p></div>
         </div>
       </section>
@@ -1106,8 +1109,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
                 <span class="ascii-heart">(&lt;3)</span>
                 <div class="ascii-row"><span> [___] </span><span></span><span> .-^-. </span></div>
                 <div class="ascii-row"><span>( ^_^ )</span><span></span><span>( ^_^ )</span></div>
-                <div class="ascii-row"><span> /|=|\ </span><span class="ascii-join"></span><span> /|V|\ </span></div>
-                <div class="ascii-row"><span>  / \  </span><span></span><span>  / \  </span></div>
+                <div class="ascii-row"><span> /|X|\ </span><span class="ascii-join"></span><span> /|V|\ </span></div>
+                <div class="ascii-row"><span> /|_|\ </span><span></span><span>  /|\  </span></div>
+                <div class="ascii-row"><span>  | |  </span><span></span><span> /   \ </span></div>
+                <div class="ascii-row"><span>  | |  </span><span></span><span>/_____\</span></div>
+                <div class="ascii-row"><span> _| |_ </span><span></span><span>       </span></div>
               </div>
               <div class="code-ascii-caption">our_wedding.jpg</div>
             </div>
@@ -1143,7 +1149,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
             <h2 id="code-location-title"><span>04</span><span class="code-heading-label">location <em>/ 오시는 길</em></span></h2><p class="code-command">$ ./navigate --destination=wedding</p>
             <div class="code-venue"><strong id="code-venue-2">서울대학교 연구공원 웨딩홀</strong><span id="code-address">서울특별시 관악구 관악로 1 서울대학교 연구공원 본관</span><div class="code-venue-tools"><button type="button" data-venue-map>[ 약도 보기 ]</button><button type="button" id="code-address-copy">[ 주소 복사 ]</button></div></div>
             <div class="code-map-actions" aria-label="지도 서비스 선택"><a id="code-naver-link" href="#" target="_blank" rel="noopener noreferrer">[네이버지도]</a><a id="code-kakao-link" href="#" target="_blank" rel="noopener noreferrer">[카카오맵]</a><a id="code-tmap-link" href="#" target="_blank" rel="noopener noreferrer">[티맵]</a></div>
-            <div class="code-travel"><p><span>// 교통편 안내</span><br />교통편은 <a href="https://www.snuwedding.co.kr/snu/snu_location" target="_blank" rel="noopener noreferrer">예식장 공식 안내</a>에서 확인할 수 있습니다.</p><p><span>// 자가용 안내</span><br />웨딩홀은 서울대학교 후문에 가깝습니다. 정문~후문 정산소를 통과할 경우 통행료 2,000원이 부과되니 주의하시기 바랍니다.<br />지하주차장이 마련되어 있으며 주차권 발급 없이 무료로 이용하실 수 있습니다.</p><p><span>// 신부 측 셔틀버스</span><br />대구 출발 · 오전 7시 30분<br />2호선 용산역 1번 출구 앞<br />탑승 전 신부 측에 미리 연락 부탁드립니다.</p></div>
+            <div class="code-travel"><p><span>// 교통편 안내</span><br />교통편은 <a href="https://www.snuwedding.co.kr/snu/snu_location" target="_blank" rel="noopener noreferrer">예식장 공식 안내</a>에서 확인할 수 있습니다.</p><p><span>// 자가용 안내</span><br />웨딩홀은 서울대학교 후문에 가깝습니다. 정문~후문 정산소를 통과할 경우 통행료 2,000원이 부과되니 주의하시기 바랍니다.<br />지하주차장이 마련되어 있으며 주차권 발급 없이 무료로 이용하실 수 있습니다.</p><p><span>// 대중교통 안내</span><br />지하철 또는 시내버스 이용 시 낙성대 인근에서 마을버스 관악02-1 또는 관악02-2로 환승해 주세요.<br />정산소 직전 ‘서울대후문·연구공원’ 정류장에서 하차 후 길 건너 골목길로 들어오시면 왼편에 웨딩홀이 보입니다.</p><p><span>// 신부 측 셔틀버스</span><br />대구 출발 · 오전 7시 30분<br />2호선 용산역 1번 출구 앞<br />탑승 전 신부 측에 미리 연락 부탁드립니다.</p></div>
           </section>
           <section class="code-section code-end" aria-labelledby="code-end-title">
             <h2 id="code-end-title"><span>05</span><span class="code-heading-label">rsvp <em>/ 참석 여부 회신</em></span></h2>
