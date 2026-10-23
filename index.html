@@ -52,7 +52,7 @@
 .selection-map #selection-map-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 18px; color: #816b75; font-size: 11px; text-align: center; pointer-events: none; }
 .selection-map #selection-map-status[hidden] { display: none; }
 .selection-location .route-primary { margin-top: 0; }
-#selection .selection-location .route-primary { display: flex; justify-content: center; gap: 28px; }
+#selection .selection-location .route-primary { display: flex; justify-content: center; gap: 36px; }
 #selection .selection-location .route-primary .venue-map-trigger { width: auto; flex: none; }
 .selection-view .choice-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .selection-view .choice { min-height: 166px; padding: 14px 12px 12px; border-radius: 0; }
@@ -327,6 +327,7 @@
 }
 #teacher .teacher-footer .share-button, #teacher .teacher-footer .other-version-button { border-radius: 8px; }
 .photo-upload-card .photo-upload-help { max-width: none; margin: 14px 0 0; color: #927c86; font-size: 10px; text-align: center; }
+.photo-upload-card .photo-upload-help span { display: block; }
 .photo-upload-button { display: block; width: 100%; margin: 18px auto 0; border: 0; border-radius: 8px; padding: 13px 16px; background: #925f73; color: #fff; font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; }
 .photo-upload-button:disabled { background: #ead7de; color: #836b74; cursor: default; }
 .photo-upload-card .photo-upload-status { min-height: 18px; max-width: none; margin-top: 10px; text-align: center; }
@@ -1287,7 +1288,7 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
           </div>
         </section>
         <section class="selection-photo" aria-labelledby="photo-title">
-          <h2 id="photo-title">사진 보내실 곳</h2>
+          <h2 id="photo-title">사진 및 영상 보내실 곳</h2>
           <p class="photo-intro">예식 순간을 담은 소중한 사진과 영상을 나눠 주세요.</p>
           <div class="photo-upload-card">
             <svg class="photo-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="5" y="13" width="38" height="28" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="M15 13l3-5h12l3 5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="24" cy="27" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M36 19h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -1295,9 +1296,9 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
             <input id="photo-sender" class="photo-sender-input" type="text" name="sender" placeholder="성함을 입력해 주세요" autocomplete="name" maxlength="40" />
             <input id="photo-files" type="file" accept="image/*,video/*,.heic,.heif,.mp4,.mov,.m4v,.webm" multiple hidden />
             <button type="button" id="photo-select-button" class="photo-select-button"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span> 사진·영상 첨부하기</button>
-            <p id="photo-count" class="photo-count">선택한 사진·영상 0 / 40개 · 영상 0 / 3개</p>
+            <p id="photo-count" class="photo-count">선택한 사진 0 / 40개 · 영상 0 / 3개</p>
             <div id="photo-preview" class="photo-preview" aria-label="선택한 사진과 영상" hidden></div>
-            <p class="photo-upload-help">사진은 100MB, 영상은 250MB 이하로 보낼 수 있어요. 영상은 한 번에 3개까지 선택할 수 있습니다. 파일이 많다면 10개 안팎으로 나눠 보내 주세요.</p>
+            <p class="photo-upload-help"><span>파일이 많다면 10개 안팎으로 나눠 보내 주세요.</span><span>전송 중에는 화면을 닫거나 이동하지 말아 주세요.</span><span>완료 메시지를 확인한 뒤 이동해 주세요.</span></p>
             <button type="button" id="photo-upload-button" class="photo-upload-button" disabled>사진·영상 보내기</button>
             <p id="photo-upload-status" class="photo-upload-status" role="status" aria-live="polite"></p>
           </div>
@@ -2369,7 +2370,7 @@ window.INVITATION = {
   const photoCount = $('#photo-count');
   const photoStatus = $('#photo-upload-status');
   const selectedPhotos = [];
-  const maxFiles = 40;
+  const maxPhotos = 40;
   const maxVideos = 3;
   const maxPhotoBytes = 100 * 1024 * 1024;
   const maxVideoBytes = 250 * 1024 * 1024;
@@ -2530,7 +2531,8 @@ window.INVITATION = {
       photoBatchId = '';
       photoBatchSender = '';
     }
-    photoCount.textContent = `선택한 사진·영상 ${selectedPhotos.length} / ${maxFiles}개 · 영상 ${selectedPhotos.filter(photo => photo.isVideo).length} / ${maxVideos}개`;
+    const videoCount = selectedPhotos.filter(photo => photo.isVideo).length;
+    photoCount.textContent = `선택한 사진 ${selectedPhotos.length - videoCount} / ${maxPhotos}개 · 영상 ${videoCount} / ${maxVideos}개`;
     photoButton.disabled = photoSending || !data.photoUploadEndpoint || !photoSender.value.trim() || !selectedPhotos.length;
     photoSelectButton.disabled = photoSending;
     photoSender.disabled = photoSending;
@@ -2573,18 +2575,20 @@ window.INVITATION = {
     let rejectedType = false;
     let rejectedCount = false;
     let videoCount = selectedPhotos.filter(photo => photo.isVideo).length;
+    let photoCountValue = selectedPhotos.length - videoCount;
     for (const file of files) {
       const isVideo = file.type.startsWith('video/') || /\.(mp4|mov|m4v|webm)$/i.test(file.name);
       const isImage = file.type.startsWith('image/') || /\.(heic|heif)$/i.test(file.name);
       if (!isVideo && !isImage) { rejectedType = true; continue; }
       if (!file.size || file.size > (isVideo ? maxVideoBytes : maxPhotoBytes)) { rejectedSize = true; continue; }
-      if (selectedPhotos.length >= maxFiles || (isVideo && videoCount >= maxVideos)) { rejectedCount = true; continue; }
+      if ((isVideo && videoCount >= maxVideos) || (!isVideo && photoCountValue >= maxPhotos)) { rejectedCount = true; continue; }
       const canPreview = isImage && file.type.startsWith('image/') && !/\.(heic|heif)$/i.test(file.name);
       selectedPhotos.push({file, isVideo, url: canPreview ? URL.createObjectURL(file) : ''});
       if (isVideo) videoCount++;
+      else photoCountValue++;
     }
     photoInput.value = '';
-    if (rejectedCount) photoStatus.textContent = `한 번에 최대 ${maxFiles}개, 영상은 ${maxVideos}개까지 선택할 수 있어요.`;
+    if (rejectedCount) photoStatus.textContent = `사진은 최대 ${maxPhotos}개, 영상은 ${maxVideos}개까지 선택할 수 있어요.`;
     else if (rejectedSize) photoStatus.textContent = '사진은 100MB, 영상은 250MB 이하로 선택해 주세요.';
     else if (rejectedType) photoStatus.textContent = '사진 또는 영상 파일만 선택할 수 있어요.';
     else photoStatus.textContent = data.photoUploadEndpoint ? '' : '전송 기능을 준비하고 있어요.';
