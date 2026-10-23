@@ -897,12 +897,9 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
 /* The couple's notes keep their two distinct voices. */
 #teacher .bride-letter-paper > .letter-section #invitation-text { white-space: pre-line; font-size: clamp(10.5px, 2.9vw, 12.5px); line-height: 2.15; }
 #coding .code-readme { padding-top: 1px; }
-#coding .code-readme .readme-project { margin: 0 0 22px; color: var(--terminal-green); font: 500 12px/1.6 'DM Mono', var(--mono), monospace; letter-spacing: -.015em; }
-#coding .code-readme .readme-project span { color: var(--terminal-gold); }
 #coding .code-readme h3 { margin: 21px 0 8px; color: var(--terminal-sky); font: 500 11px/1.5 'DM Mono', var(--mono), monospace; }
-#coding .code-readme p:not(.readme-project) { margin: 0; color: var(--terminal-text); font: 400 11px/1.95 'Noto Sans KR', var(--sans); word-break: keep-all; }
-#coding .code-readme .readme-invite { margin-top: 26px !important; color: var(--terminal-gold) !important; }
-#coding .code-readme .readme-note { margin-top: 20px !important; color: var(--terminal-muted) !important; font-size: 10px !important; }
+#coding .code-readme h3:first-child { margin-top: 2px; }
+#coding .code-readme p { margin: 0; color: var(--terminal-text); font: 400 11px/1.95 'Noto Sans KR', var(--sans); word-break: keep-all; }
 .gallery-dialog { position: fixed; inset: 0; box-sizing: border-box; width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: max(52px, env(safe-area-inset-top) + 40px) 0 max(12px, env(safe-area-inset-bottom) + 8px); border-radius: 0; background: #fff; box-shadow: none; }
 .gallery-dialog[open] { display: grid; grid-template-rows: minmax(0, 1fr) auto auto; }
 .gallery-dialog-stage { display: grid; grid-template-columns: minmax(0, 1fr); min-height: 0; width: 100%; place-items: center; }
@@ -997,7 +994,7 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
             <h2 id="gallery-title">웨딩 갤러리</h2>
             <p>사진을 누르면 크게 볼 수 있어요.</p>
             <div class="gallery-mode-switch" role="group" aria-label="웨딩 갤러리 보기 방식">
-              <button type="button" id="gallery-mode-toggle" aria-label="그리드로 보기"><svg data-icon="grid" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2.5 2.5h6v6h-6zm9 0h6v6h-6zm-9 9h6v6h-6z" stroke="currentColor" stroke-width="1.4"/></svg><svg data-icon="slide" viewBox="0 0 20 20" fill="none" aria-hidden="true" hidden><rect x="4" y="2.5" width="12" height="15" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 5v10m17-10v10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>그리드로 보기</span></button>
+              <button type="button" id="gallery-mode-toggle" aria-label="그리드로 보기"><svg data-icon="grid" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2.5 2.5h6v6h-6zm9 0h6v6h-6zm-9 9h6v6h-6zm9 0h6v6h-6z" stroke="currentColor" stroke-width="1.4"/></svg><svg data-icon="slide" viewBox="0 0 20 20" fill="none" aria-hidden="true" hidden><rect x="4" y="2.5" width="12" height="15" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 5v10m17-10v10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>그리드로 보기</span></button>
             </div>
           </div>
           <div class="gallery-empty" id="gallery-empty">
@@ -1063,7 +1060,7 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
       <div class="bride-letter-paper" role="group" aria-label="결혼통신문 본문">
       <section class="letter-section section-pad" aria-labelledby="letter-title">
         <div class="section-heading"><h2 id="letter-title">결혼통신문</h2></div>
-        <p id="invitation-text">1500여 일 동안 서로의 세계를 오가며<br />가장 편안한 곳은 서로의 곁이라는 것을 알게 되었습니다.<br /><br />앞으로도 서로의 세계를 넓혀주고<br />평범한 공간을 특별한 장소로 바꾸어가며<br />남은 삶의 여백을 함께 채우고자 합니다.<br /><br />저희의 첫걸음을 따뜻하게 축복해 주세요.</p>
+        <p id="invitation-text">1500여 일 동안 서로의 세계를 오가며<br />가장 편안한 곳이 서로의 곁임을 알게 되었습니다.<br /><br />앞으로도 서로의 세계를 넓혀주고<br />평범한 공간을 특별한 장소로 바꾸어가며<br />남은 삶의 여백을 함께 채우고자 합니다.<br /><br />저희의 첫걸음을 따뜻하게 축복해 주세요.</p>
         <div class="letter-sign"><span>신랑</span><strong id="groom-name-2">양우성</strong><span>·</span><span>신부</span><strong id="bride-name-2">이해림</strong></div>
       </section>
 
@@ -1091,6 +1088,7 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
         <div class="travel-notices">
           <div class="travel-notice"><span class="travel-label">자가용 안내</span><p>웨딩홀은 서울대학교 후문에 가깝습니다.<br />정문~후문 정산소를 통과할 경우 통행료 2,000원이 부과되니 주의하시기 바랍니다.<br />지하주차장이 마련되어 있으며 주차권 발급 없이 무료로 이용하실 수 있습니다.</p></div>
           <div class="travel-notice"><span class="travel-label">대중교통 안내</span><p>지하철 또는 시내버스 이용 시 낙성대 인근에서 마을버스 관악02-1 또는 관악02-2로 환승해 주세요.<br />정산소 직전 ‘서울대후문·연구공원’ 정류장에서 하차 후 길 건너 골목길로 들어오시면 왼편에 웨딩홀이 보입니다.</p></div>
+          
           
           
           
@@ -1179,17 +1177,12 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
             <h2 id="code-message-title"><span>02</span><span class="code-heading-label">README.md <em>/ 초대하는 글</em></span></h2>
             <p class="code-command">$ cat README.md</p>
             <div class="code-message code-readme">
-              <p class="readme-project"># LIFE_PROJECT Marriage <span>v1.0</span></p>
-              <h3>## 프로젝트 개요</h3>
-              <p>서로 다른 방식으로 세상을 읽던 두 사람이<br />약 1,500일의 테스트를 거쳐<br />평생 함께하기로 결정했습니다.</p>
-              <h3>## Background</h3>
-              <p>함께한 시간의 모든 테스트에서<br />둘일 때 가장 편하고 재미있다는<br />일관된 결과를 얻었습니다.</p>
-              <h3>## Conclusion</h3>
-              <p>남은 평생을 함께 살아보기로 했습니다.</p>
-              <h3>## Next Step</h3>
-              <p>새로운 퀘스트를 시작합니다.<br />다음 퀘스트는 ‘부부로 살아가기’입니다.</p>
-              <p class="readme-invite">긴 연구 끝에 내린 저희의 결론을<br />함께 지지해 주시면 감사하겠습니다.</p>
-              <p class="readme-note">// 본 결과는 평생에 걸쳐 후속 연구될 예정입니다.</p>
+              <h3># 배경</h3>
+              <p>서로 다른 방식으로 세상을 읽던 두 사람이<br />약 1,500일의 테스트를 거쳐<br />둘일 때 가장 편하고 재미있다는<br />일관된 결과를 얻었습니다.</p>
+              <h3># 결론</h3>
+              <p>남은 평생을 함께 살아보기로 했습니다.<br />긴 연구 끝에 내린 저희의 결론을<br />함께 지지해 주시면 감사하겠습니다.</p>
+              <h3># 후속 연구</h3>
+              <p>본 프로젝트는 평생에 걸쳐 후속 연구될 예정입니다.</p>
             </div>
           </section>
           <section class="code-section code-count-section" aria-labelledby="code-count-title">
@@ -1252,7 +1245,7 @@ window.INVITATION = {
   address: "서울특별시 관악구 관악로 1 서울대학교 연구공원 본관",
   mapSearchName: "서울대 연구공원 웨딩홀",
   documentNumber: "2027-10-24",
-  invitation: "1500여 일 동안 서로의 세계를 오가며\n가장 편안한 곳은 서로의 곁이라는 것을 알게 되었습니다.\n\n앞으로도 서로의 세계를 넓혀주고\n평범한 공간을 특별한 장소로 바꾸어가며\n남은 삶의 여백을 함께 채우고자 합니다.\n\n저희의 첫걸음을 따뜻하게 축복해 주세요.",
+  invitation: "1500여 일 동안 서로의 세계를 오가며\n가장 편안한 곳이 서로의 곁임을 알게 되었습니다.\n\n앞으로도 서로의 세계를 넓혀주고\n평범한 공간을 특별한 장소로 바꾸어가며\n남은 삶의 여백을 함께 채우고자 합니다.\n\n저희의 첫걸음을 따뜻하게 축복해 주세요.",
   accounts: {
     groom: { bank: "00은행", number: "000-000-000", holder: "" },
     groomFather: { bank: "00은행", number: "000-000-000", holder: "" },
