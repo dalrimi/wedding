@@ -46,11 +46,14 @@
 .selection-location .travel-notice:last-child { border-bottom: 0; padding-bottom: 0; }
 .selection-map { position: relative; min-height: 218px; margin-bottom: 13px; border: 1px solid #ead9df; border-radius: 8px; background: #f4eff1; overflow: hidden; }
 .selection-map .root_daum_roughmap { width: 100% !important; min-height: 218px; }
+.selection-map:not(.is-ready) .root_daum_roughmap { visibility: hidden; }
 .selection-map .root_daum_roughmap .wrap_map { width: 100% !important; }
 .selection-map .root_daum_roughmap .wrap_controllers { display: none !important; }
 .selection-map #selection-map-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 18px; color: #816b75; font-size: 11px; text-align: center; pointer-events: none; }
 .selection-map #selection-map-status[hidden] { display: none; }
 .selection-location .route-primary { margin-top: 0; }
+#selection .selection-location .route-primary { display: flex; justify-content: center; gap: 28px; }
+#selection .selection-location .route-primary .venue-map-trigger { width: auto; flex: none; }
 .selection-view .choice-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .selection-view .choice { min-height: 166px; padding: 14px 12px 12px; border-radius: 0; }
 .selection-view .choice-top { color: #303238; opacity: 1; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: -.025em; }
@@ -290,6 +293,7 @@
 .photo-preview-item { position: relative; min-width: 0; aspect-ratio: 1; border: 1px solid #e8d8df; border-radius: 7px; overflow: hidden; background: #f4e8ed; }
 .photo-preview-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .photo-preview-item .photo-file-name { display: flex; align-items: end; width: 100%; height: 100%; padding: 8px; color: #715463; font-size: 10px; overflow-wrap: anywhere; }
+.photo-preview-item.is-video .photo-file-name { align-items: center; justify-content: center; padding: 12px; text-align: center; }
 .photo-preview-item button { position: absolute; top: 4px; right: 4px; display: grid; place-items: center; width: 20px; height: 20px; padding: 0; border: 0; border-radius: 50%; background: #2d2029cc; color: #fff; cursor: pointer; }
 .photo-preview-item button svg { display: block; width: 12px; height: 12px; }
 #teacher .line-button, #teacher .map-action, #teacher .gift-accordion-item, #teacher .gift-copy-button, #teacher .rsvp-side-buttons button, #teacher .rsvp-choice label, #teacher .rsvp-meal-options label, #teacher .rsvp-field input, #teacher .rsvp-field textarea, #teacher .rsvp-submit { border-radius: 8px; }
@@ -326,6 +330,9 @@
 .photo-upload-button { display: block; width: 100%; margin: 18px auto 0; border: 0; border-radius: 8px; padding: 13px 16px; background: #925f73; color: #fff; font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; }
 .photo-upload-button:disabled { background: #ead7de; color: #836b74; cursor: default; }
 .photo-upload-card .photo-upload-status { min-height: 18px; max-width: none; margin-top: 10px; text-align: center; }
+.photo-upload-card .photo-upload-status.is-sending::before { display: inline-block; width: 12px; height: 12px; margin-right: 7px; border: 2px solid #ddc0cc; border-top-color: #925f73; border-radius: 50%; vertical-align: -3px; content: ''; animation: photo-upload-spin .75s linear infinite; }
+@keyframes photo-upload-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .photo-upload-card .photo-upload-status.is-sending::before { animation-duration: 1.8s; } }
 .share-dialog { box-sizing: border-box; width: min(92vw, 390px); max-height: 90dvh; margin: auto; padding: 0; border: 1px solid #ead8df; border-radius: 16px; background: #fffafc; color: #49343e; box-shadow: 0 22px 55px #2c1d2d47; }
 .share-dialog::backdrop { background: #24192399; }
 .share-dialog-inner { padding: 27px 22px 20px; text-align: center; }
@@ -432,6 +439,257 @@
   .selection-hero-photo { height: clamp(205px, 30svh, 260px); }
 }
 
+/* Bride's first page: formal family notice, version 62. */
+#teacher .paper-issue { margin: 18px 0 9px; color: #987b86; font: 10px/1.5 var(--sans); letter-spacing: .03em; }
+#teacher .paper-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+#teacher .notice-paper .couple-line { display: grid; grid-template-columns: minmax(0,1fr) 18px minmax(0,1fr); align-items: end; gap: 7px; margin: 9px 0 22px; font-size: 20px; letter-spacing: 0; }
+#teacher .couple-person { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+#teacher .couple-person small { color: #7d6a70; font: 500 clamp(8px,2.25vw,10px)/1.4 var(--sans); letter-spacing: -.055em; white-space: nowrap; }
+#teacher .couple-person strong { color: #47383d; font: 700 clamp(18px,5.4vw,21px)/1.3 var(--serif); white-space: nowrap; }
+#teacher .couple-line .heart { align-self: end; padding-bottom: 4px; color: #b98079; font-size: 13px; line-height: 1.4; }
+#teacher .paper-attachment { display: flex; align-items: baseline; gap: 12px; margin: 28px 0 0; padding-top: 13px; border-top: 1px solid #e5dce0; color: #50474b; font: 11px/1.6 var(--sans); }
+#teacher .paper-attachment span:first-child { font-weight: 700; }
+#teacher .paper-attachment span:last-child { margin-left: auto; }
+
+/* Bride's letter on one angular sheet; independent section reveals remain intact. */
+#teacher .notice-paper .couple-line { width: min(100%, 284px); gap: 2px; grid-template-columns: minmax(0,1fr) 14px minmax(0,1fr); margin-right: auto; margin-left: auto; }
+#teacher .couple-person small { font-size: clamp(9px,2.8vw,12px); letter-spacing: -.045em; }
+#teacher .paper-attachment span:last-child { margin-left: 0; }
+#teacher .bride-letter-paper { margin: 0 18px 28px; border: 1px solid #ebdce1; border-radius: 0; background: #fff; box-shadow: 0 8px 22px #8f69731a; }
+#teacher .bride-letter-paper > section { position: relative; margin: 0; padding: 50px 21px 52px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+#teacher .bride-letter-paper > .letter-section { padding: 58px 7px 54px; }
+#teacher .bride-letter-paper > .gift-section { padding-right: 12px; padding-left: 12px; }
+#teacher .bride-letter-paper > section + section::before { position: absolute; top: 0; right: 23px; left: 23px; height: 1px; background: repeating-linear-gradient(90deg,#d9b6c4 0 4px,transparent 4px 9px); content: ''; }
+#teacher .bride-letter-paper > section + section::after { position: absolute; top: -4px; left: calc(50% - 4px); width: 8px; height: 8px; border: 1px solid #d9b6c4; background: #fff; content: ''; transform: rotate(45deg); }
+@media (max-width: 360px) {
+  #teacher .bride-letter-paper { margin-right: 11px; margin-left: 11px; }
+  #teacher .bride-letter-paper > section { padding-right: 15px; padding-left: 15px; }
+  #teacher .bride-letter-paper > .letter-section { padding-right: 4px; padding-left: 4px; }
+  #teacher .bride-letter-paper > .gift-section { padding-right: 8px; padding-left: 8px; }
+}
+
+/* Bride document typography and spacing, version 64. */
+#teacher .notice-paper .couple-line { margin-top: 28px; }
+#teacher .notice-paper .paper-intro { font-size: 12px; }
+#teacher .notice-paper .paper-attachment { font-size: 12px; }
+#teacher .bride-letter-paper > .letter-section #invitation-text { font-size: clamp(11.5px,3.3vw,13.5px); letter-spacing: -.05em; }
+#teacher .bride-letter-paper > section:not(.letter-section) .section-heading h2 { font-size: clamp(21px,5.5vw,23px); line-height: 1.45; }
+#teacher .bride-letter-paper .calendar-head strong { font-family: 'DM Sans',var(--sans); font-variant-numeric: lining-nums tabular-nums; }
+#teacher .bride-letter-paper .location-card strong { font-family: var(--sans); font-size: 15px; font-weight: 600; line-height: 1.5; }
+#teacher .notice-paper .key-facts { border-top: 0; border-bottom: 0; }
+#teacher .bride-letter-paper > section { padding-bottom: 66px; }
+#teacher .bride-letter-paper > .letter-section { padding-bottom: 72px; }
+#teacher .location-section .travel-notice:last-child { border-bottom: 0; }
+
+/* Bride account details use the same content width as the RSVP card. */
+#teacher .bride-letter-paper > .gift-section { padding-right: 21px; padding-left: 21px; }
+#teacher .gift-accordion-panel { padding: 0 8px 8px; }
+#teacher .gift-accordion-toggle { padding: 16px 18px; }
+#teacher .gift-person { margin: 10px 0; padding: 14px 16px; }
+#teacher .gift-person-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 28px; }
+#teacher .gift-person-identity { gap: 7px; }
+#teacher .gift-person-account-line { display: flex; align-items: center; gap: 8px; margin-top: 11px; }
+#teacher .gift-account-detail { flex: none; margin: 0; font-size: 12px; }
+#teacher .gift-copy-button { min-height: 28px; padding: 0 4px; }
+#teacher .gift-contact-actions { gap: 7px; margin-left: auto; }
+#teacher .gift-contact-actions a, #teacher .gift-contact-actions button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; min-width: 28px; min-height: 28px; padding: 0; border: 1px solid #d9b8c4; border-radius: 50%; color: #88566a; background: #fff; }
+#teacher .gift-contact-actions button:disabled { opacity: .4; cursor: default; }
+@media (max-width: 360px) {
+  #teacher .bride-letter-paper > .gift-section { padding-right: 15px; padding-left: 15px; }
+  #teacher .gift-person { padding-right: 12px; padding-left: 12px; }
+}
+
+/* Keep the opening notice on its own mobile screen. */
+@media (max-width: 699px) {
+  #teacher .notice-paper { min-height: calc(100svh - 106px); }
+  #teacher .notice-paper .couple-line { margin-top: 48px; }
+}
+
+/* Invitation refinements: stationery footer, route buttons and entry typography. */
+@media (max-width: 699px) {
+  #teacher .notice-paper { display: flex; flex-direction: column; padding-bottom: 27px; }
+  #teacher .notice-paper .paper-attachment { margin-top: auto; }
+}
+#teacher .letter-sign { font-size: 12px; }
+#teacher .letter-sign strong { font-size: 17px; }
+#selection .map-actions .map-action, #teacher .map-actions .map-action { background: #fff9fb; border-color: #d9b9c4; color: #85566a; }
+#teacher .location-card, #teacher .location-section .venue-map-trigger, #teacher .location-section .map-actions .map-action { background: #fff9fb; border: 1px solid #ead8de; color: #624552; }
+#teacher .location-section .venue-map-trigger:hover, #teacher .location-section .map-actions .map-action:hover { background: #fff5f8; }
+#selection .selection-location .route-primary { margin: 2px 0 0; }
+#teacher .location-card { align-items: center; padding-bottom: 16px; text-align: center; }
+#teacher .location-card .route-primary { display: flex; justify-content: center; gap: clamp(44px, 15vw, 72px); width: 100%; margin: 10px 0 0; padding-top: 9px; border-top: 1px dashed #ead8de; }
+#selection .selection-location .venue-map-trigger, #teacher .location-card .venue-map-trigger { min-height: 36px; padding: 7px 4px; border: 0; border-radius: 0; background: transparent; color: #85566a; font-size: 12px; font-weight: 400; text-decoration: underline; text-decoration-color: #d4adb9; text-underline-offset: 4px; }
+#selection .selection-location .venue-map-trigger:hover, #teacher .location-card .venue-map-trigger:hover { background: transparent; color: #6f4054; }
+#selection .selection-location .venue-map-trigger, #selection .selection-location .venue-map-trigger:hover { text-decoration: none; }
+#teacher .location-card #venue-address { display: block; width: 100%; color: #76616b; font-size: clamp(10px, 3.1vw, 12px); line-height: 1.6; letter-spacing: -.06em; white-space: nowrap; }
+#teacher .location-card .venue-map-trigger { width: auto; flex: none; gap: 5px; font-size: 12px; text-decoration: none; }
+#teacher .location-card .venue-map-trigger:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 350px) { #teacher .location-card { padding-right: 16px; padding-left: 16px; } }
+#selection .map-actions .map-action:hover, #teacher .map-actions .map-action:hover { background: #fff1f5; }
+#selection .selection-event .selection-venue { color: #4f3943; font-family: var(--serif); font-size: clamp(12px, 3.4vw, 14px); font-weight: 600; line-height: 1.65; letter-spacing: -.055em; }
+#selection .selection-event-hint { font-size: 12px; }
+.selection-view .choice-teacher .choice-main strong { font-family: var(--sans); font-weight: 600; letter-spacing: -.045em; }
+
+/* Invitation refinements, version 67. */
+#selection .selection-event-hint { margin-top: 18px; }
+.selection-view .choice-teacher .choice-main strong { font-family: 'Gowun Batang', var(--serif); font-weight: 700; letter-spacing: -.055em; }
+.venue-map-dialog-head #venue-map-zoom,
+.venue-map-dialog-head #venue-map-close { width: 42px; height: 36px; min-width: 42px; min-height: 36px; padding: 0; border: 1px solid #e4d2da; border-radius: 6px; background: #fff; color: #654e59; box-shadow: none; }
+.venue-map-dialog-head #venue-map-zoom:focus,
+.venue-map-dialog-head #venue-map-close:focus { background: #fff; box-shadow: none; }
+.venue-map-dialog-head #venue-map-zoom:focus-visible,
+.venue-map-dialog-head #venue-map-close:focus-visible { outline: 2px solid #a8768a; outline-offset: 2px; }
+#teacher .bride-letter-paper > section + section::after { display: none; content: none; }
+@media (max-width: 699px) {
+  #teacher .notice-paper .paper-rule { margin-top: 11px; margin-bottom: 12px; }
+  #teacher .notice-paper .paper-rule.thin { margin-top: 10px; margin-bottom: 12px; }
+  #teacher .notice-paper .paper-recipient { margin-top: 6px; margin-bottom: 6px; }
+  #teacher .notice-paper .paper-intro { margin-top: 3px; margin-bottom: 3px; }
+  #teacher .notice-paper .couple-line { margin-top: 39px; }
+}
+
+/* Map controls and compact RSVP, version 68. */
+.venue-map-dialog-head #venue-map-zoom:focus,
+.venue-map-dialog-head #venue-map-zoom:focus-visible { outline: none !important; box-shadow: none !important; }
+.venue-map-dialog-head #venue-map-close { font-size: 15px; }
+#teacher .rsvp-form { margin-top: 16px; padding: 16px 16px 13px; border-color: #ead8de; background: #fff9fb; }
+#teacher .rsvp-card-heading { padding-bottom: 10px; margin-bottom: 12px; }
+#teacher .rsvp-side-buttons button { min-height: 56px; }
+#teacher #rsvp-details { margin-top: 14px; padding-top: 14px; }
+#teacher .rsvp-field { margin-top: 11px; }
+#teacher .rsvp-field input, #teacher .rsvp-field textarea { min-height: 42px; margin-top: 5px; padding: 9px 11px; }
+#teacher .rsvp-field textarea { min-height: 58px; }
+#teacher .rsvp-field input::placeholder, #teacher .rsvp-field textarea::placeholder { font-size: 12px; }
+#teacher .rsvp-choice { margin-top: 11px !important; }
+#teacher .rsvp-choice legend, #teacher .rsvp-meal legend { margin-bottom: 5px; }
+#teacher .rsvp-attendance-options { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
+#teacher .rsvp-choice label { min-height: 39px; margin: 0; padding: 7px 9px; font-size: 12px; white-space: nowrap; }
+#teacher .rsvp-meal { margin-top: 10px !important; }
+#teacher .rsvp-meal-options { grid-template-columns: 1fr; gap: 5px; }
+#teacher .rsvp-meal-options label { flex-direction: row; justify-content: flex-start; min-height: 36px; gap: 9px; padding: 6px 10px; font-size: 12px; text-align: left; }
+#teacher .rsvp-meal-options label:has(input:checked) { border-color: #a5687f; background: #f5e7ec; }
+#teacher .rsvp-submit { margin-top: 13px; padding: 11px 14px; }
+#teacher .rsvp-status { margin-top: 8px; }
+#coding .rsvp-attendance-options { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+#coding .rsvp-choice label, #coding .rsvp-choice label:last-child { width: 100%; margin: 4px 0 0; }
+#toast.bride-toast, #toast.code-toast { top: 50%; bottom: auto; left: 50%; z-index: 150; width: min(88vw,360px); max-width: none; padding: 19px 18px; white-space: pre-line; word-break: keep-all; pointer-events: none; opacity: 0; transform: translate(-50%,-44%) scale(.98); transition: opacity .25s ease, transform .25s ease; }
+#toast.bride-toast.show, #toast.code-toast.show { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+#toast.bride-toast { border: 1px solid #b98199; border-radius: 12px; background: #7b4b61; box-shadow: 0 18px 50px #3c1d2c70; color: #fff; font: 500 13px/1.7 var(--sans); }
+#toast.bride-toast::before { display: block; margin-bottom: 8px; color: #ffdee9; content: '♡  마음을 전해주셔서 감사합니다'; font-size: 11px; }
+#toast.code-toast { border: 1px solid #72c799; border-radius: 0; background: #091b14; box-shadow: 0 18px 50px #00120dcc; color: #e2f6e8; font: 12px/1.7 var(--sans); text-align: left; }
+#toast.code-toast::before { display: block; margin-bottom: 9px; color: #8fe0ad; content: '$ ./rsvp --declined'; font: 11px/1.5 'DM Mono',var(--mono),monospace; }
+
+/* Keep the map control label on one line in both zoom states. */
+.venue-map-dialog-head #venue-map-zoom { width: 64px; min-width: 64px; white-space: nowrap; }
+
+/* Opening notice and decline messages, version 70. */
+#teacher .notice-paper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 660px;
+}
+#teacher .paper-opening { align-self: start; }
+#teacher .paper-celebration { align-self: center; }
+#teacher .notice-paper .couple-line { margin-top: 0; }
+#teacher .notice-paper .key-facts { margin-left: 18px; }
+#teacher .notice-paper .paper-attachment { align-self: end; margin-top: 0; }
+@media (max-width: 699px) {
+  #teacher .notice-paper { min-height: calc(100svh - 106px); }
+}
+#toast.bride-toast {
+  width: min(94vw, 350px);
+  padding: 13px 10px;
+  border-color: #d9afbf;
+  border-radius: 10px;
+  background: rgba(255, 247, 250, .91);
+  box-shadow: 0 12px 30px #4c2d3d40;
+  color: #624552;
+  font: 500 clamp(8.7px, 2.65vw, 10.5px)/1.75 var(--sans);
+  letter-spacing: -.045em;
+  white-space: pre;
+}
+#toast.bride-toast::before { display: none; content: none; }
+#toast.code-toast { width: min(96vw, 370px); background: rgba(9, 27, 20, .86); }
+
+/* Eighteen preview slots; real photos can replace each slot later. */
+.gallery-open { position: relative; }
+.gallery-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; width: 100%; height: 100%; background: linear-gradient(145deg, #fbf6f8, #f2e5eb); color: #a17789; }
+.gallery-placeholder::before { position: absolute; inset: 14px; border: 1px solid #dfc6d0; border-radius: 7px; content: ''; pointer-events: none; }
+.gallery-placeholder span { font: 500 10px/1.5 'DM Sans', var(--sans); letter-spacing: .23em; }
+.gallery-placeholder strong { font: 400 clamp(36px, 12vw, 64px)/1 'Gowun Batang', var(--serif); }
+.gallery-placeholder[hidden], .gallery-open img[hidden], .gallery-dialog img[hidden] { display: none !important; }
+.gallery-dots { justify-content: flex-start; gap: 6px; overflow-x: auto; padding: 2px 1px 7px; scrollbar-width: thin; scrollbar-color: #d5b8c4 transparent; }
+.gallery-dots button { flex: 0 0 35px; width: 35px; height: 31px; border: 1px solid #e4cbd4; border-radius: 5px; background: #fff9fb; color: #8b6978; font: 500 10px/1 'DM Sans', var(--sans); }
+.gallery-dots button[aria-current="true"] { border-color: #a66c82; background: #a66c82; color: #fff; }
+.gallery-dialog { position: fixed; inset: 0; box-sizing: border-box; width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: max(52px, env(safe-area-inset-top) + 40px) 0 max(12px, env(safe-area-inset-bottom) + 8px); border-radius: 0; background: #fff; box-shadow: none; }
+.gallery-dialog[open] { display: grid; grid-template-rows: minmax(0, 1fr) auto auto; }
+.gallery-dialog-stage { display: grid; grid-template-columns: minmax(0, 1fr); min-height: 0; width: 100%; place-items: center; }
+.gallery-dialog-photo { position: relative; display: grid; place-items: center; width: 100%; height: 100%; min-height: 0; overflow: hidden; border-radius: 0; background: #fff; }
+.gallery-dialog-photo img { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: contain; }
+.gallery-dialog-photo .gallery-placeholder { position: absolute; inset: 0; }
+.gallery-dialog-controls { display: grid; grid-template-columns: 38px auto 38px; align-items: center; justify-content: center; gap: 12px; padding-top: 8px; }
+.gallery-dialog-nav { display: grid; place-items: center; width: 38px; height: 38px; min-width: 0; min-height: 0; padding: 0; border: 0; background: transparent; color: #9b687b; font: 400 27px/1 var(--serif); }
+.gallery-dialog-counter { min-width: 55px; margin: 0 !important; color: #8b6978; font: 500 12px/1.5 'DM Sans', var(--sans) !important; }
+.gallery-dialog #gallery-dialog-caption { min-height: 18px; margin: 4px 12px 0; }
+.gallery-dialog-close { top: max(8px, env(safe-area-inset-top) + 4px); right: 10px; display: grid; place-items: center; width: 34px; height: 34px; padding: 0; font-size: 21px; }
+
+/* Fixed home control and calm, keyboard-only focus styling. */
+#teacher .teacher-topbar, #coding .coding-topbar { justify-content: flex-start; padding-right: 108px; }
+.home-button { position: fixed; z-index: 61; top: max(12px, env(safe-area-inset-top) + 7px); right: max(56px, calc((100vw - 520px) / 2 + 57px)); display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid #e8d8df; border-radius: 50%; background: #ffffffed; box-shadow: 0 3px 12px #43333a18; color: #865e6f; }
+.home-button[hidden] { display: none !important; }
+.home-button svg { width: 19px; height: 19px; }
+.home-button[data-theme="coding"] { border-color: #3c6550; background: #112119ed; color: #9bdcb0; }
+.home-button[data-theme="teacher"] { border-color: #e3bfcc; background: #fff8fbed; }
+button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
+button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offset: 2px; }
+#coding button:focus-visible, #coding a:focus-visible, .home-button[data-theme="coding"]:focus-visible, .music-toggle[data-theme="coding"]:focus-visible { outline-color: #72c799; }
+.gallery-dialog:focus { outline: none; }
+
+/* Gallery opens as an album grid; the numbered strip scrolls independently. */
+.gallery-heading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; }
+.gallery-heading h2 { margin-bottom: 0; }
+.gallery-mode-switch { display: flex; flex: none; align-items: center; justify-content: center; }
+.gallery-mode-switch button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 30px; padding: 3px 2px; border: 0; border-bottom: 1px solid #cbb5be; border-radius: 0; background: transparent; color: #805769; font: 500 11px/1.3 var(--sans); white-space: nowrap; cursor: pointer; }
+.gallery-mode-switch button:hover { color: #694657; border-bottom-color: #93687b; }
+.gallery-mode-switch svg { display: block; width: 15px; height: 15px; flex: none; }
+.gallery-mode-switch svg[hidden] { display: none; }
+.gallery-heading > p { text-align: center; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 18px; }
+.gallery-grid[hidden], .gallery-viewer[hidden] { display: none !important; }
+.gallery-grid-item { position: relative; aspect-ratio: 3 / 4; min-width: 0; overflow: hidden; padding: 0; border: 0; border-radius: 8px; background: #f6edf1; cursor: pointer; }
+.gallery-grid-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.gallery-grid-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 100%; height: 100%; border: 1px solid #ebd9e1; border-radius: inherit; background: linear-gradient(145deg, #fbf6f8, #f1e5ea); color: #9d7b89; }
+.gallery-grid-placeholder small { font: 500 6px/1.4 'DM Sans', var(--sans); letter-spacing: .15em; }
+.gallery-grid-placeholder strong { font: 400 clamp(19px, 5vw, 30px)/1 'Gowun Batang', var(--serif); }
+.gallery-dots { scroll-snap-type: x proximity; touch-action: pan-x; overscroll-behavior-inline: contain; }
+.gallery-dots button { scroll-snap-align: center; }
+@media (max-width: 350px) { .gallery-heading h2 { font-size: 20px; } .gallery-mode-switch button { padding-inline: 5px; font-size: 9px; } }
+
+/* Keep one blush tone between the decorative rules as directions slide open. */
+#selection .selection-event-card { background: #fff9fb; }
+#selection .selection-event-rule { background: transparent; }
+#selection .selection-event-rule:first-child { box-shadow: inset 0 3px #fff; }
+#selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #fff; }
+#selection .selection-event { -webkit-tap-highlight-color: transparent; }
+#selection .selection-event:hover, #selection .selection-event:active, #selection .selection-event:focus { background: transparent; box-shadow: none; filter: none; opacity: 1; }
+.selection-location { padding: 0; }
+.selection-location-inner { padding: 0 14px 18px; }
+
+/* Make the enlarged album cover the viewport and keep its controls level. */
+.gallery-dialog::backdrop { background: #fff; }
+.gallery-dialog { overscroll-behavior: contain; overflow: hidden; scrollbar-width: none; }
+.gallery-dialog::-webkit-scrollbar, html.gallery-modal-open::-webkit-scrollbar { display: none; }
+.gallery-dialog, html.gallery-modal-open { scrollbar-width: none; }
+.gallery-dialog[open], html.gallery-modal-open { overflow: hidden; }
+.gallery-dialog-counter { display: flex; align-items: center; justify-content: center; height: 38px; transform: translateY(2px); }
+body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidden; }
+
+/* The couple's notes keep their two distinct voices. */
+#teacher .bride-letter-paper > .letter-section #invitation-text { white-space: pre-line; font-size: clamp(11px, 3.1vw, 13px); line-height: 2.15; }
+#coding .code-readme { padding-top: 1px; }
+#coding .code-readme h3 { margin: 21px 0 8px; color: var(--terminal-sky); font: 500 11px/1.5 'DM Mono', var(--mono), monospace; }
+#coding .code-readme h3:first-child { margin-top: 2px; }
+#coding .code-readme p { margin: 0; color: var(--terminal-text); font: 400 11px/1.95 'Noto Sans KR', var(--sans); word-break: keep-all; }
 </style>
   <style>
 /* Groom edition: a self-contained terminal invitation. */
@@ -1030,17 +1288,17 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
         </section>
         <section class="selection-photo" aria-labelledby="photo-title">
           <h2 id="photo-title">사진 보내실 곳</h2>
-          <p class="photo-intro">예식 순간을 담은 소중한 추억 사진을 나눠 주세요.</p>
+          <p class="photo-intro">예식 순간을 담은 소중한 사진과 영상을 나눠 주세요.</p>
           <div class="photo-upload-card">
             <svg class="photo-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="5" y="13" width="38" height="28" rx="4" stroke="currentColor" stroke-width="1.7"/><path d="M15 13l3-5h12l3 5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="24" cy="27" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M36 19h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             <label class="photo-sender-label" for="photo-sender">보내는 분 성함</label>
             <input id="photo-sender" class="photo-sender-input" type="text" name="sender" placeholder="성함을 입력해 주세요" autocomplete="name" maxlength="40" />
-            <input id="photo-files" type="file" accept="image/*,.heic,.heif" multiple hidden />
-            <button type="button" id="photo-select-button" class="photo-select-button"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span> 사진 첨부하기</button>
-            <p id="photo-count" class="photo-count">선택한 사진 0 / 40장</p>
-            <div id="photo-preview" class="photo-preview" aria-label="선택한 사진" hidden></div>
-            <p class="photo-upload-help">한 번에 최대 40장, 사진 한 장당 최대 100MB까지 보낼 수 있어요.</p>
-            <button type="button" id="photo-upload-button" class="photo-upload-button" disabled>사진 보내기</button>
+            <input id="photo-files" type="file" accept="image/*,video/*,.heic,.heif,.mp4,.mov,.m4v,.webm" multiple hidden />
+            <button type="button" id="photo-select-button" class="photo-select-button"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span> 사진·영상 첨부하기</button>
+            <p id="photo-count" class="photo-count">선택한 사진·영상 0 / 40개 · 영상 0 / 3개</p>
+            <div id="photo-preview" class="photo-preview" aria-label="선택한 사진과 영상" hidden></div>
+            <p class="photo-upload-help">사진은 100MB, 영상은 250MB 이하로 보낼 수 있어요. 영상은 한 번에 3개까지 선택할 수 있습니다. 파일이 많다면 10개 안팎으로 나눠 보내 주세요.</p>
+            <button type="button" id="photo-upload-button" class="photo-upload-button" disabled>사진·영상 보내기</button>
             <p id="photo-upload-status" class="photo-upload-status" role="status" aria-live="polite"></p>
           </div>
         </section>
@@ -1378,20 +1636,24 @@ window.INVITATION = {
         let zoomAttempts = 0;
         const setInitialZoom = window.setInterval(() => {
           if (lander.jsMap) {
-            lander.jsMap.setLevel(7);
+            lander.jsMap.setLevel(7, {animate: false});
             window.clearInterval(setInitialZoom);
-          } else if (++zoomAttempts >= 150) window.clearInterval(setInitialZoom);
+            window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+              mapContainer.closest('.selection-map').classList.add('is-ready');
+              mapStatus.hidden = true;
+            }));
+          } else if (++zoomAttempts >= 150) {
+            window.clearInterval(setInitialZoom);
+            mapStatus.textContent = '지도를 표시할 수 없습니다. 아래 지도 앱 버튼을 이용해 주세요.';
+          }
         }, 100);
         const updateMapLabel = () => {
           mapContainer.querySelectorAll('.roughmap_lebel_text').forEach(label => {
             if (label.textContent.trim() === '서울대학교 연구공원본관') label.textContent = data.venue;
           });
         };
-        const mapReady = () => !!mapContainer.querySelector('.wrap_map, iframe, canvas');
-        if (mapReady()) mapStatus.hidden = true;
         updateMapLabel();
         new MutationObserver(() => {
-          if (mapReady()) mapStatus.hidden = true;
           updateMapLabel();
         }).observe(mapContainer, {childList: true, subtree: true});
       } catch (_) {
@@ -2107,9 +2369,12 @@ window.INVITATION = {
   const photoCount = $('#photo-count');
   const photoStatus = $('#photo-upload-status');
   const selectedPhotos = [];
-  const maxPhotos = 40;
+  const maxFiles = 40;
+  const maxVideos = 3;
   const maxPhotoBytes = 100 * 1024 * 1024;
+  const maxVideoBytes = 250 * 1024 * 1024;
   const photoChunkBytes = 8 * 1024 * 1024;
+  const videoChunkBytes = 16 * 1024 * 1024;
   const directPhotoBytes = 6 * 1024 * 1024;
   const maxConcurrentPhotos = 6;
   let photoSending = false;
@@ -2127,7 +2392,7 @@ window.INVITATION = {
       const frame = document.createElement('iframe');
       frame.name = requestId;
       frame.hidden = true;
-      frame.setAttribute('title', '사진 전송');
+      frame.setAttribute('title', '사진·영상 전송');
       const postForm = document.createElement('form');
       postForm.method = 'POST';
       postForm.action = data.photoUploadEndpoint;
@@ -2159,14 +2424,14 @@ window.INVITATION = {
         if (result?.type !== 'wedding-photo-result' || result.requestId !== requestId) return;
         cleanup();
         if (result.ok) resolve(result);
-        else reject(new Error(result.error || '사진 전송이 거부되었습니다.'));
+        else reject(new Error(result.error || '파일 전송이 거부되었습니다.'));
       };
       window.addEventListener('message', onResult);
       document.body.append(frame, postForm);
       timer = setTimeout(() => {
         cleanup();
-        reject(new Error('사진 전송 응답 시간이 초과되었습니다.'));
-      }, 90000);
+        reject(new Error('파일 전송 응답 시간이 초과되었습니다.'));
+      }, 180000);
       postForm.submit();
     });
   }
@@ -2174,14 +2439,14 @@ window.INVITATION = {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => resolve(String(reader.result).split(',')[1] || '');
-      reader.onerror = () => reject(new Error('사진 파일을 읽지 못했습니다.'));
+      reader.onerror = () => reject(new Error('파일을 읽지 못했습니다.'));
       reader.readAsDataURL(blob);
     });
   }
   function sendPhotoToDrive(sessionUrl, file, onProgress) {
     const url = new URL(sessionUrl);
     if (url.protocol !== 'https:' || url.hostname !== 'www.googleapis.com' || !url.pathname.startsWith('/upload/drive/v3/files')) {
-      return Promise.reject(new Error('사진 전송 주소를 확인할 수 없습니다.'));
+      return Promise.reject(new Error('파일 전송 주소를 확인할 수 없습니다.'));
     }
     return new Promise((resolve, reject) => {
       const request = new XMLHttpRequest();
@@ -2252,9 +2517,10 @@ window.INVITATION = {
     while (!status.done) {
       const offset = Number(status.nextOffset);
       if (!Number.isSafeInteger(offset) || offset < 0 || offset >= file.size) throw new Error('업로드 위치를 확인할 수 없습니다.');
-      const dataChunk = await readPhotoChunk(file.slice(offset, Math.min(offset + photoChunkBytes, file.size)));
+      const chunkBytes = photo.isVideo ? videoChunkBytes : photoChunkBytes;
+      const dataChunk = await readPhotoChunk(file.slice(offset, Math.min(offset + chunkBytes, file.size)));
       const next = await sendPhotoAction({action: 'chunk', uploadId: photo.uploadId, offset, data: dataChunk});
-      if (!next.done && Number(next.nextOffset) <= offset) throw new Error('사진 전송이 진행되지 않았습니다.');
+      if (!next.done && Number(next.nextOffset) <= offset) throw new Error('파일 전송이 진행되지 않았습니다.');
       status = next;
       onProgress(Number(status.nextOffset));
     }
@@ -2264,7 +2530,7 @@ window.INVITATION = {
       photoBatchId = '';
       photoBatchSender = '';
     }
-    photoCount.textContent = `선택한 사진 ${selectedPhotos.length} / ${maxPhotos}장`;
+    photoCount.textContent = `선택한 사진·영상 ${selectedPhotos.length} / ${maxFiles}개 · 영상 ${selectedPhotos.filter(photo => photo.isVideo).length} / ${maxVideos}개`;
     photoButton.disabled = photoSending || !data.photoUploadEndpoint || !photoSender.value.trim() || !selectedPhotos.length;
     photoSelectButton.disabled = photoSending;
     photoSender.disabled = photoSending;
@@ -2273,6 +2539,7 @@ window.INVITATION = {
     selectedPhotos.forEach((photo, index) => {
       const item = document.createElement('div');
       item.className = 'photo-preview-item';
+      if (photo.isVideo) item.classList.add('is-video');
       if (photo.url) {
         const image = document.createElement('img');
         image.src = photo.url;
@@ -2281,7 +2548,7 @@ window.INVITATION = {
       } else {
         const filename = document.createElement('span');
         filename.className = 'photo-file-name';
-        filename.textContent = photo.file.name;
+        filename.textContent = `${photo.isVideo ? '영상 · ' : ''}${photo.file.name}`;
         item.append(filename);
       }
       const remove = document.createElement('button');
@@ -2302,18 +2569,25 @@ window.INVITATION = {
   photoSender.addEventListener('input', updatePhotoUpload);
   photoInput.addEventListener('change', () => {
     const files = [...photoInput.files];
-    const images = files.filter(file => file.type.startsWith('image/') || /\.(heic|heif)$/i.test(file.name));
-    const accepted = images.filter(file => file.size > 0 && file.size <= maxPhotoBytes);
-    const available = Math.max(0, maxPhotos - selectedPhotos.length);
-    accepted.slice(0, available).forEach(file => {
-      const canPreview = file.type.startsWith('image/') && !/\.(heic|heif)$/i.test(file.name);
-      selectedPhotos.push({file, url: canPreview ? URL.createObjectURL(file) : ''});
-    });
+    let rejectedSize = false;
+    let rejectedType = false;
+    let rejectedCount = false;
+    let videoCount = selectedPhotos.filter(photo => photo.isVideo).length;
+    for (const file of files) {
+      const isVideo = file.type.startsWith('video/') || /\.(mp4|mov|m4v|webm)$/i.test(file.name);
+      const isImage = file.type.startsWith('image/') || /\.(heic|heif)$/i.test(file.name);
+      if (!isVideo && !isImage) { rejectedType = true; continue; }
+      if (!file.size || file.size > (isVideo ? maxVideoBytes : maxPhotoBytes)) { rejectedSize = true; continue; }
+      if (selectedPhotos.length >= maxFiles || (isVideo && videoCount >= maxVideos)) { rejectedCount = true; continue; }
+      const canPreview = isImage && file.type.startsWith('image/') && !/\.(heic|heif)$/i.test(file.name);
+      selectedPhotos.push({file, isVideo, url: canPreview ? URL.createObjectURL(file) : ''});
+      if (isVideo) videoCount++;
+    }
     photoInput.value = '';
-    if (accepted.length > available) photoStatus.textContent = `사진은 한 번에 ${maxPhotos}장까지 보낼 수 있어요.`;
-    else if (accepted.length !== images.length) photoStatus.textContent = '사진 한 장은 최대 100MB까지 보낼 수 있어요.';
-    else if (images.length !== files.length) photoStatus.textContent = '이미지 파일만 선택할 수 있어요.';
-    else photoStatus.textContent = data.photoUploadEndpoint ? '' : '사진 전송 기능을 준비하고 있어요.';
+    if (rejectedCount) photoStatus.textContent = `한 번에 최대 ${maxFiles}개, 영상은 ${maxVideos}개까지 선택할 수 있어요.`;
+    else if (rejectedSize) photoStatus.textContent = '사진은 100MB, 영상은 250MB 이하로 선택해 주세요.';
+    else if (rejectedType) photoStatus.textContent = '사진 또는 영상 파일만 선택할 수 있어요.';
+    else photoStatus.textContent = data.photoUploadEndpoint ? '' : '전송 기능을 준비하고 있어요.';
     updatePhotoUpload();
   });
   photoButton.addEventListener('click', async () => {
@@ -2326,6 +2600,8 @@ window.INVITATION = {
       photoBatchSender = sender;
     }
     photoSending = true;
+    photoStatus.classList.add('is-sending');
+    photoStatus.setAttribute('aria-busy', 'true');
     updatePhotoUpload();
     try {
       const queue = [...selectedPhotos];
@@ -2334,7 +2610,9 @@ window.INVITATION = {
       let completed = 0;
       const showProgress = () => {
         const bytes = [...uploadedBytes.values()].reduce((sum, value) => sum + value, 0);
-        photoStatus.textContent = `사진 전송 중 · ${Math.floor(bytes / totalBytes * 100)}% (${completed}/${total}장 완료)`;
+        photoStatus.textContent = bytes > 0
+          ? `사진·영상 전송 중 · ${Math.floor(bytes / totalBytes * 100)}% (${completed}/${total}개 완료)`
+          : `원본 파일을 연결하고 있어요 · ${completed}/${total}개 완료`;
       };
       showProgress();
       let nextIndex = 0;
@@ -2363,11 +2641,13 @@ window.INVITATION = {
       photoSender.value = '';
       photoBatchId = '';
       photoBatchSender = '';
-      photoStatus.textContent = '사진을 보내주셔서 감사합니다!';
+      photoStatus.textContent = '사진과 영상을 보내주셔서 감사합니다!';
     } catch {
-      photoStatus.textContent = '전송을 마치지 못했어요. 남은 사진을 다시 보내 주세요.';
+      photoStatus.textContent = '전송을 마치지 못했어요. 남은 파일을 다시 보내 주세요.';
     } finally {
       photoSending = false;
+      photoStatus.classList.remove('is-sending');
+      photoStatus.setAttribute('aria-busy', 'false');
       updatePhotoUpload();
     }
   });
