@@ -887,7 +887,10 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
 
 /* Make the enlarged album cover the viewport and keep its controls level. */
 .gallery-dialog::backdrop { background: #fff; }
-.gallery-dialog { overscroll-behavior: contain; }
+.gallery-dialog { overscroll-behavior: contain; overflow: hidden; scrollbar-width: none; }
+.gallery-dialog::-webkit-scrollbar, html.gallery-modal-open::-webkit-scrollbar { display: none; }
+.gallery-dialog, html.gallery-modal-open { scrollbar-width: none; }
+.gallery-dialog[open], html.gallery-modal-open { overflow: hidden; }
 .gallery-dialog-counter { display: flex; align-items: center; justify-content: center; height: 38px; transform: translateY(2px); }
 body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidden; }
 
@@ -1088,6 +1091,7 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
         <div class="travel-notices">
           <div class="travel-notice"><span class="travel-label">자가용 안내</span><p>웨딩홀은 서울대학교 후문에 가깝습니다.<br />정문~후문 정산소를 통과할 경우 통행료 2,000원이 부과되니 주의하시기 바랍니다.<br />지하주차장이 마련되어 있으며 주차권 발급 없이 무료로 이용하실 수 있습니다.</p></div>
           <div class="travel-notice"><span class="travel-label">대중교통 안내</span><p>지하철 또는 시내버스 이용 시 낙성대 인근에서 마을버스 관악02-1 또는 관악02-2로 환승해 주세요.<br />정산소 직전 ‘서울대후문·연구공원’ 정류장에서 하차 후 길 건너 골목길로 들어오시면 왼편에 웨딩홀이 보입니다.</p></div>
+          
           
           
           
@@ -1666,11 +1670,13 @@ window.INVITATION = {
     galleryScrollY = window.scrollY;
     document.body.style.top = `-${galleryScrollY}px`;
     document.body.classList.add('gallery-modal-open');
+    document.documentElement.classList.add('gallery-modal-open');
     galleryDialog.showModal();
     galleryDialog.focus({ preventScroll: true });
   };
   galleryDialog.addEventListener('close', () => {
     document.body.classList.remove('gallery-modal-open');
+    document.documentElement.classList.remove('gallery-modal-open');
     document.body.style.top = '';
     const previousBehavior = document.documentElement.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = 'auto';
