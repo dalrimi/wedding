@@ -29,7 +29,7 @@
 .choice-coding .choice-top { opacity: 1; }
 .choice-coding .code-icon, .choice-coding .choice-bottom { border-color: #dedede; }
 .selection-lede { margin-bottom: 26px; }
-.selection-event-card { margin: 0 auto 24px; background: linear-gradient(to bottom, transparent 3px, #fcf8f9 3px, #fcf8f9 calc(100% - 3px), transparent calc(100% - 3px)); }
+.selection-event-card { margin: 0 auto 24px; background: linear-gradient(135deg, #fff 0%, #fff9fb 50%, #fff 100%) center / 100% calc(100% - 6px) no-repeat; }
 .selection-event-rule { display: flex; align-items: center; gap: 7px; }
 .selection-event-rule::before, .selection-event-rule::after { content: ''; height: 1px; flex: 1; background: #e8d9df; }
 .selection-event-rule span { width: 6px; height: 6px; flex: none; border: 1px solid #bd93a3; background: #fff; transform: rotate(45deg); }
@@ -695,6 +695,8 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
 #teacher .letter-sign { font-size: 12px; }
 #teacher .letter-sign strong { font-size: 17px; }
 #selection .map-actions .map-action, #teacher .map-actions .map-action { background: #fff9fb; border-color: #d9b9c4; color: #85566a; }
+#teacher .location-card, #teacher .location-section .venue-map-trigger, #teacher .location-section .map-actions .map-action { background: #fff9fb; border: 1px solid #ead8de; color: #624552; }
+#teacher .location-section .venue-map-trigger:hover, #teacher .location-section .map-actions .map-action:hover { background: #fff5f8; }
 #selection .map-actions .map-action:hover, #teacher .map-actions .map-action:hover { background: #fff1f5; }
 #selection .selection-event .selection-venue { color: #4f3943; font-family: var(--serif); font-size: clamp(12px, 3.4vw, 14px); font-weight: 600; line-height: 1.65; letter-spacing: -.055em; }
 #selection .selection-event-hint { font-size: 12px; }
@@ -764,7 +766,7 @@ html:not(.invitation-ready) body:has(#groom:target) #selection { display: none !
 .venue-map-dialog-head #venue-map-zoom:focus,
 .venue-map-dialog-head #venue-map-zoom:focus-visible { outline: none !important; box-shadow: none !important; }
 .venue-map-dialog-head #venue-map-close { font-size: 15px; }
-#teacher .rsvp-form { margin-top: 16px; padding: 16px 16px 13px; }
+#teacher .rsvp-form { margin-top: 16px; padding: 16px 16px 13px; border-color: #ead8de; background: #fff9fb; }
 #teacher .rsvp-card-heading { padding-bottom: 10px; margin-bottom: 12px; }
 #teacher .rsvp-side-buttons button { min-height: 56px; }
 #teacher #rsvp-details { margin-top: 14px; padding-top: 14px; }
@@ -879,7 +881,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a87589; outline-offs
 @media (max-width: 350px) { .gallery-heading h2 { font-size: 20px; } .gallery-mode-switch button { padding-inline: 5px; font-size: 9px; } }
 
 /* Keep the route card's color steady while its directions slide open. */
-#selection .selection-event-card { background: linear-gradient(to bottom, transparent 3px, #fcf8f9 3px, #fcf8f9 calc(100% - 3px), transparent calc(100% - 3px)); }
+#selection .selection-event-card { background: linear-gradient(135deg, #fff 0%, #fff9fb 50%, #fff 100%) center / 100% calc(100% - 6px) no-repeat; }
 #selection .selection-event { -webkit-tap-highlight-color: transparent; }
 #selection .selection-event:hover, #selection .selection-event:active, #selection .selection-event:focus { background: transparent; box-shadow: none; filter: none; opacity: 1; }
 .selection-location { padding: 0; }
