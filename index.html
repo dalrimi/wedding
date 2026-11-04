@@ -728,7 +728,9 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
   -webkit-backdrop-filter: blur(14px) saturate(1.08);
   backdrop-filter: blur(14px) saturate(1.08);
 }
-#toast.code-toast.meal-toast::before { content: '$ ./meal --hours'; }
+#toast.bride-toast.meal-toast { background: rgba(246, 221, 232, .52); -webkit-backdrop-filter: blur(9px) saturate(1.05); backdrop-filter: blur(9px) saturate(1.05); font: 500 12px/1.7 var(--sans); letter-spacing: 0; white-space: pre-line; }
+#toast.bride-toast.meal-toast::before { display: block; margin-bottom: 9px; color: #75435b; content: '식사 안내'; font: 600 14px/1.4 var(--sans); }
+#toast.code-toast.meal-toast::before { content: '식사 안내'; }
 #coding .rsvp-attendance-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 #coding .rsvp-attendance-options label,
 #coding .rsvp-attendance-options label:last-child { box-sizing: border-box; display: flex; width: 100%; min-width: 0; min-height: 39px; margin: 0; }
@@ -1268,7 +1270,9 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
   -webkit-backdrop-filter: blur(14px) saturate(1.08);
   backdrop-filter: blur(14px) saturate(1.08);
 }
-#toast.code-toast.meal-toast::before { content: '$ ./meal --hours'; }
+#toast.bride-toast.meal-toast { background: rgba(246, 221, 232, .52); -webkit-backdrop-filter: blur(9px) saturate(1.05); backdrop-filter: blur(9px) saturate(1.05); font: 500 12px/1.7 var(--sans); letter-spacing: 0; white-space: pre-line; }
+#toast.bride-toast.meal-toast::before { display: block; margin-bottom: 9px; color: #75435b; content: '식사 안내'; font: 600 14px/1.4 var(--sans); }
+#toast.code-toast.meal-toast::before { content: '식사 안내'; }
 #coding .rsvp-attendance-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 #coding .rsvp-attendance-options label,
 #coding .rsvp-attendance-options label:last-child { box-sizing: border-box; display: flex; width: 100%; min-width: 0; min-height: 39px; margin: 0; }
@@ -1660,7 +1664,7 @@ window.INVITATION = {
     element.classList.toggle('meal-toast', kind === 'meal');
     element.classList.add('show');
     clearTimeout(toast.timer);
-    toast.timer = setTimeout(() => element.classList.remove('show'), tone ? 3800 : 2800);
+    toast.timer = setTimeout(() => element.classList.remove('show'), kind === 'meal' ? 5500 : tone ? 3800 : 2800);
   };
 
   set('#selection-groom', data.groom);
@@ -2410,7 +2414,7 @@ window.INVITATION = {
     }));
     rsvpForm.querySelector('input[name="meal"][value="O"]').addEventListener('change', event => {
       if (event.target.checked) {
-        toast('식사 가능 시간은 12:30~14:30입니다.\n예식 30분 전부터 2시간 동안 이용하실 수 있습니다.', rsvpForm.id === 'rsvp-form' ? 'bride' : 'coding', 'meal');
+        toast('식사 시간  12:30~14:30\n예식 30분 전부터 2시간 동안 이용 가능합니다.\n장소  지하 1층 연회장\n계단과 엘리베이터를 이용하실 수 있습니다.', rsvpForm.id === 'rsvp-form' ? 'bride' : 'coding', 'meal');
       }
     });
     rsvpForm.addEventListener('submit', async event => {
