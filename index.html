@@ -878,14 +878,14 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-button:disabled { background: #dce2e4; color: #6f7c82; }
 #selection .selection-footer button { color: #5e6a70; }
 
-/* Landing palette: one ivory set for the white home page and its overlays. */
+/* Landing palette: greenery accents on a clean white home page. */
 :root {
-  --landing-ink: #514a43;
-  --landing-muted: #80766d;
-  --landing-accent: #8a7564;
-  --landing-line: #e2dcd3;
-  --landing-panel: #f8f6f2;
-  --landing-panel-deep: #f1ede6;
+  --landing-ink: #344a3a;
+  --landing-muted: #708274;
+  --landing-accent: #5d8064;
+  --landing-line: #dbe7dc;
+  --landing-panel: #f6f9f5;
+  --landing-panel-deep: #ecf3eb;
 }
 #selection { background: #fff; color: var(--landing-ink); }
 #selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: var(--landing-muted); }
@@ -893,7 +893,7 @@ body.opening-active { overflow: hidden; }
 #selection #selection-title { color: var(--landing-ink); }
 #selection .selection-hero-photo, #selection .couple-photo-face { border-color: var(--landing-line); background: var(--landing-panel); }
 #selection .selection-event-card { background: var(--landing-panel); }
-#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: #d7cec2; }
+#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: var(--landing-line); }
 #selection .selection-event-rule span { border-color: var(--landing-accent); background: #fff; }
 #selection .selection-event-rule:first-child { box-shadow: inset 0 3px #fff; }
 #selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #fff; }
@@ -914,9 +914,9 @@ body.opening-active { overflow: hidden; }
 #selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: var(--landing-ink); }
 #selection .couple-photo-hint, #selection .couple-card > strong { color: var(--landing-accent); }
 #selection .couple-photo-back { background: var(--landing-panel-deep); color: var(--landing-ink); }
-#selection .selection-story summary { border-color: var(--landing-line); background: #fff; box-shadow: 0 4px 16px #66584918, inset 0 1px #fff; color: var(--landing-ink); }
+#selection .selection-story summary { border-color: var(--landing-line); background: #fff; box-shadow: 0 4px 16px #3c654018, inset 0 1px #fff; color: var(--landing-ink); }
 #selection .selection-story summary::before { display: none; content: none; }
-#selection .selection-story summary::after { background: linear-gradient(90deg, transparent, #f1ede6b8, transparent); }
+#selection .selection-story summary::after { display: none; content: none; animation: none; }
 #selection .selection-story summary:hover { border-color: var(--landing-accent); background: var(--landing-panel); color: var(--landing-ink); }
 #selection .selection-story summary:focus-visible { outline-color: var(--landing-accent); }
 #selection .story-meta, #selection .selection-story h3, #selection .story-controls button,
@@ -939,14 +939,14 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-card .photo-upload-help { color: var(--landing-ink); }
 #selection .photo-icon, #selection .photo-sender-label { color: var(--landing-accent); }
 #selection .photo-sender-input, #selection .photo-preview-item { border-color: var(--landing-line); }
-#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #8a756421; }
+#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #5d806421; }
 #selection .photo-select-button { border-color: var(--landing-line); color: var(--landing-ink); }
 #selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: var(--landing-accent); background: #fff; }
 #selection .photo-select-button span, #selection .photo-preview-item { background: var(--landing-panel-deep); }
 #selection .photo-upload-button { background: var(--landing-accent); }
 #selection .photo-upload-button:disabled { background: var(--landing-line); color: var(--landing-muted); }
 #selection .selection-footer button { color: var(--landing-accent); }
-.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #66584918; }
+.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #3c654018; }
 .music-toggle[data-theme="selection"]:focus-visible { outline-color: var(--landing-accent); }
 
 /* Album and sharing overlays live outside #selection, so give them the same palette explicitly. */
@@ -956,8 +956,8 @@ body.opening-active { overflow: hidden; }
 #gallery-dialog .gallery-placeholder::before { border-color: var(--landing-line); }
 #gallery-dialog .gallery-dialog-nav, #gallery-dialog .gallery-dialog-counter,
 #gallery-dialog .gallery-dialog-close, #gallery-dialog #gallery-dialog-caption { color: var(--landing-accent); }
-#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #514a4330; }
-#share-dialog[data-theme="selection"]::backdrop { background: #322e2980; }
+#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #344a3a30; }
+#share-dialog[data-theme="selection"]::backdrop { background: #25372980; }
 #share-dialog[data-theme="selection"] p { color: var(--landing-muted); }
 #share-dialog[data-theme="selection"] .share-options button,
 #share-dialog[data-theme="selection"] .share-options a { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
@@ -982,6 +982,94 @@ body.opening-active { overflow: hidden; }
   color: #654954;
 }
 #toast.code-toast.meal-toast::before { content: '$ ./meal --guide'; }
+
+/* A soft halo replaces the moving diagonal sheen around the story toggle. */
+#selection .selection-story summary {
+  animation: story-soft-halo 3.6s ease-in-out infinite;
+}
+@keyframes story-soft-halo {
+  0%, 100% { box-shadow: 0 4px 14px rgba(60,101,64,.1), 0 0 0 0 rgba(119,160,118,0), inset 0 1px #fff; }
+  50% { box-shadow: 0 5px 17px rgba(60,101,64,.16), 0 0 0 5px rgba(119,160,118,.11), 0 0 20px rgba(119,160,118,.22), inset 0 1px #fff; }
+}
+#selection .selection-names > span { color: var(--landing-accent); }
+#selection .gallery-meta { color: var(--landing-muted); }
+@media (prefers-reduced-motion: reduce) {
+  #selection .selection-story summary { animation: none; }
+}
+
+/* The story photo is one slim white print; the album viewer is a small stack. */
+#selection .story-photo {
+  box-sizing: border-box;
+  width: calc(100% - 10px);
+  margin: 13px auto 0;
+  padding: 6px 6px 15px;
+  border: 1px solid #e6ebe4;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 11px 25px rgba(34,55,38,.17), 0 2px 5px rgba(34,55,38,.07);
+  transform: rotate(-.45deg);
+}
+#selection .story-photo img { border-radius: 1px; }
+#selection .gallery-polaroid-stack {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  margin: 9px 9px 12px;
+  isolation: isolate;
+}
+#selection .gallery-polaroid-stack::before,
+#selection .gallery-polaroid-stack::after {
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--landing-line);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 7px 18px rgba(34,55,38,.12);
+  content: '';
+  pointer-events: none;
+}
+#selection .gallery-polaroid-stack::before { transform: translate(-7px,-2px) rotate(-3deg); }
+#selection .gallery-polaroid-stack::after { transform: translate(8px,-3px) rotate(3deg); }
+#selection .gallery-polaroid-stack .gallery-open {
+  position: relative;
+  z-index: 1;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  padding: 6px 6px 14px;
+  border: 1px solid #e6ebe4;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(34,55,38,.16);
+}
+#selection .gallery-polaroid-stack .gallery-open img,
+#selection .gallery-polaroid-stack .gallery-placeholder { border-radius: 1px; }
+
+/* Transparent pink glass with edge highlights over the bride's paper. */
+#toast.bride-toast, #toast.bride-toast.meal-toast {
+  border: 1px solid rgba(255,255,255,.94);
+  border-radius: 9px;
+  background: rgba(250,238,245,.16);
+  box-shadow: 0 15px 37px rgba(75,40,59,.2), inset 0 1px 0 rgba(255,255,255,.96), inset 1px 0 0 rgba(255,255,255,.55), 0 0 18px rgba(241,197,216,.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.12) brightness(1.03);
+  backdrop-filter: blur(8px) saturate(1.12) brightness(1.03);
+  color: #5d4250;
+  text-shadow: 0 1px 1px rgba(255,255,255,.6);
+}
+#toast.bride-toast::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,.4) 0 38%, rgba(177,130,152,.09) 38% 69%, rgba(255,255,255,.1) 69% 100%);
+  content: '';
+  opacity: .7;
+  pointer-events: none;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  #toast.bride-toast, #toast.bride-toast.meal-toast { background: rgba(255,245,250,.88); }
+}
 </style>
   <style>
 /* Groom edition: a self-contained terminal invitation. */
@@ -1668,14 +1756,14 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-button:disabled { background: #dce2e4; color: #6f7c82; }
 #selection .selection-footer button { color: #5e6a70; }
 
-/* Landing palette: one ivory set for the white home page and its overlays. */
+/* Landing palette: greenery accents on a clean white home page. */
 :root {
-  --landing-ink: #514a43;
-  --landing-muted: #80766d;
-  --landing-accent: #8a7564;
-  --landing-line: #e2dcd3;
-  --landing-panel: #f8f6f2;
-  --landing-panel-deep: #f1ede6;
+  --landing-ink: #344a3a;
+  --landing-muted: #708274;
+  --landing-accent: #5d8064;
+  --landing-line: #dbe7dc;
+  --landing-panel: #f6f9f5;
+  --landing-panel-deep: #ecf3eb;
 }
 #selection { background: #fff; color: var(--landing-ink); }
 #selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: var(--landing-muted); }
@@ -1683,7 +1771,7 @@ body.opening-active { overflow: hidden; }
 #selection #selection-title { color: var(--landing-ink); }
 #selection .selection-hero-photo, #selection .couple-photo-face { border-color: var(--landing-line); background: var(--landing-panel); }
 #selection .selection-event-card { background: var(--landing-panel); }
-#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: #d7cec2; }
+#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: var(--landing-line); }
 #selection .selection-event-rule span { border-color: var(--landing-accent); background: #fff; }
 #selection .selection-event-rule:first-child { box-shadow: inset 0 3px #fff; }
 #selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #fff; }
@@ -1704,9 +1792,9 @@ body.opening-active { overflow: hidden; }
 #selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: var(--landing-ink); }
 #selection .couple-photo-hint, #selection .couple-card > strong { color: var(--landing-accent); }
 #selection .couple-photo-back { background: var(--landing-panel-deep); color: var(--landing-ink); }
-#selection .selection-story summary { border-color: var(--landing-line); background: #fff; box-shadow: 0 4px 16px #66584918, inset 0 1px #fff; color: var(--landing-ink); }
+#selection .selection-story summary { border-color: var(--landing-line); background: #fff; box-shadow: 0 4px 16px #3c654018, inset 0 1px #fff; color: var(--landing-ink); }
 #selection .selection-story summary::before { display: none; content: none; }
-#selection .selection-story summary::after { background: linear-gradient(90deg, transparent, #f1ede6b8, transparent); }
+#selection .selection-story summary::after { display: none; content: none; animation: none; }
 #selection .selection-story summary:hover { border-color: var(--landing-accent); background: var(--landing-panel); color: var(--landing-ink); }
 #selection .selection-story summary:focus-visible { outline-color: var(--landing-accent); }
 #selection .story-meta, #selection .selection-story h3, #selection .story-controls button,
@@ -1729,14 +1817,14 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-card .photo-upload-help { color: var(--landing-ink); }
 #selection .photo-icon, #selection .photo-sender-label { color: var(--landing-accent); }
 #selection .photo-sender-input, #selection .photo-preview-item { border-color: var(--landing-line); }
-#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #8a756421; }
+#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #5d806421; }
 #selection .photo-select-button { border-color: var(--landing-line); color: var(--landing-ink); }
 #selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: var(--landing-accent); background: #fff; }
 #selection .photo-select-button span, #selection .photo-preview-item { background: var(--landing-panel-deep); }
 #selection .photo-upload-button { background: var(--landing-accent); }
 #selection .photo-upload-button:disabled { background: var(--landing-line); color: var(--landing-muted); }
 #selection .selection-footer button { color: var(--landing-accent); }
-.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #66584918; }
+.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #3c654018; }
 .music-toggle[data-theme="selection"]:focus-visible { outline-color: var(--landing-accent); }
 
 /* Album and sharing overlays live outside #selection, so give them the same palette explicitly. */
@@ -1746,8 +1834,8 @@ body.opening-active { overflow: hidden; }
 #gallery-dialog .gallery-placeholder::before { border-color: var(--landing-line); }
 #gallery-dialog .gallery-dialog-nav, #gallery-dialog .gallery-dialog-counter,
 #gallery-dialog .gallery-dialog-close, #gallery-dialog #gallery-dialog-caption { color: var(--landing-accent); }
-#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #514a4330; }
-#share-dialog[data-theme="selection"]::backdrop { background: #322e2980; }
+#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #344a3a30; }
+#share-dialog[data-theme="selection"]::backdrop { background: #25372980; }
 #share-dialog[data-theme="selection"] p { color: var(--landing-muted); }
 #share-dialog[data-theme="selection"] .share-options button,
 #share-dialog[data-theme="selection"] .share-options a { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
@@ -1772,6 +1860,94 @@ body.opening-active { overflow: hidden; }
   color: #654954;
 }
 #toast.code-toast.meal-toast::before { content: '$ ./meal --guide'; }
+
+/* A soft halo replaces the moving diagonal sheen around the story toggle. */
+#selection .selection-story summary {
+  animation: story-soft-halo 3.6s ease-in-out infinite;
+}
+@keyframes story-soft-halo {
+  0%, 100% { box-shadow: 0 4px 14px rgba(60,101,64,.1), 0 0 0 0 rgba(119,160,118,0), inset 0 1px #fff; }
+  50% { box-shadow: 0 5px 17px rgba(60,101,64,.16), 0 0 0 5px rgba(119,160,118,.11), 0 0 20px rgba(119,160,118,.22), inset 0 1px #fff; }
+}
+#selection .selection-names > span { color: var(--landing-accent); }
+#selection .gallery-meta { color: var(--landing-muted); }
+@media (prefers-reduced-motion: reduce) {
+  #selection .selection-story summary { animation: none; }
+}
+
+/* The story photo is one slim white print; the album viewer is a small stack. */
+#selection .story-photo {
+  box-sizing: border-box;
+  width: calc(100% - 10px);
+  margin: 13px auto 0;
+  padding: 6px 6px 15px;
+  border: 1px solid #e6ebe4;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 11px 25px rgba(34,55,38,.17), 0 2px 5px rgba(34,55,38,.07);
+  transform: rotate(-.45deg);
+}
+#selection .story-photo img { border-radius: 1px; }
+#selection .gallery-polaroid-stack {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  margin: 9px 9px 12px;
+  isolation: isolate;
+}
+#selection .gallery-polaroid-stack::before,
+#selection .gallery-polaroid-stack::after {
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--landing-line);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 7px 18px rgba(34,55,38,.12);
+  content: '';
+  pointer-events: none;
+}
+#selection .gallery-polaroid-stack::before { transform: translate(-7px,-2px) rotate(-3deg); }
+#selection .gallery-polaroid-stack::after { transform: translate(8px,-3px) rotate(3deg); }
+#selection .gallery-polaroid-stack .gallery-open {
+  position: relative;
+  z-index: 1;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  padding: 6px 6px 14px;
+  border: 1px solid #e6ebe4;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(34,55,38,.16);
+}
+#selection .gallery-polaroid-stack .gallery-open img,
+#selection .gallery-polaroid-stack .gallery-placeholder { border-radius: 1px; }
+
+/* Transparent pink glass with edge highlights over the bride's paper. */
+#toast.bride-toast, #toast.bride-toast.meal-toast {
+  border: 1px solid rgba(255,255,255,.94);
+  border-radius: 9px;
+  background: rgba(250,238,245,.16);
+  box-shadow: 0 15px 37px rgba(75,40,59,.2), inset 0 1px 0 rgba(255,255,255,.96), inset 1px 0 0 rgba(255,255,255,.55), 0 0 18px rgba(241,197,216,.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.12) brightness(1.03);
+  backdrop-filter: blur(8px) saturate(1.12) brightness(1.03);
+  color: #5d4250;
+  text-shadow: 0 1px 1px rgba(255,255,255,.6);
+}
+#toast.bride-toast::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,.4) 0 38%, rgba(177,130,152,.09) 38% 69%, rgba(255,255,255,.1) 69% 100%);
+  content: '';
+  opacity: .7;
+  pointer-events: none;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  #toast.bride-toast, #toast.bride-toast.meal-toast { background: rgba(255,245,250,.88); }
+}
   </style>
 </head>
 <body>
@@ -1879,7 +2055,9 @@ body.opening-active { overflow: hidden; }
           <div class="gallery-viewer" id="gallery-viewer">
             <div class="gallery-stage">
               <button class="gallery-nav" id="gallery-prev" type="button" aria-label="이전 사진">‹</button>
-              <button class="gallery-open" id="gallery-open" type="button" aria-label="사진 크게 보기"><img id="gallery-image" alt="" hidden /><span class="gallery-placeholder" id="gallery-placeholder" aria-hidden="true"><span>WEDDING ALBUM</span><strong>01</strong></span></button>
+              <div class="gallery-polaroid-stack">
+                <button class="gallery-open" id="gallery-open" type="button" aria-label="사진 크게 보기"><img id="gallery-image" alt="" hidden /><span class="gallery-placeholder" id="gallery-placeholder" aria-hidden="true"><span>WEDDING ALBUM</span><strong>01</strong></span></button>
+              </div>
               <button class="gallery-nav" id="gallery-next" type="button" aria-label="다음 사진">›</button>
             </div>
             <div class="gallery-meta"><span id="gallery-counter"></span><span id="gallery-caption"></span></div>
