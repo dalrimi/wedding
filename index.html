@@ -878,14 +878,15 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-button:disabled { background: #dce2e4; color: #6f7c82; }
 #selection .selection-footer button { color: #5e6a70; }
 
-/* Landing palette: greenery accents on a clean white home page. */
+/* Landing palette: clear ivory panels, dark lettering and restrained antique gold. */
 :root {
-  --landing-ink: #344a3a;
-  --landing-muted: #708274;
-  --landing-accent: #5d8064;
-  --landing-line: #dbe7dc;
-  --landing-panel: #f6f9f5;
-  --landing-panel-deep: #ecf3eb;
+  --landing-ink: #292a28;
+  --landing-muted: #74736f;
+  --landing-accent: #a08a6d;
+  --landing-line: #e7e3dc;
+  --landing-panel: #f9f8f5;
+  --landing-panel-deep: #f2f0eb;
+  --landing-gold-foil: linear-gradient(115deg, #8b785e, #b4a17e 36%, #947c5e 68%, #aa9777);
 }
 #selection { background: #fff; color: var(--landing-ink); }
 #selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: var(--landing-muted); }
@@ -914,10 +915,10 @@ body.opening-active { overflow: hidden; }
 #selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: var(--landing-ink); }
 #selection .couple-photo-hint, #selection .couple-card > strong { color: var(--landing-accent); }
 #selection .couple-photo-back { background: var(--landing-panel-deep); color: var(--landing-ink); }
-#selection .selection-story summary { border-color: var(--landing-line); background: #fff; box-shadow: 0 4px 16px #3c654018, inset 0 1px #fff; color: var(--landing-ink); }
+#selection .selection-story summary { border-color: #ede9e2; background: #fff; box-shadow: 0 4px 16px #8d816d14, inset 0 1px #fff; color: var(--landing-ink); }
 #selection .selection-story summary::before { display: none; content: none; }
 #selection .selection-story summary::after { display: none; content: none; animation: none; }
-#selection .selection-story summary:hover { border-color: var(--landing-accent); background: var(--landing-panel); color: var(--landing-ink); }
+#selection .selection-story summary:hover { border-color: #ded6c9; background: var(--landing-panel); color: var(--landing-ink); }
 #selection .selection-story summary:focus-visible { outline-color: var(--landing-accent); }
 #selection .story-meta, #selection .selection-story h3, #selection .story-controls button,
 #selection .story-years button[aria-current="true"] { color: var(--landing-ink); }
@@ -926,7 +927,7 @@ body.opening-active { overflow: hidden; }
 #selection .gallery-heading > p, #selection .selection-photo .photo-intro, #selection .selection-crafted-note { color: var(--landing-muted); }
 #selection .gallery-mode-switch button { border-bottom-color: var(--landing-line); color: var(--landing-accent); }
 #selection .gallery-dots button { border-color: var(--landing-line); background: #fff; color: var(--landing-muted); }
-#selection .gallery-dots button[aria-current="true"] { border-color: var(--landing-accent); background: var(--landing-accent); color: #fff; }
+#selection .gallery-dots button[aria-current="true"] { border-color: #a08a6d; background: var(--landing-gold-foil); color: #fff; }
 #selection .gallery-dots { scrollbar-color: var(--landing-line) transparent; }
 #selection .gallery-nav { color: var(--landing-accent); }
 #selection .gallery-empty { border-color: var(--landing-line); background: var(--landing-panel); }
@@ -939,14 +940,14 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-card .photo-upload-help { color: var(--landing-ink); }
 #selection .photo-icon, #selection .photo-sender-label { color: var(--landing-accent); }
 #selection .photo-sender-input, #selection .photo-preview-item { border-color: var(--landing-line); }
-#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #5d806421; }
+#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #a08a6d1c; }
 #selection .photo-select-button { border-color: var(--landing-line); color: var(--landing-ink); }
 #selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: var(--landing-accent); background: #fff; }
 #selection .photo-select-button span, #selection .photo-preview-item { background: var(--landing-panel-deep); }
-#selection .photo-upload-button { background: var(--landing-accent); }
+#selection .photo-upload-button { background: var(--landing-gold-foil); }
 #selection .photo-upload-button:disabled { background: var(--landing-line); color: var(--landing-muted); }
 #selection .selection-footer button { color: var(--landing-accent); }
-.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #3c654018; }
+.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #8d816d14; }
 .music-toggle[data-theme="selection"]:focus-visible { outline-color: var(--landing-accent); }
 
 /* Album and sharing overlays live outside #selection, so give them the same palette explicitly. */
@@ -956,8 +957,8 @@ body.opening-active { overflow: hidden; }
 #gallery-dialog .gallery-placeholder::before { border-color: var(--landing-line); }
 #gallery-dialog .gallery-dialog-nav, #gallery-dialog .gallery-dialog-counter,
 #gallery-dialog .gallery-dialog-close, #gallery-dialog #gallery-dialog-caption { color: var(--landing-accent); }
-#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #344a3a30; }
-#share-dialog[data-theme="selection"]::backdrop { background: #25372980; }
+#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #292a2830; }
+#share-dialog[data-theme="selection"]::backdrop { background: #25242080; }
 #share-dialog[data-theme="selection"] p { color: var(--landing-muted); }
 #share-dialog[data-theme="selection"] .share-options button,
 #share-dialog[data-theme="selection"] .share-options a { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
@@ -985,11 +986,11 @@ body.opening-active { overflow: hidden; }
 
 /* A soft halo replaces the moving diagonal sheen around the story toggle. */
 #selection .selection-story summary {
-  animation: story-soft-halo 3.6s ease-in-out infinite;
+  animation: story-soft-halo 6.2s ease-in-out infinite;
 }
 @keyframes story-soft-halo {
-  0%, 100% { box-shadow: 0 4px 14px rgba(60,101,64,.1), 0 0 0 0 rgba(119,160,118,0), inset 0 1px #fff; }
-  50% { box-shadow: 0 5px 17px rgba(60,101,64,.16), 0 0 0 5px rgba(119,160,118,.11), 0 0 20px rgba(119,160,118,.22), inset 0 1px #fff; }
+  0%, 100% { box-shadow: 0 4px 14px rgba(111,99,81,.09), 0 0 0 3px rgba(171,155,129,.035), inset 0 1px #fff; }
+  50% { box-shadow: 0 5px 16px rgba(111,99,81,.1), 0 0 0 5px rgba(171,155,129,.065), 0 0 16px rgba(171,155,129,.08), inset 0 1px #fff; }
 }
 #selection .selection-names > span { color: var(--landing-accent); }
 #selection .gallery-meta { color: var(--landing-muted); }
@@ -1003,10 +1004,10 @@ body.opening-active { overflow: hidden; }
   width: calc(100% - 10px);
   margin: 13px auto 0;
   padding: 6px 6px 15px;
-  border: 1px solid #e6ebe4;
+  border: 1px solid var(--landing-line);
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 11px 25px rgba(34,55,38,.17), 0 2px 5px rgba(34,55,38,.07);
+  box-shadow: 0 11px 25px rgba(57,51,43,.15), 0 2px 5px rgba(57,51,43,.06);
   transform: rotate(-.45deg);
 }
 #selection .story-photo img { border-radius: 1px; }
@@ -1024,7 +1025,7 @@ body.opening-active { overflow: hidden; }
   border: 1px solid var(--landing-line);
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 7px 18px rgba(34,55,38,.12);
+  box-shadow: 0 7px 18px rgba(57,51,43,.1);
   content: '';
   pointer-events: none;
 }
@@ -1039,22 +1040,22 @@ body.opening-active { overflow: hidden; }
   height: 100%;
   aspect-ratio: auto;
   padding: 6px 6px 14px;
-  border: 1px solid #e6ebe4;
+  border: 1px solid var(--landing-line);
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 10px 24px rgba(34,55,38,.16);
+  box-shadow: 0 10px 24px rgba(57,51,43,.14);
 }
 #selection .gallery-polaroid-stack .gallery-open img,
 #selection .gallery-polaroid-stack .gallery-placeholder { border-radius: 1px; }
 
 /* Transparent pink glass with edge highlights over the bride's paper. */
 #toast.bride-toast, #toast.bride-toast.meal-toast {
-  border: 1px solid rgba(255,255,255,.94);
+  border: 1px solid rgba(255,255,255,.52);
   border-radius: 9px;
-  background: rgba(250,238,245,.16);
-  box-shadow: 0 15px 37px rgba(75,40,59,.2), inset 0 1px 0 rgba(255,255,255,.96), inset 1px 0 0 rgba(255,255,255,.55), 0 0 18px rgba(241,197,216,.2);
-  -webkit-backdrop-filter: blur(8px) saturate(1.12) brightness(1.03);
-  backdrop-filter: blur(8px) saturate(1.12) brightness(1.03);
+  background: rgba(239,213,224,.09);
+  box-shadow: 0 15px 37px rgba(75,40,59,.19), inset 0 1px 0 rgba(255,255,255,.58), inset 1px 0 0 rgba(255,255,255,.28), 0 0 18px rgba(241,197,216,.13);
+  -webkit-backdrop-filter: blur(5px) saturate(1.08);
+  backdrop-filter: blur(5px) saturate(1.08);
   color: #5d4250;
   text-shadow: 0 1px 1px rgba(255,255,255,.6);
 }
@@ -1062,9 +1063,9 @@ body.opening-active { overflow: hidden; }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,.4) 0 38%, rgba(177,130,152,.09) 38% 69%, rgba(255,255,255,.1) 69% 100%);
+  background: linear-gradient(135deg, transparent 0 36%, rgba(141,109,122,.075) 36% 67%, transparent 67% 100%);
   content: '';
-  opacity: .7;
+  opacity: 1;
   pointer-events: none;
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -1756,14 +1757,15 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-button:disabled { background: #dce2e4; color: #6f7c82; }
 #selection .selection-footer button { color: #5e6a70; }
 
-/* Landing palette: greenery accents on a clean white home page. */
+/* Landing palette: clear ivory panels, dark lettering and restrained antique gold. */
 :root {
-  --landing-ink: #344a3a;
-  --landing-muted: #708274;
-  --landing-accent: #5d8064;
-  --landing-line: #dbe7dc;
-  --landing-panel: #f6f9f5;
-  --landing-panel-deep: #ecf3eb;
+  --landing-ink: #292a28;
+  --landing-muted: #74736f;
+  --landing-accent: #a08a6d;
+  --landing-line: #e7e3dc;
+  --landing-panel: #f9f8f5;
+  --landing-panel-deep: #f2f0eb;
+  --landing-gold-foil: linear-gradient(115deg, #8b785e, #b4a17e 36%, #947c5e 68%, #aa9777);
 }
 #selection { background: #fff; color: var(--landing-ink); }
 #selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: var(--landing-muted); }
@@ -1792,10 +1794,10 @@ body.opening-active { overflow: hidden; }
 #selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: var(--landing-ink); }
 #selection .couple-photo-hint, #selection .couple-card > strong { color: var(--landing-accent); }
 #selection .couple-photo-back { background: var(--landing-panel-deep); color: var(--landing-ink); }
-#selection .selection-story summary { border-color: var(--landing-line); background: #fff; box-shadow: 0 4px 16px #3c654018, inset 0 1px #fff; color: var(--landing-ink); }
+#selection .selection-story summary { border-color: #ede9e2; background: #fff; box-shadow: 0 4px 16px #8d816d14, inset 0 1px #fff; color: var(--landing-ink); }
 #selection .selection-story summary::before { display: none; content: none; }
 #selection .selection-story summary::after { display: none; content: none; animation: none; }
-#selection .selection-story summary:hover { border-color: var(--landing-accent); background: var(--landing-panel); color: var(--landing-ink); }
+#selection .selection-story summary:hover { border-color: #ded6c9; background: var(--landing-panel); color: var(--landing-ink); }
 #selection .selection-story summary:focus-visible { outline-color: var(--landing-accent); }
 #selection .story-meta, #selection .selection-story h3, #selection .story-controls button,
 #selection .story-years button[aria-current="true"] { color: var(--landing-ink); }
@@ -1804,7 +1806,7 @@ body.opening-active { overflow: hidden; }
 #selection .gallery-heading > p, #selection .selection-photo .photo-intro, #selection .selection-crafted-note { color: var(--landing-muted); }
 #selection .gallery-mode-switch button { border-bottom-color: var(--landing-line); color: var(--landing-accent); }
 #selection .gallery-dots button { border-color: var(--landing-line); background: #fff; color: var(--landing-muted); }
-#selection .gallery-dots button[aria-current="true"] { border-color: var(--landing-accent); background: var(--landing-accent); color: #fff; }
+#selection .gallery-dots button[aria-current="true"] { border-color: #a08a6d; background: var(--landing-gold-foil); color: #fff; }
 #selection .gallery-dots { scrollbar-color: var(--landing-line) transparent; }
 #selection .gallery-nav { color: var(--landing-accent); }
 #selection .gallery-empty { border-color: var(--landing-line); background: var(--landing-panel); }
@@ -1817,14 +1819,14 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-card .photo-upload-help { color: var(--landing-ink); }
 #selection .photo-icon, #selection .photo-sender-label { color: var(--landing-accent); }
 #selection .photo-sender-input, #selection .photo-preview-item { border-color: var(--landing-line); }
-#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #5d806421; }
+#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #a08a6d1c; }
 #selection .photo-select-button { border-color: var(--landing-line); color: var(--landing-ink); }
 #selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: var(--landing-accent); background: #fff; }
 #selection .photo-select-button span, #selection .photo-preview-item { background: var(--landing-panel-deep); }
-#selection .photo-upload-button { background: var(--landing-accent); }
+#selection .photo-upload-button { background: var(--landing-gold-foil); }
 #selection .photo-upload-button:disabled { background: var(--landing-line); color: var(--landing-muted); }
 #selection .selection-footer button { color: var(--landing-accent); }
-.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #3c654018; }
+.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #8d816d14; }
 .music-toggle[data-theme="selection"]:focus-visible { outline-color: var(--landing-accent); }
 
 /* Album and sharing overlays live outside #selection, so give them the same palette explicitly. */
@@ -1834,8 +1836,8 @@ body.opening-active { overflow: hidden; }
 #gallery-dialog .gallery-placeholder::before { border-color: var(--landing-line); }
 #gallery-dialog .gallery-dialog-nav, #gallery-dialog .gallery-dialog-counter,
 #gallery-dialog .gallery-dialog-close, #gallery-dialog #gallery-dialog-caption { color: var(--landing-accent); }
-#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #344a3a30; }
-#share-dialog[data-theme="selection"]::backdrop { background: #25372980; }
+#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #292a2830; }
+#share-dialog[data-theme="selection"]::backdrop { background: #25242080; }
 #share-dialog[data-theme="selection"] p { color: var(--landing-muted); }
 #share-dialog[data-theme="selection"] .share-options button,
 #share-dialog[data-theme="selection"] .share-options a { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
@@ -1863,11 +1865,11 @@ body.opening-active { overflow: hidden; }
 
 /* A soft halo replaces the moving diagonal sheen around the story toggle. */
 #selection .selection-story summary {
-  animation: story-soft-halo 3.6s ease-in-out infinite;
+  animation: story-soft-halo 6.2s ease-in-out infinite;
 }
 @keyframes story-soft-halo {
-  0%, 100% { box-shadow: 0 4px 14px rgba(60,101,64,.1), 0 0 0 0 rgba(119,160,118,0), inset 0 1px #fff; }
-  50% { box-shadow: 0 5px 17px rgba(60,101,64,.16), 0 0 0 5px rgba(119,160,118,.11), 0 0 20px rgba(119,160,118,.22), inset 0 1px #fff; }
+  0%, 100% { box-shadow: 0 4px 14px rgba(111,99,81,.09), 0 0 0 3px rgba(171,155,129,.035), inset 0 1px #fff; }
+  50% { box-shadow: 0 5px 16px rgba(111,99,81,.1), 0 0 0 5px rgba(171,155,129,.065), 0 0 16px rgba(171,155,129,.08), inset 0 1px #fff; }
 }
 #selection .selection-names > span { color: var(--landing-accent); }
 #selection .gallery-meta { color: var(--landing-muted); }
@@ -1881,10 +1883,10 @@ body.opening-active { overflow: hidden; }
   width: calc(100% - 10px);
   margin: 13px auto 0;
   padding: 6px 6px 15px;
-  border: 1px solid #e6ebe4;
+  border: 1px solid var(--landing-line);
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 11px 25px rgba(34,55,38,.17), 0 2px 5px rgba(34,55,38,.07);
+  box-shadow: 0 11px 25px rgba(57,51,43,.15), 0 2px 5px rgba(57,51,43,.06);
   transform: rotate(-.45deg);
 }
 #selection .story-photo img { border-radius: 1px; }
@@ -1902,7 +1904,7 @@ body.opening-active { overflow: hidden; }
   border: 1px solid var(--landing-line);
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 7px 18px rgba(34,55,38,.12);
+  box-shadow: 0 7px 18px rgba(57,51,43,.1);
   content: '';
   pointer-events: none;
 }
@@ -1917,22 +1919,22 @@ body.opening-active { overflow: hidden; }
   height: 100%;
   aspect-ratio: auto;
   padding: 6px 6px 14px;
-  border: 1px solid #e6ebe4;
+  border: 1px solid var(--landing-line);
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 10px 24px rgba(34,55,38,.16);
+  box-shadow: 0 10px 24px rgba(57,51,43,.14);
 }
 #selection .gallery-polaroid-stack .gallery-open img,
 #selection .gallery-polaroid-stack .gallery-placeholder { border-radius: 1px; }
 
 /* Transparent pink glass with edge highlights over the bride's paper. */
 #toast.bride-toast, #toast.bride-toast.meal-toast {
-  border: 1px solid rgba(255,255,255,.94);
+  border: 1px solid rgba(255,255,255,.52);
   border-radius: 9px;
-  background: rgba(250,238,245,.16);
-  box-shadow: 0 15px 37px rgba(75,40,59,.2), inset 0 1px 0 rgba(255,255,255,.96), inset 1px 0 0 rgba(255,255,255,.55), 0 0 18px rgba(241,197,216,.2);
-  -webkit-backdrop-filter: blur(8px) saturate(1.12) brightness(1.03);
-  backdrop-filter: blur(8px) saturate(1.12) brightness(1.03);
+  background: rgba(239,213,224,.09);
+  box-shadow: 0 15px 37px rgba(75,40,59,.19), inset 0 1px 0 rgba(255,255,255,.58), inset 1px 0 0 rgba(255,255,255,.28), 0 0 18px rgba(241,197,216,.13);
+  -webkit-backdrop-filter: blur(5px) saturate(1.08);
+  backdrop-filter: blur(5px) saturate(1.08);
   color: #5d4250;
   text-shadow: 0 1px 1px rgba(255,255,255,.6);
 }
@@ -1940,9 +1942,9 @@ body.opening-active { overflow: hidden; }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,.4) 0 38%, rgba(177,130,152,.09) 38% 69%, rgba(255,255,255,.1) 69% 100%);
+  background: linear-gradient(135deg, transparent 0 36%, rgba(141,109,122,.075) 36% 67%, transparent 67% 100%);
   content: '';
-  opacity: .7;
+  opacity: 1;
   pointer-events: none;
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -1954,7 +1956,16 @@ body.opening-active { overflow: hidden; }
   <section id="opening-screen" class="opening-screen" role="dialog" aria-modal="true" aria-label="청첩장이 도착했어요">
     <div class="opening-atmosphere" aria-hidden="true"></div>
     <div class="opening-content">
-      <div class="opening-clock" aria-live="off"><span id="opening-time">00:00</span><span id="opening-date">오늘</span></div>
+      <div class="opening-clock" aria-live="off"><span id="opening-time"></span><span id="opening-date"></span></div>
+      <script>
+        (() => {
+          const now = new Date();
+          const two = value => String(value).padStart(2, '0');
+          document.getElementById('opening-time').textContent = `${two(now.getHours())}:${two(now.getMinutes())}`;
+          document.getElementById('opening-date').textContent = new Intl.DateTimeFormat('ko-KR', {month: 'long', day: 'numeric', weekday: 'long'}).format(now);
+          if (location.hash && location.hash !== '#') document.getElementById('opening-screen').hidden = true;
+        })();
+      </script>
       <button type="button" id="opening-notification" class="opening-notification" aria-label="우성 앤 해림의 청첩장 열기">
         <span class="opening-avatar" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 7C11.7 7 5 12.4 5 19c0 4.1 2.5 7.7 6.3 9.9L10 34l7.5-4.2c.8.1 1.6.2 2.5.2 8.3 0 15-5.4 15-12S28.3 7 20 7Z" fill="currentColor"/></svg></span>
         <span class="opening-message"><strong>우성 &amp; 해림</strong><span>청첩장이 도착했어요 💌</span></span>
@@ -2020,7 +2031,7 @@ body.opening-active { overflow: hidden; }
           </a>
         </div>
         <section class="selection-couple" aria-labelledby="couple-title">
-          <h2 id="couple-title">두 사람을 소개합니다.</h2>
+          <h2 id="couple-title">두 사람을 소개합니다</h2>
           <div class="couple-cards">
             <article class="couple-card"><button class="couple-photo" type="button" aria-label="신랑 양우성 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="groom-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-birthday">1998.09.29.</span><strong>ISFP</strong><span class="couple-profile-note">세상 무던하고 귀찮은 게 많지만,<br />유일하게 지겹지 않은 존재는<br />하루 종일 곁에서 조잘대는<br />신부뿐이라고 합니다.</span></span></span></button><strong>신랑 양우성</strong></article>
             <span class="couple-connector" aria-hidden="true">♥</span>
