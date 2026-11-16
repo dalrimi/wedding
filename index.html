@@ -1000,20 +1000,52 @@ body.opening-active { overflow: hidden; }
   #selection .selection-story summary { animation: none; }
 }
 
-/* The story photo is one slim white print; the album viewer is a small stack. */
+/* Story prints build up one year at a time, with the newest print on top. */
 #selection .story-photo {
+  position: relative;
   box-sizing: border-box;
-  width: calc(100% - 10px);
-  margin: 16px auto 8px;
+  width: calc(100% - 28px);
+  aspect-ratio: 1.28;
+  margin: 24px auto 18px;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+#selection .story-print {
+  position: absolute;
+  inset: 0;
+  display: block;
+  box-sizing: border-box;
   padding: 7px 7px 20px;
   border: 1px solid var(--landing-line);
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 15px 29px rgba(70,72,67,.15), 0 3px 7px rgba(70,72,67,.08), inset 0 0 0 1px #fff;
-  transform: rotate(-.7deg);
+  box-shadow: 0 14px 25px rgba(70,72,67,.15), 0 3px 7px rgba(70,72,67,.08), inset 0 0 0 1px #fff;
+  opacity: 1;
+  transform: translate(var(--story-x), var(--story-y)) rotate(var(--story-angle));
+  transition: opacity .4s ease, transform .48s cubic-bezier(.2,.7,.2,1);
+  pointer-events: none;
 }
-#selection .story-photo:has(img:not([hidden])) { aspect-ratio: auto; overflow: visible; }
-#selection .story-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 1px; object-fit: cover; }
+#selection .story-print[data-visible="false"] {
+  opacity: 0;
+  transform: translate(var(--story-x), calc(var(--story-y) + 24px)) rotate(calc(var(--story-angle) + 4deg)) scale(.97);
+}
+#selection .story-print img, #selection .story-empty-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 1px;
+}
+#selection .story-print img { object-fit: cover; }
+#selection .story-empty-photo { background: var(--landing-panel); }
+#selection .story-controls button:disabled { opacity: .35; cursor: default; }
+@media (prefers-reduced-motion: reduce) {
+  #selection .story-print { transition: none; }
+}
 
 /* Main-page map controls have their own order and softly filled silver buttons. */
 #selection .selection-location-inner { display: flex; flex-direction: column; }
@@ -1029,7 +1061,7 @@ body.opening-active { overflow: hidden; }
 #selection .couple-photo-back { justify-content: center; gap: clamp(5px, 1.5vw, 8px); padding: 9px 4px; }
 #selection .couple-profession { display: block; margin-bottom: 3px; font: 600 clamp(11.5px, 3.1vw, 14.5px)/1.2 var(--sans); letter-spacing: -.045em; white-space: nowrap; }
 #selection .couple-birthday, #selection .couple-photo-back strong { font-size: clamp(11.5px, 3.1vw, 14.5px); }
-#selection .couple-profile-note { margin-top: 5px; font-size: clamp(9.4px, 2.6vw, 11px); letter-spacing: -.09em; white-space: nowrap; }
+#selection .couple-profile-note { margin-top: 8px; font-size: clamp(9.4px, 2.6vw, 11px); line-height: 1.65; letter-spacing: -.07em; white-space: nowrap; }
 @media (max-width: 340px) { #selection .couple-profile-note { font-size: 8.2px; } }
 
 /* Light glass tiles echo the rounded clear-button reference. */
@@ -1902,20 +1934,52 @@ body.opening-active { overflow: hidden; }
   #selection .selection-story summary { animation: none; }
 }
 
-/* The story photo is one slim white print; the album viewer is a small stack. */
+/* Story prints build up one year at a time, with the newest print on top. */
 #selection .story-photo {
+  position: relative;
   box-sizing: border-box;
-  width: calc(100% - 10px);
-  margin: 16px auto 8px;
+  width: calc(100% - 28px);
+  aspect-ratio: 1.28;
+  margin: 24px auto 18px;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+#selection .story-print {
+  position: absolute;
+  inset: 0;
+  display: block;
+  box-sizing: border-box;
   padding: 7px 7px 20px;
   border: 1px solid var(--landing-line);
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 15px 29px rgba(70,72,67,.15), 0 3px 7px rgba(70,72,67,.08), inset 0 0 0 1px #fff;
-  transform: rotate(-.7deg);
+  box-shadow: 0 14px 25px rgba(70,72,67,.15), 0 3px 7px rgba(70,72,67,.08), inset 0 0 0 1px #fff;
+  opacity: 1;
+  transform: translate(var(--story-x), var(--story-y)) rotate(var(--story-angle));
+  transition: opacity .4s ease, transform .48s cubic-bezier(.2,.7,.2,1);
+  pointer-events: none;
 }
-#selection .story-photo:has(img:not([hidden])) { aspect-ratio: auto; overflow: visible; }
-#selection .story-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 1px; object-fit: cover; }
+#selection .story-print[data-visible="false"] {
+  opacity: 0;
+  transform: translate(var(--story-x), calc(var(--story-y) + 24px)) rotate(calc(var(--story-angle) + 4deg)) scale(.97);
+}
+#selection .story-print img, #selection .story-empty-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 1px;
+}
+#selection .story-print img { object-fit: cover; }
+#selection .story-empty-photo { background: var(--landing-panel); }
+#selection .story-controls button:disabled { opacity: .35; cursor: default; }
+@media (prefers-reduced-motion: reduce) {
+  #selection .story-print { transition: none; }
+}
 
 /* Main-page map controls have their own order and softly filled silver buttons. */
 #selection .selection-location-inner { display: flex; flex-direction: column; }
@@ -1931,7 +1995,7 @@ body.opening-active { overflow: hidden; }
 #selection .couple-photo-back { justify-content: center; gap: clamp(5px, 1.5vw, 8px); padding: 9px 4px; }
 #selection .couple-profession { display: block; margin-bottom: 3px; font: 600 clamp(11.5px, 3.1vw, 14.5px)/1.2 var(--sans); letter-spacing: -.045em; white-space: nowrap; }
 #selection .couple-birthday, #selection .couple-photo-back strong { font-size: clamp(11.5px, 3.1vw, 14.5px); }
-#selection .couple-profile-note { margin-top: 5px; font-size: clamp(9.4px, 2.6vw, 11px); letter-spacing: -.09em; white-space: nowrap; }
+#selection .couple-profile-note { margin-top: 8px; font-size: clamp(9.4px, 2.6vw, 11px); line-height: 1.65; letter-spacing: -.07em; white-space: nowrap; }
 @media (max-width: 340px) { #selection .couple-profile-note { font-size: 8.2px; } }
 
 /* Light glass tiles echo the rounded clear-button reference. */
@@ -2080,9 +2144,9 @@ body.opening-active { overflow: hidden; }
         <section class="selection-couple" aria-labelledby="couple-title">
           <h2 id="couple-title">두 사람을 소개합니다</h2>
           <div class="couple-cards">
-            <article class="couple-card"><button class="couple-photo" type="button" aria-label="신랑 양우성 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="groom-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-profession">로봇공학 연구원</span><span class="couple-birthday">1998.09.29.</span><strong>ISFP</strong><span class="couple-profile-note">세상 무던하고 귀찮은 게 많지만,<br />유일하게 지겹지 않은 존재는<br />하루 종일 곁에서 조잘거리는<br />신부뿐이라고 합니다.</span></span></span></button><strong>신랑 양우성</strong></article>
+            <article class="couple-card"><button class="couple-photo" type="button" aria-label="신랑 양우성 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="groom-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-profession">로봇공학 연구원</span><span class="couple-birthday">1998.09.29.</span><strong>ISFP</strong><span class="couple-profile-note">#서울대 #기계공학부 #박사과정<br />#굳이? #그러든가 #F호소인<br />#신부보호자 #신부말은잘들음</span></span></span></button><strong>신랑 양우성</strong></article>
             <span class="couple-connector" aria-hidden="true">♥</span>
-            <article class="couple-card"><button class="couple-photo" type="button" aria-label="신부 이해림 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="bride-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-profession">고등학교 지리교사</span><span class="couple-birthday">1998.01.27.</span><strong>ESTJ</strong><span class="couple-profile-note">언제나 똑 부러지고 야무지지만,<br />유독 덤벙대는 모습을 보이는 건<br />툴툴거리면서도 다 받아주는<br />신랑 앞에서뿐이라고 합니다.</span></span></span></button><strong>신부 이해림</strong></article>
+            <article class="couple-card"><button class="couple-photo" type="button" aria-label="신부 이해림 소개 보기" aria-pressed="false"><span class="couple-photo-inner"><span class="couple-photo-face couple-photo-front"><img id="bride-intro-photo" alt="" hidden /><span class="couple-photo-hint">눌러서 소개 보기</span></span><span class="couple-photo-face couple-photo-back"><span class="couple-profession">고등학교 지리교사</span><span class="couple-birthday">1998.01.27.</span><strong>ESTJ</strong><span class="couple-profile-note">#서울대 #지리교육과 #지리교사<br />#왜안해? #내가할게 #사회화된T<br />#신랑대변인 #신랑사회화담당</span></span></span></button><strong>신부 이해림</strong></article>
           </div>
         </section>
         <details class="selection-story" id="story-details">
@@ -2703,27 +2767,24 @@ window.INVITATION = {
     if (!AudioContextClass) return;
     try {
       const context = new AudioContextClass();
-      const sound = () => {
-        if (openingChimePlayed || openingScreen.hidden) { context.close(); return; }
-        openingChimePlayed = true;
-        [784, 1174.66].forEach((frequency, index) => {
-          const start = context.currentTime + index * 0.17;
-          const oscillator = context.createOscillator();
-          const volume = context.createGain();
-          oscillator.type = 'sine';
-          oscillator.frequency.setValueAtTime(frequency, start);
-          volume.gain.setValueAtTime(0.0001, start);
-          volume.gain.exponentialRampToValueAtTime(0.075, start + 0.025);
-          volume.gain.exponentialRampToValueAtTime(0.0001, start + 0.38);
-          oscillator.connect(volume).connect(context.destination);
-          oscillator.start(start);
-          oscillator.stop(start + 0.4);
-        });
-        window.setTimeout(() => context.close(), 1100);
-      };
-      if (context.state === 'running') sound();
-      else if (allowResume) context.resume().then(sound).catch(() => context.close());
-      else context.close();
+      if (openingScreen.hidden || (context.state !== 'running' && !allowResume)) { context.close(); return; }
+      // Queue the notes during the touch gesture. Waiting for resume() to resolve delays the first note.
+      if (context.state !== 'running') context.resume().catch(() => context.close());
+      openingChimePlayed = true;
+      [784, 1174.66].forEach((frequency, index) => {
+        const start = context.currentTime + index * 0.17;
+        const oscillator = context.createOscillator();
+        const volume = context.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, start);
+        volume.gain.setValueAtTime(0.0001, start);
+        volume.gain.exponentialRampToValueAtTime(0.075, start + 0.025);
+        volume.gain.exponentialRampToValueAtTime(0.0001, start + 0.38);
+        oscillator.connect(volume).connect(context.destination);
+        oscillator.start(start);
+        oscillator.stop(start + 0.4);
+      });
+      window.setTimeout(() => context.close(), 1100);
     } catch { /* Some browsers wait for a tap before allowing sound. */ }
   };
   const dismissOpening = () => {
@@ -2739,6 +2800,7 @@ window.INVITATION = {
       $('#selection').focus({preventScroll: true});
     }, 480);
   };
+  openingNotification.addEventListener('pointerdown', () => playOpeningChime(true));
   openingNotification.addEventListener('click', dismissOpening);
   document.addEventListener('visibilitychange', () => { if (!document.hidden && !openingScreen.hidden) refreshOpeningClock(); });
   if (location.hash && location.hash !== '#') {
@@ -2748,7 +2810,6 @@ window.INVITATION = {
     document.body.classList.add('opening-active');
     openingBackground.forEach(element => { element.inert = true; });
     openingClockTimer = window.setInterval(refreshOpeningClock, 30000);
-    window.setTimeout(() => { if (!openingScreen.hidden) playOpeningChime(); }, 460);
   }
 
   const music = $('#background-music');
@@ -2817,6 +2878,33 @@ window.INVITATION = {
     image.decode?.().catch(() => {});
     return [story.photo, image];
   }));
+  const storyStage = $('#story-image').parentElement;
+  storyStage.replaceChildren();
+  storyStage.setAttribute('role', 'img');
+  const storyAngles = [-3.2, 2.8, -1.8, 3.4, -2.6, 1.9];
+  const storyPrints = storyItems.map((story, index) => {
+    const print = document.createElement('span');
+    print.className = 'story-print';
+    print.dataset.visible = 'false';
+    print.setAttribute('aria-hidden', 'true');
+    print.style.setProperty('--story-angle', `${storyAngles[index % storyAngles.length]}deg`);
+    print.style.setProperty('--story-x', `${index % 2 ? 4 : -4}px`);
+    print.style.setProperty('--story-y', `${index % 3}px`);
+    print.style.zIndex = String(index + 1);
+    if (story.photo) {
+      const image = document.createElement('img');
+      image.alt = '';
+      image.src = storyPreloads.get(story.photo)?.src || story.photo;
+      image.style.objectPosition = story.photoPosition || '50% 50%';
+      print.append(image);
+    } else {
+      const emptyPhoto = document.createElement('span');
+      emptyPhoto.className = 'story-empty-photo';
+      print.append(emptyPhoto);
+    }
+    storyStage.append(print);
+    return print;
+  });
   const fitStoryTitle = () => {
     if (!storyTitle.clientWidth) return;
     for (let size = 16; size >= 9.5; size -= .5) {
@@ -2826,18 +2914,17 @@ window.INVITATION = {
   };
   const showStory = (index) => {
     if (!storyItems.length) return;
-    storyIndex = (index + storyItems.length) % storyItems.length;
+    storyIndex = Math.max(0, Math.min(storyItems.length - 1, index));
     const story = storyItems[storyIndex];
     set('#story-year', `${story.year}년`);
     set('#story-title', story.title);
     set('#story-description', story.description);
     set('#story-counter', `${storyIndex + 1} / ${storyItems.length}`);
-    const image = $('#story-image');
-    image.hidden = !story.photo;
-    image.src = storyPreloads.get(story.photo)?.src || story.photo || '';
-    image.style.objectPosition = story.photoPosition || '50% 50%';
-    image.alt = story.photo ? `${story.year}년의 두 사람` : '';
-    image.parentElement.setAttribute('aria-hidden', story.photo ? 'false' : 'true');
+    storyStage.setAttribute('aria-hidden', 'false');
+    storyStage.setAttribute('aria-label', `${story.year}년까지 쌓인 두 사람의 사진`);
+    storyPrints.forEach((print, printIndex) => { print.dataset.visible = String(printIndex <= storyIndex); });
+    $('#story-prev').disabled = storyIndex === 0;
+    $('#story-next').disabled = storyIndex === storyItems.length - 1;
     [...storyYears.children].forEach((button, buttonIndex) => button.setAttribute('aria-current', String(buttonIndex === storyIndex)));
     fitStoryTitle();
   };
