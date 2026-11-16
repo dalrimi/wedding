@@ -735,6 +735,89 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
 #coding .rsvp-attendance-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 #coding .rsvp-attendance-options label,
 #coding .rsvp-attendance-options label:last-child { box-sizing: border-box; display: flex; width: 100%; min-width: 0; min-height: 39px; margin: 0; }
+
+/* A lock-screen-style invitation opens only when the landing page loads. */
+body.opening-active { overflow: hidden; }
+.opening-screen { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; overflow: hidden; background: #42423d; color: #fff; opacity: 1; transition: opacity .48s ease, transform .48s cubic-bezier(.2,.7,.2,1); }
+.opening-screen[hidden] { display: none !important; }
+.opening-screen.is-closing { opacity: 0; transform: scale(1.035); pointer-events: none; }
+.opening-atmosphere { position: absolute; inset: -12%; background: radial-gradient(ellipse at 23% 22%, #d7b98675 0, transparent 36%), radial-gradient(ellipse at 80% 78%, #b5a48795 0, transparent 39%), radial-gradient(ellipse at 75% 18%, #fbedd265 0, transparent 27%), linear-gradient(145deg, #6b655a, #31342f 55%, #655a4c); filter: blur(22px); transform: scale(1.08); }
+.opening-screen::after { position: absolute; inset: 0; background: linear-gradient(180deg, #171a1980 0%, #2b292039 42%, #1218178c 100%); content: ''; pointer-events: none; }
+.opening-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; width: min(100%, 520px); min-height: 100svh; padding: clamp(82px, 15svh, 150px) 22px max(32px, env(safe-area-inset-bottom)); }
+.opening-clock { display: flex; flex-direction: column; align-items: center; gap: 4px; text-shadow: 0 2px 16px #1e1d18a8; }
+.opening-clock #opening-time { font: 300 clamp(64px, 19vw, 86px)/1 'DM Sans', var(--sans); letter-spacing: -.065em; font-variant-numeric: tabular-nums; }
+.opening-clock #opening-date { font: 400 clamp(14px, 3.8vw, 17px)/1.5 var(--sans); letter-spacing: -.025em; }
+.opening-notification { display: flex; align-items: center; gap: 11px; box-sizing: border-box; width: 100%; min-height: 78px; margin-top: clamp(80px, 15svh, 140px); padding: 13px 15px; border: 1px solid #ffffff59; border-radius: 17px; background: #ffffff3d; box-shadow: 0 14px 36px #171b1952, inset 0 1px #ffffff66; -webkit-backdrop-filter: blur(24px) saturate(1.18); backdrop-filter: blur(24px) saturate(1.18); color: #fff; text-align: left; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.opening-notification:hover { background: #ffffff55; transform: translateY(-2px); }
+.opening-notification:active { transform: translateY(1px); }
+.opening-notification:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.opening-avatar { display: grid; flex: none; place-items: center; width: 42px; height: 42px; border-radius: 11px; background: #f9dc75; color: #332a1b; }
+.opening-avatar svg { width: 27px; height: 27px; }
+.opening-message { display: flex; flex: 1; flex-direction: column; min-width: 0; gap: 4px; }
+.opening-message strong { font: 600 13px/1.25 var(--sans); }
+.opening-message > span { font: 400 clamp(11px, 3.1vw, 13px)/1.35 var(--sans); white-space: nowrap; }
+.opening-now { align-self: flex-start; flex: none; color: #ffffffbd; font: 400 10px/1.4 var(--sans); }
+.opening-hint { margin: 22px 0 0; color: #ffffffb8; font: 400 11px/1.5 var(--sans); letter-spacing: .005em; animation: opening-hint-glow 2.7s ease-in-out infinite; }
+@keyframes opening-hint-glow { 0%,100% { opacity: .55; text-shadow: none; } 50% { opacity: 1; text-shadow: 0 0 14px #fff8dfd1; } }
+@media (prefers-reduced-motion: reduce) { .opening-screen, .opening-notification { transition: none; } .opening-hint { animation: none; opacity: 1; } }
+
+/* The landing page uses its own white-and-gold palette; the bride and groom editions remain untouched. */
+#selection { background: #fffefa; color: #4d4638; }
+#selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: #6b604d; }
+#selection .eyebrow-line { background: #d9c9a9; }
+#selection #selection-title { color: #6a5232; }
+#selection .selection-hero-photo { border-color: #e9dfca; background: #f8f6ef; }
+#selection .selection-event-card { background: #faf8f1; }
+#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: #d7c6a5; }
+#selection .selection-event-rule span { border-color: #b99c68; background: #fffdf7; }
+#selection .selection-event-rule:first-child { box-shadow: inset 0 3px #fffefa; }
+#selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #fffefa; }
+#selection .selection-event .selection-foot, #selection .selection-event .selection-venue { color: #584a34; }
+#selection .selection-event-hint, #selection .selection-location .venue-map-trigger { color: #907142; }
+#selection .selection-map { border-color: #e5d9c3; background: #f6f3e9; }
+#selection .map-actions .map-action { border-color: #decda9; background: #fffdf8; color: #715b37; }
+#selection .map-actions .map-action:hover { background: #f7f0dc; }
+#selection .choice { border-color: #dfd1b5; background: #fffdf8; color: #4a4234; }
+#selection .choice:hover { border-color: #b99b62; background: #fffaf0; }
+#selection .choice-top, #selection .choice-bottom { color: #746449; border-color: #e7dcc5; }
+#selection .choice-icon { color: #987846; border-color: #dac9aa; }
+#selection .selection-couple, #selection .selection-gallery, #selection .selection-photo, #selection .selection-footer { border-color: #e6dcc6; }
+#selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: #4e402b; }
+#selection .couple-photo-face { border-color: #e4d6b9; background: #f8f4e9; }
+#selection .couple-photo-hint, #selection .couple-card > strong { color: #745f3c; }
+#selection .couple-photo-back { background: #f7f0df; color: #5c4c31; }
+#selection .selection-story summary { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; width: max-content; min-width: 176px; min-height: 46px; margin: 0 auto; padding: 8px 19px; overflow: hidden; border: 1px solid #ddcba1; border-radius: 999px; background: #fffdf6; box-shadow: 0 4px 16px #ae8d4930, inset 0 1px #fff; color: #80602e; font: 600 13px/1.5 var(--sans); }
+#selection .selection-story summary::before { position: relative; z-index: 1; content: '✦'; color: #b89550; font-size: 12px; animation: story-twinkle 2.8s ease-in-out infinite; }
+#selection .selection-story summary::after { position: absolute; inset: -60% auto -60% -45%; width: 35%; background: linear-gradient(90deg, transparent, #fff7d3b8, transparent); content: ''; transform: rotate(22deg); animation: story-sheen 4.4s ease-in-out infinite; pointer-events: none; }
+#selection .selection-story summary span, #selection .selection-story summary svg { position: relative; z-index: 1; }
+#selection .selection-story summary:hover { border-color: #bea36a; background: #fff9eb; color: #62491f; }
+#selection .selection-story summary:focus-visible { outline-color: #ab8747; }
+@keyframes story-twinkle { 0%,100% { opacity: .55; transform: scale(.82) rotate(-15deg); } 45% { opacity: 1; transform: scale(1.22) rotate(13deg); text-shadow: 0 0 10px #e4c772; } }
+@keyframes story-sheen { 0%,58% { left: -45%; } 84%,100% { left: 125%; } }
+#selection .story-meta, #selection .selection-story h3, #selection .story-controls button, #selection .story-years button[aria-current="true"] { color: #80643a; }
+#selection .story-photo, #selection .gallery-open, #selection .gallery-grid-item { background: #f5f0e4; }
+#selection .gallery-heading > p, #selection .selection-photo .photo-intro, #selection .selection-crafted-note { color: #81735b; }
+#selection .gallery-mode-switch button { border-bottom-color: #cbb681; color: #80643a; }
+#selection .gallery-dots button { border-color: #e0d1b2; background: #fffdf8; color: #765f3e; }
+#selection .gallery-dots button[aria-current="true"] { border-color: #a88b50; background: #a88b50; color: #fff; }
+#selection .gallery-dots { scrollbar-color: #d7c59e transparent; }
+#selection .gallery-nav, #selection .gallery-dialog-nav, #selection .gallery-dialog-counter, #selection .gallery-dialog-close { color: #8c7042; }
+#selection .gallery-empty { border-color: #e4d8bf; background: #faf7ee; }
+#selection .album-frame-back { background: #e9dfc8; }
+#selection .album-frame-front { background: #f2ead7; color: #ab8f58; }
+#selection .gallery-placeholder, #selection .gallery-grid-placeholder { border-color: #e4d8bf; background: linear-gradient(145deg, #fcfaf4, #f2ecd9); color: #a18a5c; }
+#selection .photo-upload-card { border-color: #e6d9bb; background: #fcfaf3; }
+#selection .photo-upload-card strong, #selection .photo-upload-card p, #selection .photo-upload-card .photo-count, #selection .photo-upload-card .photo-upload-help { color: #6f5d3e; }
+#selection .photo-icon, #selection .photo-sender-label { color: #80643a; }
+#selection .photo-sender-input, #selection .photo-preview-item { border-color: #dfd1b3; }
+#selection .photo-sender-input:focus { border-color: #ac8b52; box-shadow: 0 0 0 3px #ac8b521a; }
+#selection .photo-select-button { border-color: #cbb789; color: #80643a; }
+#selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: #a68951; background: #fdf9ee; }
+#selection .photo-select-button span, #selection .photo-preview-item { background: #f5eedc; }
+#selection .photo-upload-button { background: #a4854d; }
+#selection .photo-upload-button:disabled { background: #e8dcc5; color: #8a7859; }
+#selection .selection-footer button { color: #80643a; }
+@media (prefers-reduced-motion: reduce) { #selection .selection-story summary::before, #selection .selection-story summary::after { animation: none; } #selection .selection-story summary::after { display: none; } }
 </style>
   <style>
 /* Groom edition: a self-contained terminal invitation. */
@@ -1278,14 +1361,109 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
 #coding .rsvp-attendance-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 #coding .rsvp-attendance-options label,
 #coding .rsvp-attendance-options label:last-child { box-sizing: border-box; display: flex; width: 100%; min-width: 0; min-height: 39px; margin: 0; }
+
+/* A lock-screen-style invitation opens only when the landing page loads. */
+body.opening-active { overflow: hidden; }
+.opening-screen { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; overflow: hidden; background: #42423d; color: #fff; opacity: 1; transition: opacity .48s ease, transform .48s cubic-bezier(.2,.7,.2,1); }
+.opening-screen[hidden] { display: none !important; }
+.opening-screen.is-closing { opacity: 0; transform: scale(1.035); pointer-events: none; }
+.opening-atmosphere { position: absolute; inset: -12%; background: radial-gradient(ellipse at 23% 22%, #d7b98675 0, transparent 36%), radial-gradient(ellipse at 80% 78%, #b5a48795 0, transparent 39%), radial-gradient(ellipse at 75% 18%, #fbedd265 0, transparent 27%), linear-gradient(145deg, #6b655a, #31342f 55%, #655a4c); filter: blur(22px); transform: scale(1.08); }
+.opening-screen::after { position: absolute; inset: 0; background: linear-gradient(180deg, #171a1980 0%, #2b292039 42%, #1218178c 100%); content: ''; pointer-events: none; }
+.opening-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; width: min(100%, 520px); min-height: 100svh; padding: clamp(82px, 15svh, 150px) 22px max(32px, env(safe-area-inset-bottom)); }
+.opening-clock { display: flex; flex-direction: column; align-items: center; gap: 4px; text-shadow: 0 2px 16px #1e1d18a8; }
+.opening-clock #opening-time { font: 300 clamp(64px, 19vw, 86px)/1 'DM Sans', var(--sans); letter-spacing: -.065em; font-variant-numeric: tabular-nums; }
+.opening-clock #opening-date { font: 400 clamp(14px, 3.8vw, 17px)/1.5 var(--sans); letter-spacing: -.025em; }
+.opening-notification { display: flex; align-items: center; gap: 11px; box-sizing: border-box; width: 100%; min-height: 78px; margin-top: clamp(80px, 15svh, 140px); padding: 13px 15px; border: 1px solid #ffffff59; border-radius: 17px; background: #ffffff3d; box-shadow: 0 14px 36px #171b1952, inset 0 1px #ffffff66; -webkit-backdrop-filter: blur(24px) saturate(1.18); backdrop-filter: blur(24px) saturate(1.18); color: #fff; text-align: left; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.opening-notification:hover { background: #ffffff55; transform: translateY(-2px); }
+.opening-notification:active { transform: translateY(1px); }
+.opening-notification:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.opening-avatar { display: grid; flex: none; place-items: center; width: 42px; height: 42px; border-radius: 11px; background: #f9dc75; color: #332a1b; }
+.opening-avatar svg { width: 27px; height: 27px; }
+.opening-message { display: flex; flex: 1; flex-direction: column; min-width: 0; gap: 4px; }
+.opening-message strong { font: 600 13px/1.25 var(--sans); }
+.opening-message > span { font: 400 clamp(11px, 3.1vw, 13px)/1.35 var(--sans); white-space: nowrap; }
+.opening-now { align-self: flex-start; flex: none; color: #ffffffbd; font: 400 10px/1.4 var(--sans); }
+.opening-hint { margin: 22px 0 0; color: #ffffffb8; font: 400 11px/1.5 var(--sans); letter-spacing: .005em; animation: opening-hint-glow 2.7s ease-in-out infinite; }
+@keyframes opening-hint-glow { 0%,100% { opacity: .55; text-shadow: none; } 50% { opacity: 1; text-shadow: 0 0 14px #fff8dfd1; } }
+@media (prefers-reduced-motion: reduce) { .opening-screen, .opening-notification { transition: none; } .opening-hint { animation: none; opacity: 1; } }
+
+/* The landing page uses its own white-and-gold palette; the bride and groom editions remain untouched. */
+#selection { background: #fffefa; color: #4d4638; }
+#selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: #6b604d; }
+#selection .eyebrow-line { background: #d9c9a9; }
+#selection #selection-title { color: #6a5232; }
+#selection .selection-hero-photo { border-color: #e9dfca; background: #f8f6ef; }
+#selection .selection-event-card { background: #faf8f1; }
+#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: #d7c6a5; }
+#selection .selection-event-rule span { border-color: #b99c68; background: #fffdf7; }
+#selection .selection-event-rule:first-child { box-shadow: inset 0 3px #fffefa; }
+#selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #fffefa; }
+#selection .selection-event .selection-foot, #selection .selection-event .selection-venue { color: #584a34; }
+#selection .selection-event-hint, #selection .selection-location .venue-map-trigger { color: #907142; }
+#selection .selection-map { border-color: #e5d9c3; background: #f6f3e9; }
+#selection .map-actions .map-action { border-color: #decda9; background: #fffdf8; color: #715b37; }
+#selection .map-actions .map-action:hover { background: #f7f0dc; }
+#selection .choice { border-color: #dfd1b5; background: #fffdf8; color: #4a4234; }
+#selection .choice:hover { border-color: #b99b62; background: #fffaf0; }
+#selection .choice-top, #selection .choice-bottom { color: #746449; border-color: #e7dcc5; }
+#selection .choice-icon { color: #987846; border-color: #dac9aa; }
+#selection .selection-couple, #selection .selection-gallery, #selection .selection-photo, #selection .selection-footer { border-color: #e6dcc6; }
+#selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: #4e402b; }
+#selection .couple-photo-face { border-color: #e4d6b9; background: #f8f4e9; }
+#selection .couple-photo-hint, #selection .couple-card > strong { color: #745f3c; }
+#selection .couple-photo-back { background: #f7f0df; color: #5c4c31; }
+#selection .selection-story summary { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; width: max-content; min-width: 176px; min-height: 46px; margin: 0 auto; padding: 8px 19px; overflow: hidden; border: 1px solid #ddcba1; border-radius: 999px; background: #fffdf6; box-shadow: 0 4px 16px #ae8d4930, inset 0 1px #fff; color: #80602e; font: 600 13px/1.5 var(--sans); }
+#selection .selection-story summary::before { position: relative; z-index: 1; content: '✦'; color: #b89550; font-size: 12px; animation: story-twinkle 2.8s ease-in-out infinite; }
+#selection .selection-story summary::after { position: absolute; inset: -60% auto -60% -45%; width: 35%; background: linear-gradient(90deg, transparent, #fff7d3b8, transparent); content: ''; transform: rotate(22deg); animation: story-sheen 4.4s ease-in-out infinite; pointer-events: none; }
+#selection .selection-story summary span, #selection .selection-story summary svg { position: relative; z-index: 1; }
+#selection .selection-story summary:hover { border-color: #bea36a; background: #fff9eb; color: #62491f; }
+#selection .selection-story summary:focus-visible { outline-color: #ab8747; }
+@keyframes story-twinkle { 0%,100% { opacity: .55; transform: scale(.82) rotate(-15deg); } 45% { opacity: 1; transform: scale(1.22) rotate(13deg); text-shadow: 0 0 10px #e4c772; } }
+@keyframes story-sheen { 0%,58% { left: -45%; } 84%,100% { left: 125%; } }
+#selection .story-meta, #selection .selection-story h3, #selection .story-controls button, #selection .story-years button[aria-current="true"] { color: #80643a; }
+#selection .story-photo, #selection .gallery-open, #selection .gallery-grid-item { background: #f5f0e4; }
+#selection .gallery-heading > p, #selection .selection-photo .photo-intro, #selection .selection-crafted-note { color: #81735b; }
+#selection .gallery-mode-switch button { border-bottom-color: #cbb681; color: #80643a; }
+#selection .gallery-dots button { border-color: #e0d1b2; background: #fffdf8; color: #765f3e; }
+#selection .gallery-dots button[aria-current="true"] { border-color: #a88b50; background: #a88b50; color: #fff; }
+#selection .gallery-dots { scrollbar-color: #d7c59e transparent; }
+#selection .gallery-nav, #selection .gallery-dialog-nav, #selection .gallery-dialog-counter, #selection .gallery-dialog-close { color: #8c7042; }
+#selection .gallery-empty { border-color: #e4d8bf; background: #faf7ee; }
+#selection .album-frame-back { background: #e9dfc8; }
+#selection .album-frame-front { background: #f2ead7; color: #ab8f58; }
+#selection .gallery-placeholder, #selection .gallery-grid-placeholder { border-color: #e4d8bf; background: linear-gradient(145deg, #fcfaf4, #f2ecd9); color: #a18a5c; }
+#selection .photo-upload-card { border-color: #e6d9bb; background: #fcfaf3; }
+#selection .photo-upload-card strong, #selection .photo-upload-card p, #selection .photo-upload-card .photo-count, #selection .photo-upload-card .photo-upload-help { color: #6f5d3e; }
+#selection .photo-icon, #selection .photo-sender-label { color: #80643a; }
+#selection .photo-sender-input, #selection .photo-preview-item { border-color: #dfd1b3; }
+#selection .photo-sender-input:focus { border-color: #ac8b52; box-shadow: 0 0 0 3px #ac8b521a; }
+#selection .photo-select-button { border-color: #cbb789; color: #80643a; }
+#selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: #a68951; background: #fdf9ee; }
+#selection .photo-select-button span, #selection .photo-preview-item { background: #f5eedc; }
+#selection .photo-upload-button { background: #a4854d; }
+#selection .photo-upload-button:disabled { background: #e8dcc5; color: #8a7859; }
+#selection .selection-footer button { color: #80643a; }
+@media (prefers-reduced-motion: reduce) { #selection .selection-story summary::before, #selection .selection-story summary::after { animation: none; } #selection .selection-story summary::after { display: none; } }
   </style>
 </head>
 <body>
+  <section id="opening-screen" class="opening-screen" role="dialog" aria-modal="true" aria-label="청첩장이 도착했어요">
+    <div class="opening-atmosphere" aria-hidden="true"></div>
+    <div class="opening-content">
+      <div class="opening-clock" aria-live="off"><span id="opening-time">00:00</span><span id="opening-date">오늘</span></div>
+      <button type="button" id="opening-notification" class="opening-notification" aria-label="우성 앤 해림의 청첩장 열기">
+        <span class="opening-avatar" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 7C11.7 7 5 12.4 5 19c0 4.1 2.5 7.7 6.3 9.9L10 34l7.5-4.2c.8.1 1.6.2 2.5.2 8.3 0 15-5.4 15-12S28.3 7 20 7Z" fill="currentColor"/></svg></span>
+        <span class="opening-message"><strong>우성 &amp; 해림</strong><span>청첩장이 도착했어요 💌</span></span>
+        <span class="opening-now">지금</span>
+      </button>
+      <p class="opening-hint">알림을 눌러 초대장을 열어보세요</p>
+    </div>
+  </section>
   <button type="button" id="home-button" class="home-button" data-view="selection" aria-label="첫 화면으로 돌아가기" title="첫 화면으로 돌아가기" hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3.5 10.5 8.5-7 8.5 7V20a1 1 0 0 1-1 1h-5.5v-6.5h-4V21H4.5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <button type="button" id="music-toggle" class="music-toggle" aria-label="배경음악 켜기" aria-pressed="false" title="배경음악 켜기"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 17V5.5l9-2v11.3M10 17c0 1.6-1.6 2.9-3.5 2.9S3 18.6 3 17s1.6-2.9 3.5-2.9S10 15.4 10 17Zm9-2.2c0 1.6-1.6 2.9-3.5 2.9S12 16.4 12 14.8s1.6-2.9 3.5-2.9 3.5 1.3 3.5 2.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path class="music-off-mark" d="M4 4 20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
   <audio id="background-music" loop preload="none"></audio>
   <div class="page-shell">
-    <main id="selection" class="view selection-view" aria-labelledby="selection-title">
+    <main id="selection" class="view selection-view" aria-labelledby="selection-title" tabindex="-1">
       <div class="selection-inner">
         <div class="selection-landing">
         <p class="eyebrow"><span class="eyebrow-line"></span> THE WEDDING OF <span class="eyebrow-line"></span></p>
@@ -1427,7 +1605,7 @@ body.gallery-modal-open { position: fixed; left: 0; width: 100%; overflow: hidde
       <div class="bride-letter-paper" role="group" aria-label="결혼통신문 본문">
       <section class="letter-section section-pad" aria-labelledby="letter-title">
         <div class="section-heading"><h2 id="letter-title">결혼통신문</h2></div>
-        <p id="invitation-text">1500여 일 동안 서로의 세계를 오가며<br />가장 편안한 곳이 서로의 곁임을 알게 되었습니다.<br /><br />앞으로도 서로의 세계를 넓혀주고<br />평범한 공간을 특별한 장소로 바꾸어가며<br />남은 삶의 여백을 함께 채우고자 합니다.<br /><br />저희의 첫걸음을 따뜻하게 축복해 주세요.</p>
+        <p id="invitation-text">1500여 일 동안 서로의 세계를 오가며<br />가장 편안한 곳이 서로의 곁임을 알게 되었습니다.<br /><br />앞으로도 서로의 시야를 넓혀주고<br />평범한 공간을 특별한 장소로 바꾸어가며<br />삶의 여백을 함께 채우고자 합니다.<br /><br />저희의 첫걸음을 따뜻하게 축복해 주세요.</p>
         <div class="letter-sign"><span>신랑</span><strong id="groom-name-2">양우성</strong><span>·</span><span>신부</span><strong id="bride-name-2">이해림</strong></div>
       </section>
 
@@ -1617,7 +1795,7 @@ window.INVITATION = {
   address: "서울특별시 관악구 관악로 1 서울대학교 연구공원 본관",
   mapSearchName: "서울대 연구공원 웨딩홀",
   documentNumber: "2027-10-24",
-  invitation: "1500여 일 동안 서로의 세계를 오가며\n가장 편안한 곳이 서로의 곁임을 알게 되었습니다.\n\n앞으로도 서로의 세계를 넓혀주고\n평범한 공간을 특별한 장소로 바꾸어가며\n남은 삶의 여백을 함께 채우고자 합니다.\n\n저희의 첫걸음을 따뜻하게 축복해 주세요.",
+  invitation: "1500여 일 동안 서로의 세계를 오가며\n가장 편안한 곳이 서로의 곁임을 알게 되었습니다.\n\n앞으로도 서로의 시야를 넓혀주고\n평범한 공간을 특별한 장소로 바꾸어가며\n삶의 여백을 함께 채우고자 합니다.\n\n저희의 첫걸음을 따뜻하게 축복해 주세요.",
   accounts: {
     groom: { bank: "00은행", number: "000-000-000", holder: "" },
     groomFather: { bank: "00은행", number: "000-000-000", holder: "" },
@@ -1916,6 +2094,38 @@ window.INVITATION = {
   window.addEventListener('hashchange', syncViewFromUrl);
   window.addEventListener('pageshow', event => { if (event.persisted) syncViewFromUrl(); });
   showView(location.hash.slice(1), false);
+
+  const openingScreen = $('#opening-screen');
+  const openingNotification = $('#opening-notification');
+  const openingBackground = [$('.page-shell'), $('#home-button'), $('#music-toggle')];
+  const refreshOpeningClock = () => {
+    const now = new Date();
+    set('#opening-time', `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`);
+    set('#opening-date', new Intl.DateTimeFormat('ko-KR', {month: 'long', day: 'numeric', weekday: 'long'}).format(now));
+  };
+  let openingClockTimer;
+  const dismissOpening = () => {
+    if (openingScreen.hidden || openingScreen.classList.contains('is-closing')) return;
+    openingScreen.classList.add('is-closing');
+    clearInterval(openingClockTimer);
+    window.setTimeout(() => {
+      openingScreen.hidden = true;
+      openingScreen.classList.remove('is-closing');
+      document.body.classList.remove('opening-active');
+      openingBackground.forEach(element => { element.inert = false; });
+      $('#selection').focus({preventScroll: true});
+    }, 480);
+  };
+  openingNotification.addEventListener('click', dismissOpening);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && !openingScreen.hidden) refreshOpeningClock(); });
+  if (location.hash && location.hash !== '#') {
+    openingScreen.hidden = true;
+  } else {
+    refreshOpeningClock();
+    document.body.classList.add('opening-active');
+    openingBackground.forEach(element => { element.inert = true; });
+    openingClockTimer = window.setInterval(refreshOpeningClock, 30000);
+  }
 
   const music = $('#background-music');
   const musicToggle = $('#music-toggle');
