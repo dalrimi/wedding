@@ -877,6 +877,111 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-button { background: #66757c; }
 #selection .photo-upload-button:disabled { background: #dce2e4; color: #6f7c82; }
 #selection .selection-footer button { color: #5e6a70; }
+
+/* Landing palette: one ivory set for the white home page and its overlays. */
+:root {
+  --landing-ink: #514a43;
+  --landing-muted: #80766d;
+  --landing-accent: #8a7564;
+  --landing-line: #e2dcd3;
+  --landing-panel: #f8f6f2;
+  --landing-panel-deep: #f1ede6;
+}
+#selection { background: #fff; color: var(--landing-ink); }
+#selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: var(--landing-muted); }
+#selection .eyebrow-line { background: var(--landing-line); }
+#selection #selection-title { color: var(--landing-ink); }
+#selection .selection-hero-photo, #selection .couple-photo-face { border-color: var(--landing-line); background: var(--landing-panel); }
+#selection .selection-event-card { background: var(--landing-panel); }
+#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: #d7cec2; }
+#selection .selection-event-rule span { border-color: var(--landing-accent); background: #fff; }
+#selection .selection-event-rule:first-child { box-shadow: inset 0 3px #fff; }
+#selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #fff; }
+#selection .selection-event .selection-foot, #selection .selection-event .selection-venue,
+#selection .selection-event-hint, #selection .selection-location .venue-map-trigger { color: var(--landing-ink); }
+#selection .selection-map { border-color: var(--landing-line); background: var(--landing-panel-deep); }
+#selection .selection-map #selection-map-status, #selection .location-note, #selection .location-note a { color: var(--landing-muted); }
+#selection .map-actions .map-action { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
+#selection .map-actions .map-action:hover { background: var(--landing-panel); }
+#selection .travel-notices, #selection .travel-notice { border-color: var(--landing-line); }
+#selection .travel-label { color: var(--landing-ink); }
+#selection .travel-notice p { color: var(--landing-muted); }
+#selection .choice { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
+#selection .choice:hover { border-color: var(--landing-accent); background: var(--landing-panel); }
+#selection .choice-top, #selection .choice-bottom { color: var(--landing-muted); border-color: var(--landing-line); }
+#selection .choice-icon { color: var(--landing-accent); border-color: var(--landing-line); }
+#selection .selection-couple, #selection .selection-gallery, #selection .selection-photo, #selection .selection-footer { border-color: var(--landing-line); }
+#selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: var(--landing-ink); }
+#selection .couple-photo-hint, #selection .couple-card > strong { color: var(--landing-accent); }
+#selection .couple-photo-back { background: var(--landing-panel-deep); color: var(--landing-ink); }
+#selection .selection-story summary { border-color: var(--landing-line); background: #fff; box-shadow: 0 4px 16px #66584918, inset 0 1px #fff; color: var(--landing-ink); }
+#selection .selection-story summary::before { display: none; content: none; }
+#selection .selection-story summary::after { background: linear-gradient(90deg, transparent, #f1ede6b8, transparent); }
+#selection .selection-story summary:hover { border-color: var(--landing-accent); background: var(--landing-panel); color: var(--landing-ink); }
+#selection .selection-story summary:focus-visible { outline-color: var(--landing-accent); }
+#selection .story-meta, #selection .selection-story h3, #selection .story-controls button,
+#selection .story-years button[aria-current="true"] { color: var(--landing-ink); }
+#selection .selection-story p, #selection .story-controls span, #selection .story-years button { color: var(--landing-muted); }
+#selection .story-photo, #selection .gallery-open, #selection .gallery-grid-item { background: var(--landing-panel); }
+#selection .gallery-heading > p, #selection .selection-photo .photo-intro, #selection .selection-crafted-note { color: var(--landing-muted); }
+#selection .gallery-mode-switch button { border-bottom-color: var(--landing-line); color: var(--landing-accent); }
+#selection .gallery-dots button { border-color: var(--landing-line); background: #fff; color: var(--landing-muted); }
+#selection .gallery-dots button[aria-current="true"] { border-color: var(--landing-accent); background: var(--landing-accent); color: #fff; }
+#selection .gallery-dots { scrollbar-color: var(--landing-line) transparent; }
+#selection .gallery-nav { color: var(--landing-accent); }
+#selection .gallery-empty { border-color: var(--landing-line); background: var(--landing-panel); }
+#selection .album-frame-back { background: var(--landing-line); }
+#selection .album-frame-front { background: var(--landing-panel-deep); color: var(--landing-accent); }
+#selection .gallery-placeholder, #selection .gallery-grid-placeholder { border-color: var(--landing-line); background: var(--landing-panel); color: var(--landing-accent); }
+#selection .gallery-placeholder::before { border-color: var(--landing-line); }
+#selection .photo-upload-card { border-color: var(--landing-line); background: var(--landing-panel); }
+#selection .photo-upload-card strong, #selection .photo-upload-card p, #selection .photo-upload-card .photo-count,
+#selection .photo-upload-card .photo-upload-help { color: var(--landing-ink); }
+#selection .photo-icon, #selection .photo-sender-label { color: var(--landing-accent); }
+#selection .photo-sender-input, #selection .photo-preview-item { border-color: var(--landing-line); }
+#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #8a756421; }
+#selection .photo-select-button { border-color: var(--landing-line); color: var(--landing-ink); }
+#selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: var(--landing-accent); background: #fff; }
+#selection .photo-select-button span, #selection .photo-preview-item { background: var(--landing-panel-deep); }
+#selection .photo-upload-button { background: var(--landing-accent); }
+#selection .photo-upload-button:disabled { background: var(--landing-line); color: var(--landing-muted); }
+#selection .selection-footer button { color: var(--landing-accent); }
+.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #66584918; }
+.music-toggle[data-theme="selection"]:focus-visible { outline-color: var(--landing-accent); }
+
+/* Album and sharing overlays live outside #selection, so give them the same palette explicitly. */
+#gallery-dialog { background: #fff; color: var(--landing-ink); }
+#gallery-dialog .gallery-dialog-photo { background: #fff; }
+#gallery-dialog .gallery-placeholder { border-color: var(--landing-line); background: var(--landing-panel); color: var(--landing-accent); }
+#gallery-dialog .gallery-placeholder::before { border-color: var(--landing-line); }
+#gallery-dialog .gallery-dialog-nav, #gallery-dialog .gallery-dialog-counter,
+#gallery-dialog .gallery-dialog-close, #gallery-dialog #gallery-dialog-caption { color: var(--landing-accent); }
+#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #514a4330; }
+#share-dialog[data-theme="selection"]::backdrop { background: #322e2980; }
+#share-dialog[data-theme="selection"] p { color: var(--landing-muted); }
+#share-dialog[data-theme="selection"] .share-options button,
+#share-dialog[data-theme="selection"] .share-options a { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
+#share-dialog[data-theme="selection"] .share-options button:hover,
+#share-dialog[data-theme="selection"] .share-options a:hover { border-color: var(--landing-accent); background: var(--landing-panel); }
+#share-dialog[data-theme="selection"] .share-option-icon { background: var(--landing-panel-deep); color: var(--landing-accent); }
+#share-dialog[data-theme="selection"] .share-options small { color: var(--landing-muted); }
+#share-dialog[data-theme="selection"] .share-dialog-close { border-top-color: var(--landing-line); color: var(--landing-accent); }
+#share-dialog[data-theme="selection"] .share-options button:focus-visible,
+#share-dialog[data-theme="selection"] .share-options a:focus-visible { outline-color: var(--landing-accent); }
+
+/* The opening clock uses a regular system display weight, as on current iOS lock screens. */
+.opening-clock #opening-time { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI Variable Display', 'Segoe UI', sans-serif; font-weight: 500; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+
+/* Clear pink acrylic for both bride RSVP notices. */
+#toast.bride-toast, #toast.bride-toast.meal-toast {
+  border: 1px solid rgba(255,255,255,.86);
+  background: linear-gradient(145deg,rgba(255,250,253,.68),rgba(245,207,224,.4));
+  box-shadow: 0 16px 42px rgba(91,53,70,.2), inset 0 1px 1px rgba(255,255,255,.92), 0 0 22px rgba(229,174,198,.18);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(20px) saturate(1.2);
+  color: #654954;
+}
+#toast.code-toast.meal-toast::before { content: '$ ./meal --guide'; }
 </style>
   <style>
 /* Groom edition: a self-contained terminal invitation. */
@@ -1562,6 +1667,111 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-button { background: #66757c; }
 #selection .photo-upload-button:disabled { background: #dce2e4; color: #6f7c82; }
 #selection .selection-footer button { color: #5e6a70; }
+
+/* Landing palette: one ivory set for the white home page and its overlays. */
+:root {
+  --landing-ink: #514a43;
+  --landing-muted: #80766d;
+  --landing-accent: #8a7564;
+  --landing-line: #e2dcd3;
+  --landing-panel: #f8f6f2;
+  --landing-panel-deep: #f1ede6;
+}
+#selection { background: #fff; color: var(--landing-ink); }
+#selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: var(--landing-muted); }
+#selection .eyebrow-line { background: var(--landing-line); }
+#selection #selection-title { color: var(--landing-ink); }
+#selection .selection-hero-photo, #selection .couple-photo-face { border-color: var(--landing-line); background: var(--landing-panel); }
+#selection .selection-event-card { background: var(--landing-panel); }
+#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: #d7cec2; }
+#selection .selection-event-rule span { border-color: var(--landing-accent); background: #fff; }
+#selection .selection-event-rule:first-child { box-shadow: inset 0 3px #fff; }
+#selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #fff; }
+#selection .selection-event .selection-foot, #selection .selection-event .selection-venue,
+#selection .selection-event-hint, #selection .selection-location .venue-map-trigger { color: var(--landing-ink); }
+#selection .selection-map { border-color: var(--landing-line); background: var(--landing-panel-deep); }
+#selection .selection-map #selection-map-status, #selection .location-note, #selection .location-note a { color: var(--landing-muted); }
+#selection .map-actions .map-action { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
+#selection .map-actions .map-action:hover { background: var(--landing-panel); }
+#selection .travel-notices, #selection .travel-notice { border-color: var(--landing-line); }
+#selection .travel-label { color: var(--landing-ink); }
+#selection .travel-notice p { color: var(--landing-muted); }
+#selection .choice { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
+#selection .choice:hover { border-color: var(--landing-accent); background: var(--landing-panel); }
+#selection .choice-top, #selection .choice-bottom { color: var(--landing-muted); border-color: var(--landing-line); }
+#selection .choice-icon { color: var(--landing-accent); border-color: var(--landing-line); }
+#selection .selection-couple, #selection .selection-gallery, #selection .selection-photo, #selection .selection-footer { border-color: var(--landing-line); }
+#selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: var(--landing-ink); }
+#selection .couple-photo-hint, #selection .couple-card > strong { color: var(--landing-accent); }
+#selection .couple-photo-back { background: var(--landing-panel-deep); color: var(--landing-ink); }
+#selection .selection-story summary { border-color: var(--landing-line); background: #fff; box-shadow: 0 4px 16px #66584918, inset 0 1px #fff; color: var(--landing-ink); }
+#selection .selection-story summary::before { display: none; content: none; }
+#selection .selection-story summary::after { background: linear-gradient(90deg, transparent, #f1ede6b8, transparent); }
+#selection .selection-story summary:hover { border-color: var(--landing-accent); background: var(--landing-panel); color: var(--landing-ink); }
+#selection .selection-story summary:focus-visible { outline-color: var(--landing-accent); }
+#selection .story-meta, #selection .selection-story h3, #selection .story-controls button,
+#selection .story-years button[aria-current="true"] { color: var(--landing-ink); }
+#selection .selection-story p, #selection .story-controls span, #selection .story-years button { color: var(--landing-muted); }
+#selection .story-photo, #selection .gallery-open, #selection .gallery-grid-item { background: var(--landing-panel); }
+#selection .gallery-heading > p, #selection .selection-photo .photo-intro, #selection .selection-crafted-note { color: var(--landing-muted); }
+#selection .gallery-mode-switch button { border-bottom-color: var(--landing-line); color: var(--landing-accent); }
+#selection .gallery-dots button { border-color: var(--landing-line); background: #fff; color: var(--landing-muted); }
+#selection .gallery-dots button[aria-current="true"] { border-color: var(--landing-accent); background: var(--landing-accent); color: #fff; }
+#selection .gallery-dots { scrollbar-color: var(--landing-line) transparent; }
+#selection .gallery-nav { color: var(--landing-accent); }
+#selection .gallery-empty { border-color: var(--landing-line); background: var(--landing-panel); }
+#selection .album-frame-back { background: var(--landing-line); }
+#selection .album-frame-front { background: var(--landing-panel-deep); color: var(--landing-accent); }
+#selection .gallery-placeholder, #selection .gallery-grid-placeholder { border-color: var(--landing-line); background: var(--landing-panel); color: var(--landing-accent); }
+#selection .gallery-placeholder::before { border-color: var(--landing-line); }
+#selection .photo-upload-card { border-color: var(--landing-line); background: var(--landing-panel); }
+#selection .photo-upload-card strong, #selection .photo-upload-card p, #selection .photo-upload-card .photo-count,
+#selection .photo-upload-card .photo-upload-help { color: var(--landing-ink); }
+#selection .photo-icon, #selection .photo-sender-label { color: var(--landing-accent); }
+#selection .photo-sender-input, #selection .photo-preview-item { border-color: var(--landing-line); }
+#selection .photo-sender-input:focus { border-color: var(--landing-accent); box-shadow: 0 0 0 3px #8a756421; }
+#selection .photo-select-button { border-color: var(--landing-line); color: var(--landing-ink); }
+#selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: var(--landing-accent); background: #fff; }
+#selection .photo-select-button span, #selection .photo-preview-item { background: var(--landing-panel-deep); }
+#selection .photo-upload-button { background: var(--landing-accent); }
+#selection .photo-upload-button:disabled { background: var(--landing-line); color: var(--landing-muted); }
+#selection .selection-footer button { color: var(--landing-accent); }
+.music-toggle[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-accent); box-shadow: 0 3px 12px #66584918; }
+.music-toggle[data-theme="selection"]:focus-visible { outline-color: var(--landing-accent); }
+
+/* Album and sharing overlays live outside #selection, so give them the same palette explicitly. */
+#gallery-dialog { background: #fff; color: var(--landing-ink); }
+#gallery-dialog .gallery-dialog-photo { background: #fff; }
+#gallery-dialog .gallery-placeholder { border-color: var(--landing-line); background: var(--landing-panel); color: var(--landing-accent); }
+#gallery-dialog .gallery-placeholder::before { border-color: var(--landing-line); }
+#gallery-dialog .gallery-dialog-nav, #gallery-dialog .gallery-dialog-counter,
+#gallery-dialog .gallery-dialog-close, #gallery-dialog #gallery-dialog-caption { color: var(--landing-accent); }
+#share-dialog[data-theme="selection"] { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); box-shadow: 0 22px 55px #514a4330; }
+#share-dialog[data-theme="selection"]::backdrop { background: #322e2980; }
+#share-dialog[data-theme="selection"] p { color: var(--landing-muted); }
+#share-dialog[data-theme="selection"] .share-options button,
+#share-dialog[data-theme="selection"] .share-options a { border-color: var(--landing-line); background: #fff; color: var(--landing-ink); }
+#share-dialog[data-theme="selection"] .share-options button:hover,
+#share-dialog[data-theme="selection"] .share-options a:hover { border-color: var(--landing-accent); background: var(--landing-panel); }
+#share-dialog[data-theme="selection"] .share-option-icon { background: var(--landing-panel-deep); color: var(--landing-accent); }
+#share-dialog[data-theme="selection"] .share-options small { color: var(--landing-muted); }
+#share-dialog[data-theme="selection"] .share-dialog-close { border-top-color: var(--landing-line); color: var(--landing-accent); }
+#share-dialog[data-theme="selection"] .share-options button:focus-visible,
+#share-dialog[data-theme="selection"] .share-options a:focus-visible { outline-color: var(--landing-accent); }
+
+/* The opening clock uses a regular system display weight, as on current iOS lock screens. */
+.opening-clock #opening-time { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI Variable Display', 'Segoe UI', sans-serif; font-weight: 500; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+
+/* Clear pink acrylic for both bride RSVP notices. */
+#toast.bride-toast, #toast.bride-toast.meal-toast {
+  border: 1px solid rgba(255,255,255,.86);
+  background: linear-gradient(145deg,rgba(255,250,253,.68),rgba(245,207,224,.4));
+  box-shadow: 0 16px 42px rgba(91,53,70,.2), inset 0 1px 1px rgba(255,255,255,.92), 0 0 22px rgba(229,174,198,.18);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(20px) saturate(1.2);
+  color: #654954;
+}
+#toast.code-toast.meal-toast::before { content: '$ ./meal --guide'; }
   </style>
 </head>
 <body>
@@ -1888,13 +2098,11 @@ body.opening-active { overflow: hidden; }
   <dialog class="venue-map-dialog" id="venue-map-dialog" aria-label="오시는 길 약도"><div class="venue-map-dialog-head"><strong>오시는 길 약도</strong><div><button type="button" id="venue-map-zoom" aria-pressed="false">확대</button><button type="button" id="venue-map-close" aria-label="약도 닫기">×</button></div></div><div class="venue-map-scroll"><img src="snu_location.jpg" alt="서울대학교 연구공원 웨딩홀 오시는 길 약도. 낙성대역과 서울대학교 후문에서 웨딩홀까지의 경로 및 대중교통·자가용 안내" /></div></dialog>
   <dialog class="share-dialog" id="share-dialog" tabindex="-1" aria-labelledby="share-dialog-title" aria-describedby="share-dialog-description">
     <div class="share-dialog-inner">
-      <span class="share-dialog-kicker" id="share-dialog-kicker">INVITATION</span>
       <h2 id="share-dialog-title">청첩장 공유하기</h2>
       <p id="share-dialog-description">초대장을 전할 방법을 골라 주세요.</p>
       <div class="share-options">
         <button type="button" id="share-copy"><span class="share-option-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 7h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/><path d="M4 16V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span>링크 복사하기</span></button>
         <a id="share-sms" href="sms:?body="><span class="share-option-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5h16v11H9l-5 3v-14Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7.5 9.5h9m-9 3h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span>문자로 보내기</span></a>
-
         <button type="button" id="share-other"><span class="share-option-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="12" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="6" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/><path d="m8 11 8-4m-8 6 8 4" stroke="currentColor" stroke-width="1.7"/></svg></span><span>다른 방법으로 공유하기</span></button>
       </div>
       <button type="button" class="share-dialog-close" id="share-dialog-close">닫기</button>
@@ -3124,7 +3332,6 @@ window.INVITATION = {
       : `${location.origin}${location.pathname}`;
     currentShareUrl = url;
     shareDialog.dataset.theme = view;
-    set('#share-dialog-kicker', view === 'coding' ? 'SHARE INVITATION' : 'INVITATION');
     set('#share-dialog-description', view === 'coding' ? '$ ./share --choose' : '초대장을 전할 방법을 골라 주세요.');
     $('#share-sms').href = `sms:?body=${encodeURIComponent(shareMessage(url))}`;
     shareDialog.showModal();
