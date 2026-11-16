@@ -745,9 +745,10 @@ body.opening-active { overflow: hidden; }
 .opening-screen::after { position: absolute; inset: 0; background: linear-gradient(180deg, #171a1980 0%, #2b292039 42%, #1218178c 100%); content: ''; pointer-events: none; }
 .opening-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; width: min(100%, 520px); min-height: 100svh; padding: clamp(82px, 15svh, 150px) 22px max(32px, env(safe-area-inset-bottom)); }
 .opening-clock { display: flex; flex-direction: column; align-items: center; gap: 4px; text-shadow: 0 2px 16px #1e1d18a8; }
-.opening-clock #opening-time { font: 300 clamp(64px, 19vw, 86px)/1 'DM Sans', var(--sans); letter-spacing: -.065em; font-variant-numeric: tabular-nums; }
+.opening-clock #opening-time { font: 200 clamp(66px, 18vw, 84px)/1.05 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Display', 'Helvetica Neue', 'Segoe UI', sans-serif; letter-spacing: -.072em; font-variant-numeric: proportional-nums; }
 .opening-clock #opening-date { font: 400 clamp(14px, 3.8vw, 17px)/1.5 var(--sans); letter-spacing: -.025em; }
-.opening-notification { display: flex; align-items: center; gap: 11px; box-sizing: border-box; width: 100%; min-height: 78px; margin-top: clamp(80px, 15svh, 140px); padding: 13px 15px; border: 1px solid #ffffff59; border-radius: 17px; background: #ffffff3d; box-shadow: 0 14px 36px #171b1952, inset 0 1px #ffffff66; -webkit-backdrop-filter: blur(24px) saturate(1.18); backdrop-filter: blur(24px) saturate(1.18); color: #fff; text-align: left; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.opening-notification { display: flex; align-items: center; gap: 11px; box-sizing: border-box; width: 100%; min-height: 78px; margin-top: clamp(80px, 15svh, 140px); padding: 13px 15px; border: 1px solid #ffffff59; border-radius: 17px; background: #ffffff3d; box-shadow: 0 14px 36px #171b1952, inset 0 1px #ffffff66; -webkit-backdrop-filter: blur(24px) saturate(1.18); backdrop-filter: blur(24px) saturate(1.18); color: #fff; text-align: left; cursor: pointer; animation: opening-notification-arrive .95s .18s cubic-bezier(.22,.8,.24,1) backwards; transition: background .2s ease, transform .2s ease; }
+@keyframes opening-notification-arrive { 0% { opacity: 0; transform: translateY(-64px) scale(.96); filter: blur(3px); } 62% { opacity: 1; transform: translateY(7px) scale(1.015); filter: blur(0); } 82% { transform: translateY(-3px) scale(.997); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 .opening-notification:hover { background: #ffffff55; transform: translateY(-2px); }
 .opening-notification:active { transform: translateY(1px); }
 .opening-notification:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
@@ -759,7 +760,7 @@ body.opening-active { overflow: hidden; }
 .opening-now { align-self: flex-start; flex: none; color: #ffffffbd; font: 400 10px/1.4 var(--sans); }
 .opening-hint { margin: 22px 0 0; color: #ffffffb8; font: 400 11px/1.5 var(--sans); letter-spacing: .005em; animation: opening-hint-glow 2.7s ease-in-out infinite; }
 @keyframes opening-hint-glow { 0%,100% { opacity: .55; text-shadow: none; } 50% { opacity: 1; text-shadow: 0 0 14px #fff8dfd1; } }
-@media (prefers-reduced-motion: reduce) { .opening-screen, .opening-notification { transition: none; } .opening-hint { animation: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .opening-screen, .opening-notification { transition: none; } .opening-notification, .opening-hint { animation: none; opacity: 1; } }
 
 /* The landing page uses its own white-and-gold palette; the bride and groom editions remain untouched. */
 #selection { background: #fffefa; color: #4d4638; }
@@ -818,6 +819,64 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-button:disabled { background: #e8dcc5; color: #8a7859; }
 #selection .selection-footer button { color: #80643a; }
 @media (prefers-reduced-motion: reduce) { #selection .selection-story summary::before, #selection .selection-story summary::after { animation: none; } #selection .selection-story summary::after { display: none; } }
+
+/* Mood gray belongs to the landing page alone. Bride and groom retain their own palettes. */
+#selection { background: #f8f9f9; color: #3f474c; }
+#selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: #687177; }
+#selection .eyebrow-line { background: #d5dade; }
+#selection #selection-title { color: #505960; }
+#selection .selection-hero-photo { border-color: #e0e4e6; background: #f0f2f3; }
+#selection .selection-event-card { background: #f1f3f4; }
+#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: #cdd3d7; }
+#selection .selection-event-rule span { border-color: #98a3aa; background: #f8f9f9; }
+#selection .selection-event-rule:first-child { box-shadow: inset 0 3px #f8f9f9; }
+#selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #f8f9f9; }
+#selection .selection-event .selection-foot, #selection .selection-event .selection-venue { color: #424a4f; }
+#selection .selection-event-hint, #selection .selection-location .venue-map-trigger { color: #566168; }
+#selection .selection-map { border-color: #d8dfe2; background: #edf0f1; }
+#selection .selection-map #selection-map-status, #selection .location-note, #selection .location-note a { color: #667177; }
+#selection .map-actions .map-action { border-color: #d5dce0; background: #f8f9f9; color: #4b555b; }
+#selection .map-actions .map-action:hover { background: #eef1f2; }
+#selection .travel-notices, #selection .travel-notice { border-color: #d9dfe2; }
+#selection .travel-label { color: #525d64; }
+#selection .travel-notice p { color: #5f696f; }
+#selection .choice { border-color: #d7dde0; background: #fbfcfc; color: #3e474d; }
+#selection .choice:hover { border-color: #aab5bb; background: #f1f4f5; }
+#selection .choice-top, #selection .choice-bottom { color: #5f6a70; border-color: #e1e5e7; }
+#selection .choice-icon { color: #6e7a80; border-color: #cdd5d9; }
+#selection .selection-couple, #selection .selection-gallery, #selection .selection-photo, #selection .selection-footer { border-color: #dfe4e6; }
+#selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: #40494e; }
+#selection .couple-photo-face { border-color: #dce2e5; background: #f0f2f3; }
+#selection .couple-photo-hint, #selection .couple-card > strong { color: #58636a; }
+#selection .couple-photo-back { background: #edf0f1; color: #424c52; }
+#selection .selection-story summary { border-color: #cbd3d7; background: #fbfcfc; box-shadow: 0 4px 16px #7d8b9230, inset 0 1px #fff; color: #505d64; }
+#selection .selection-story summary::before { color: #89969d; }
+#selection .selection-story summary::after { background: linear-gradient(90deg, transparent, #e3e9ebc9, transparent); }
+#selection .selection-story summary:hover { border-color: #a8b4ba; background: #f1f4f5; color: #39454b; }
+#selection .selection-story summary:focus-visible { outline-color: #7f8d94; }
+#selection .story-meta, #selection .selection-story h3, #selection .story-controls button, #selection .story-years button[aria-current="true"] { color: #56636a; }
+#selection .story-photo, #selection .gallery-open, #selection .gallery-grid-item { background: #eef1f2; }
+#selection .gallery-heading > p, #selection .selection-photo .photo-intro, #selection .selection-crafted-note { color: #6e777c; }
+#selection .gallery-mode-switch button { border-bottom-color: #b5c0c5; color: #58656b; }
+#selection .gallery-dots button { border-color: #d8dfe2; background: #f9fafa; color: #5d686e; }
+#selection .gallery-dots button[aria-current="true"] { border-color: #77858d; background: #77858d; color: #fff; }
+#selection .gallery-dots { scrollbar-color: #b7c1c6 transparent; }
+#selection .gallery-nav, #selection .gallery-dialog-nav, #selection .gallery-dialog-counter, #selection .gallery-dialog-close { color: #5b686e; }
+#selection .gallery-empty { border-color: #dce2e5; background: #f3f5f5; }
+#selection .album-frame-back { background: #dce2e4; }
+#selection .album-frame-front { background: #e9edef; color: #819098; }
+#selection .gallery-placeholder, #selection .gallery-grid-placeholder { border-color: #dce2e5; background: linear-gradient(145deg, #f9fafa, #e8edef); color: #89979e; }
+#selection .photo-upload-card { border-color: #dce2e5; background: #f4f6f6; }
+#selection .photo-upload-card strong, #selection .photo-upload-card p, #selection .photo-upload-card .photo-count, #selection .photo-upload-card .photo-upload-help { color: #59666c; }
+#selection .photo-icon, #selection .photo-sender-label { color: #5f6c72; }
+#selection .photo-sender-input, #selection .photo-preview-item { border-color: #d4dce0; }
+#selection .photo-sender-input:focus { border-color: #84939b; box-shadow: 0 0 0 3px #84939b20; }
+#selection .photo-select-button { border-color: #b8c4c9; color: #58666d; }
+#selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: #8e9ea6; background: #f2f5f6; }
+#selection .photo-select-button span, #selection .photo-preview-item { background: #e9eef0; }
+#selection .photo-upload-button { background: #66757c; }
+#selection .photo-upload-button:disabled { background: #dce2e4; color: #6f7c82; }
+#selection .selection-footer button { color: #5e6a70; }
 </style>
   <style>
 /* Groom edition: a self-contained terminal invitation. */
@@ -1371,9 +1430,10 @@ body.opening-active { overflow: hidden; }
 .opening-screen::after { position: absolute; inset: 0; background: linear-gradient(180deg, #171a1980 0%, #2b292039 42%, #1218178c 100%); content: ''; pointer-events: none; }
 .opening-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; width: min(100%, 520px); min-height: 100svh; padding: clamp(82px, 15svh, 150px) 22px max(32px, env(safe-area-inset-bottom)); }
 .opening-clock { display: flex; flex-direction: column; align-items: center; gap: 4px; text-shadow: 0 2px 16px #1e1d18a8; }
-.opening-clock #opening-time { font: 300 clamp(64px, 19vw, 86px)/1 'DM Sans', var(--sans); letter-spacing: -.065em; font-variant-numeric: tabular-nums; }
+.opening-clock #opening-time { font: 200 clamp(66px, 18vw, 84px)/1.05 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Display', 'Helvetica Neue', 'Segoe UI', sans-serif; letter-spacing: -.072em; font-variant-numeric: proportional-nums; }
 .opening-clock #opening-date { font: 400 clamp(14px, 3.8vw, 17px)/1.5 var(--sans); letter-spacing: -.025em; }
-.opening-notification { display: flex; align-items: center; gap: 11px; box-sizing: border-box; width: 100%; min-height: 78px; margin-top: clamp(80px, 15svh, 140px); padding: 13px 15px; border: 1px solid #ffffff59; border-radius: 17px; background: #ffffff3d; box-shadow: 0 14px 36px #171b1952, inset 0 1px #ffffff66; -webkit-backdrop-filter: blur(24px) saturate(1.18); backdrop-filter: blur(24px) saturate(1.18); color: #fff; text-align: left; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.opening-notification { display: flex; align-items: center; gap: 11px; box-sizing: border-box; width: 100%; min-height: 78px; margin-top: clamp(80px, 15svh, 140px); padding: 13px 15px; border: 1px solid #ffffff59; border-radius: 17px; background: #ffffff3d; box-shadow: 0 14px 36px #171b1952, inset 0 1px #ffffff66; -webkit-backdrop-filter: blur(24px) saturate(1.18); backdrop-filter: blur(24px) saturate(1.18); color: #fff; text-align: left; cursor: pointer; animation: opening-notification-arrive .95s .18s cubic-bezier(.22,.8,.24,1) backwards; transition: background .2s ease, transform .2s ease; }
+@keyframes opening-notification-arrive { 0% { opacity: 0; transform: translateY(-64px) scale(.96); filter: blur(3px); } 62% { opacity: 1; transform: translateY(7px) scale(1.015); filter: blur(0); } 82% { transform: translateY(-3px) scale(.997); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 .opening-notification:hover { background: #ffffff55; transform: translateY(-2px); }
 .opening-notification:active { transform: translateY(1px); }
 .opening-notification:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
@@ -1385,7 +1445,7 @@ body.opening-active { overflow: hidden; }
 .opening-now { align-self: flex-start; flex: none; color: #ffffffbd; font: 400 10px/1.4 var(--sans); }
 .opening-hint { margin: 22px 0 0; color: #ffffffb8; font: 400 11px/1.5 var(--sans); letter-spacing: .005em; animation: opening-hint-glow 2.7s ease-in-out infinite; }
 @keyframes opening-hint-glow { 0%,100% { opacity: .55; text-shadow: none; } 50% { opacity: 1; text-shadow: 0 0 14px #fff8dfd1; } }
-@media (prefers-reduced-motion: reduce) { .opening-screen, .opening-notification { transition: none; } .opening-hint { animation: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .opening-screen, .opening-notification { transition: none; } .opening-notification, .opening-hint { animation: none; opacity: 1; } }
 
 /* The landing page uses its own white-and-gold palette; the bride and groom editions remain untouched. */
 #selection { background: #fffefa; color: #4d4638; }
@@ -1444,6 +1504,64 @@ body.opening-active { overflow: hidden; }
 #selection .photo-upload-button:disabled { background: #e8dcc5; color: #8a7859; }
 #selection .selection-footer button { color: #80643a; }
 @media (prefers-reduced-motion: reduce) { #selection .selection-story summary::before, #selection .selection-story summary::after { animation: none; } #selection .selection-story summary::after { display: none; } }
+
+/* Mood gray belongs to the landing page alone. Bride and groom retain their own palettes. */
+#selection { background: #f8f9f9; color: #3f474c; }
+#selection .eyebrow, #selection .selection-names, #selection .selection-lede { color: #687177; }
+#selection .eyebrow-line { background: #d5dade; }
+#selection #selection-title { color: #505960; }
+#selection .selection-hero-photo { border-color: #e0e4e6; background: #f0f2f3; }
+#selection .selection-event-card { background: #f1f3f4; }
+#selection .selection-event-rule::before, #selection .selection-event-rule::after { background: #cdd3d7; }
+#selection .selection-event-rule span { border-color: #98a3aa; background: #f8f9f9; }
+#selection .selection-event-rule:first-child { box-shadow: inset 0 3px #f8f9f9; }
+#selection .selection-event-rule:last-child { box-shadow: inset 0 -3px #f8f9f9; }
+#selection .selection-event .selection-foot, #selection .selection-event .selection-venue { color: #424a4f; }
+#selection .selection-event-hint, #selection .selection-location .venue-map-trigger { color: #566168; }
+#selection .selection-map { border-color: #d8dfe2; background: #edf0f1; }
+#selection .selection-map #selection-map-status, #selection .location-note, #selection .location-note a { color: #667177; }
+#selection .map-actions .map-action { border-color: #d5dce0; background: #f8f9f9; color: #4b555b; }
+#selection .map-actions .map-action:hover { background: #eef1f2; }
+#selection .travel-notices, #selection .travel-notice { border-color: #d9dfe2; }
+#selection .travel-label { color: #525d64; }
+#selection .travel-notice p { color: #5f696f; }
+#selection .choice { border-color: #d7dde0; background: #fbfcfc; color: #3e474d; }
+#selection .choice:hover { border-color: #aab5bb; background: #f1f4f5; }
+#selection .choice-top, #selection .choice-bottom { color: #5f6a70; border-color: #e1e5e7; }
+#selection .choice-icon { color: #6e7a80; border-color: #cdd5d9; }
+#selection .selection-couple, #selection .selection-gallery, #selection .selection-photo, #selection .selection-footer { border-color: #dfe4e6; }
+#selection .selection-couple h2, #selection .selection-gallery h2, #selection .selection-photo h2 { color: #40494e; }
+#selection .couple-photo-face { border-color: #dce2e5; background: #f0f2f3; }
+#selection .couple-photo-hint, #selection .couple-card > strong { color: #58636a; }
+#selection .couple-photo-back { background: #edf0f1; color: #424c52; }
+#selection .selection-story summary { border-color: #cbd3d7; background: #fbfcfc; box-shadow: 0 4px 16px #7d8b9230, inset 0 1px #fff; color: #505d64; }
+#selection .selection-story summary::before { color: #89969d; }
+#selection .selection-story summary::after { background: linear-gradient(90deg, transparent, #e3e9ebc9, transparent); }
+#selection .selection-story summary:hover { border-color: #a8b4ba; background: #f1f4f5; color: #39454b; }
+#selection .selection-story summary:focus-visible { outline-color: #7f8d94; }
+#selection .story-meta, #selection .selection-story h3, #selection .story-controls button, #selection .story-years button[aria-current="true"] { color: #56636a; }
+#selection .story-photo, #selection .gallery-open, #selection .gallery-grid-item { background: #eef1f2; }
+#selection .gallery-heading > p, #selection .selection-photo .photo-intro, #selection .selection-crafted-note { color: #6e777c; }
+#selection .gallery-mode-switch button { border-bottom-color: #b5c0c5; color: #58656b; }
+#selection .gallery-dots button { border-color: #d8dfe2; background: #f9fafa; color: #5d686e; }
+#selection .gallery-dots button[aria-current="true"] { border-color: #77858d; background: #77858d; color: #fff; }
+#selection .gallery-dots { scrollbar-color: #b7c1c6 transparent; }
+#selection .gallery-nav, #selection .gallery-dialog-nav, #selection .gallery-dialog-counter, #selection .gallery-dialog-close { color: #5b686e; }
+#selection .gallery-empty { border-color: #dce2e5; background: #f3f5f5; }
+#selection .album-frame-back { background: #dce2e4; }
+#selection .album-frame-front { background: #e9edef; color: #819098; }
+#selection .gallery-placeholder, #selection .gallery-grid-placeholder { border-color: #dce2e5; background: linear-gradient(145deg, #f9fafa, #e8edef); color: #89979e; }
+#selection .photo-upload-card { border-color: #dce2e5; background: #f4f6f6; }
+#selection .photo-upload-card strong, #selection .photo-upload-card p, #selection .photo-upload-card .photo-count, #selection .photo-upload-card .photo-upload-help { color: #59666c; }
+#selection .photo-icon, #selection .photo-sender-label { color: #5f6c72; }
+#selection .photo-sender-input, #selection .photo-preview-item { border-color: #d4dce0; }
+#selection .photo-sender-input:focus { border-color: #84939b; box-shadow: 0 0 0 3px #84939b20; }
+#selection .photo-select-button { border-color: #b8c4c9; color: #58666d; }
+#selection .photo-select-button:hover, #selection .photo-select-button:focus-visible { border-color: #8e9ea6; background: #f2f5f6; }
+#selection .photo-select-button span, #selection .photo-preview-item { background: #e9eef0; }
+#selection .photo-upload-button { background: #66757c; }
+#selection .photo-upload-button:disabled { background: #dce2e4; color: #6f7c82; }
+#selection .selection-footer button { color: #5e6a70; }
   </style>
 </head>
 <body>
@@ -2104,8 +2222,39 @@ window.INVITATION = {
     set('#opening-date', new Intl.DateTimeFormat('ko-KR', {month: 'long', day: 'numeric', weekday: 'long'}).format(now));
   };
   let openingClockTimer;
+  let openingChimePlayed = false;
+  const playOpeningChime = (allowResume = false) => {
+    if (openingChimePlayed) return;
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    try {
+      const context = new AudioContextClass();
+      const sound = () => {
+        if (openingChimePlayed || openingScreen.hidden) { context.close(); return; }
+        openingChimePlayed = true;
+        [784, 1174.66].forEach((frequency, index) => {
+          const start = context.currentTime + index * 0.17;
+          const oscillator = context.createOscillator();
+          const volume = context.createGain();
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(frequency, start);
+          volume.gain.setValueAtTime(0.0001, start);
+          volume.gain.exponentialRampToValueAtTime(0.075, start + 0.025);
+          volume.gain.exponentialRampToValueAtTime(0.0001, start + 0.38);
+          oscillator.connect(volume).connect(context.destination);
+          oscillator.start(start);
+          oscillator.stop(start + 0.4);
+        });
+        window.setTimeout(() => context.close(), 1100);
+      };
+      if (context.state === 'running') sound();
+      else if (allowResume) context.resume().then(sound).catch(() => context.close());
+      else context.close();
+    } catch { /* Some browsers wait for a tap before allowing sound. */ }
+  };
   const dismissOpening = () => {
     if (openingScreen.hidden || openingScreen.classList.contains('is-closing')) return;
+    playOpeningChime(true);
     openingScreen.classList.add('is-closing');
     clearInterval(openingClockTimer);
     window.setTimeout(() => {
@@ -2125,6 +2274,7 @@ window.INVITATION = {
     document.body.classList.add('opening-active');
     openingBackground.forEach(element => { element.inert = true; });
     openingClockTimer = window.setInterval(refreshOpeningClock, 30000);
+    window.setTimeout(() => { if (!openingScreen.hidden) playOpeningChime(); }, 460);
   }
 
   const music = $('#background-music');
